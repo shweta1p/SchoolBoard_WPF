@@ -1,0 +1,325 @@
+﻿<Page x:Class="Kirin_2.Pages.StudentView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:settings="clr-namespace:Kirin_2.Properties"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      xmlns:chart="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="850"
+      Width="{Binding ActualWidth, ElementName=parentElementName}"
+      Background="WhiteSmoke"
+      Title="Studentview">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="btnBackground">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- the background for the button -->
+                            <Rectangle RadiusX="15" RadiusY="15" Grid.RowSpan="2" Height="35">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#247BC0" Offset="0"/>
+                                            <GradientStop Color="#247BC0" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <!-- place for the content inside the button to be displayed -->
+                            <ContentPresenter Grid.RowSpan="2" x:Name="PrimaryContent" HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" Margin="{TemplateBinding Padding}" 
+                                              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="btnTransparent">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="Transparent" BorderBrush="#247BC0" BorderThickness="3" 
+                                    CornerRadius="15" Height="35">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="btnLeft">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="Transparent" BorderBrush="#247BC0" BorderThickness="3" 
+                                    CornerRadius="15 0 0 15" Height="35">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="btnCenter">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="Transparent" BorderBrush="#247BC0" BorderThickness="3" Height="35">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="btnRight">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="#247BC0" BorderBrush="#247BC0" BorderThickness="3" 
+                                    CornerRadius="0 15 15 0" Height="35">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <!--<ScrollViewer VerticalScrollBarVisibility="Hidden">-->
+        <Border BorderThickness="2" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay}"
+                Background="White" Margin="10 10 10 0">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="15 10 5 0">
+                    <Button Content="Y1" Height="35" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnLeft}" FontWeight="DemiBold" Width="80">
+                    </Button>
+                    <Button Content="Y2" Height="35" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnCenter}" FontWeight="DemiBold" Width="80">
+                    </Button>
+                    <Button Content="Y3" Height="35" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnRight}" FontWeight="DemiBold" Width="80">
+                    </Button>
+                </StackPanel>
+
+                <!--<Border BorderThickness="2" Panel.ZIndex="-100" Background="White" Margin="10" Width="700"
+                BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay}" >-->
+                <StackPanel Orientation="Horizontal" Width="700" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10 5 5 25">
+                        <Button Content="ENG1DB         1st" Height="40" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnBackground}" Margin="2" FontWeight="DemiBold" Width="180"/>
+
+                        <Button Content="MAT1L          2nd" Height="40" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnBackground}" Margin="2" FontWeight="DemiBold" Width="180"/>
+
+                        <Button Content="WGE9U          7th" Height="40" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnTransparent}" Margin="2" FontWeight="DemiBold" Width="180" />
+
+                        <Button Content="PHY11U          8th" Height="40" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnTransparent}" Margin="2" FontWeight="DemiBold" Width="180"/>
+
+                    </StackPanel>
+                    <chart:SfChart x:Name="RadarChartScore" Visibility="Visible" Background="White" Height="400" Margin="10" Width="500">
+                        <chart:SfChart.PrimaryAxis>
+                            <chart:CategoryAxis IsHitTestVisible="False" TickLineSize="15" FontSize="14" FontWeight="Bold" />
+                        </chart:SfChart.PrimaryAxis>
+
+                        <chart:SfChart.SecondaryAxis>
+                            <chart:NumericalAxis Visibility="Collapsed" EdgeLabelsDrawingMode="Fit" SmallTickLineSize="6" TickLineSize="10" Minimum="10" FontSize="14" FontWeight="Bold" />
+                        </chart:SfChart.SecondaryAxis>
+
+                        <chart:PolarSeries x:Name="StudentScore" ItemsSource="{Binding StudentCourses}" Interior="#247BC0" Stroke="Black" 
+                                               StrokeThickness="2" XBindingPath="CourseCode" YBindingPath="Score" Opacity="0.8" IsClosed="True" >
+                        </chart:PolarSeries>
+
+                        <chart:SfChart.Behaviors>
+                            <chart:ChartSelectionBehavior SelectionCursor="Hand" EnableSegmentSelection="True" />
+                        </chart:SfChart.Behaviors>
+                    </chart:SfChart>
+                </StackPanel>
+                <!--</Border>-->
+
+                <DataGrid Width="700" x:Name="DGStudentScore" Background="Transparent" GridLinesVisibility="All" VerticalGridLinesBrush="Black" BorderBrush="Black" BorderThickness="1"
+                                                      ItemsSource="{Binding StudentAssessment}" AutoGenerateColumns="False" HorizontalGridLinesBrush="Black"
+                                                      CanUserAddRows="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="IsHitTestVisible" Value="False" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Name}" Value="Assessment#">
+                                    <Setter Property="Background" Value="#247BC0" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Name}" Value="">
+                                    <Setter Property="Background" Value="#247BC0" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="140" Binding="{Binding Path=Name, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                FontSize="18" FontWeight="Medium">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Height" Value="35" />
+                                    <Setter Property="Width" Value="140" />
+                                    <Setter Property="FontSize" Value="18" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="#94bad8"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <!--<Setter Property="VerticalAlignment" Value="Bottom" />
+                                        <Setter Property="TextAlignment" Value="Center" />-->
+                                    <!--<Setter Property="Background" Value="#94bad8"/>-->
+                                    <Setter Property="Height" Value="35" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="140" Binding="{Binding Path=Course1, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                FontSize="18" FontWeight="Medium" Header="1st">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Height" Value="35" />
+                                    <Setter Property="Width" Value="140" />
+                                    <Setter Property="FontSize" Value="18" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <!--<Setter Property="VerticalAlignment" Value="Bottom" />
+                                        <Setter Property="TextAlignment" Value="Center" />-->
+                                    <!--<Setter Property="Background" Value="Transparent"/>-->
+                                    <Setter Property="Height" Value="35" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="140" Binding="{Binding Path=Course2, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                FontSize="18" FontWeight="Medium" Header="2nd">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Height" Value="35" />
+                                    <Setter Property="Width" Value="140" />
+                                    <Setter Property="FontSize" Value="18" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <!--<Setter Property="VerticalAlignment" Value="Bottom" />
+                                        <Setter Property="TextAlignment" Value="Center" />-->
+                                    <!--<Setter Property="Background" Value="Transparent"/>-->
+                                    <Setter Property="Height" Value="35" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="140" Binding="{Binding Path=Course3, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                FontSize="18" FontWeight="Medium" Header="3rd">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Height" Value="35" />
+                                    <Setter Property="Width" Value="140" />
+                                    <Setter Property="FontSize" Value="18" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <!--<Setter Property="VerticalAlignment" Value="Bottom" />
+                                        <Setter Property="TextAlignment" Value="Center" />-->
+                                    <!--<Setter Property="Background" Value="Transparent"/>-->
+                                    <Setter Property="Height" Value="35" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="140" Binding="{Binding Path=Course4, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                FontSize="18" FontWeight="Medium" Header="4th">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Height" Value="35" />
+                                    <Setter Property="Width" Value="140" />
+                                    <Setter Property="FontSize" Value="18" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <!--<Setter Property="VerticalAlignment" Value="Bottom" />
+                                        <Setter Property="TextAlignment" Value="Center" />-->
+                                    <!--<Setter Property="Background" Value="Transparent"/>-->
+                                    <Setter Property="Height" Value="35" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="700" Margin="5 10 5 20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="560"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left" Height="40">
+                            <Button Content="ML" Height="35" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnLeft}" FontWeight="DemiBold" Width="60"/>
+                            <Button Content="AL" Height="35" FontSize="18" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 2" 
+                                    Style="{StaticResource btnRight}" FontWeight="DemiBold" Width="60"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                            <TextBox BorderThickness="2" BorderBrush="#247BC0" Background="Transparent" Text="Total Average" Height="35"
+                             FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Right" Width="150" HorizontalContentAlignment="Center"></TextBox>
+                            <TextBox BorderThickness="2" BorderBrush="#247BC0" Background="Transparent" Text="92.25%" Height="35"
+                             FontSize="18" FontWeight="DemiBold" HorizontalAlignment="Right" Width="80" HorizontalContentAlignment="Center"></TextBox>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <!--</ScrollViewer>-->
+    </Grid>
+</Page>

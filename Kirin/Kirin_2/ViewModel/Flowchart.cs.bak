@@ -1,0 +1,669 @@
+﻿using Syncfusion.UI.Xaml.Diagram;
+using Syncfusion.UI.Xaml.Diagram.Controls;
+using Syncfusion.UI.Xaml.Diagram.Layout;
+using Syncfusion.UI.Xaml.Diagram.Theming;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
+using System.Windows.Media;
+using Kirin_2.ViewModel.Command;
+using Kirin_2.Models;
+
+namespace Kirin_2.ViewModel
+{
+    public class Flowchart : DiagramViewModel
+    {
+        private ICommand _ExpandCollapseCommand;
+        KIRINEntities1 kirinentities;
+               
+        public Flowchart()
+        {
+            SnapSettings = new SnapSettings()
+            {
+                SnapToObject = SnapToObject.All,
+                SnapConstraints = SnapConstraints.None,
+
+            };
+
+            // Initialize Diagram properties
+            Constraints = Constraints.Remove(GraphConstraints.PageEditing, GraphConstraints.PanRails);
+            Constraints = Constraints.Add(GraphConstraints.Commands);
+            Menu = null;
+            Tool = Tool.ZoomPan;
+            DefaultConnectorType = ConnectorType.Orthogonal;
+            
+            //Initialize Commands
+            ExpandCollapseCommand = new CommandVM(OnExpandCollaseCommand, canExecuteMethod); 
+            ItemAddedCommand = new CommandVM(OnItemAddedCommand, canExecuteMethod); //new CommandFlow(args => OnItemAdded((ItemAddedEventArgs)args)); 
+
+            // Initialize DataSourceSettings for SfDiagram
+            DataSourceSettings = new DataSourceSettings()
+            {
+                ParentId = "ParentId",
+                Id = "Id",
+                DataSource = Getdata(),
+                //ConnectorTextMapping = "Label",
+                //ShapeMapping = "_Shape",
+                //WidthMapping = "_Width",
+                //HeightMapping = "_Height"
+            };
+
+            // Initialize LayoutSettings for SfDiagram
+            LayoutManager = new LayoutManager()
+            {
+                Layout = new DirectedTreeLayout()
+                {
+                    //Orientation = FlowchartOrientation.TopToBottom,
+                    Type = LayoutType.Organization
+
+                    //HorizontalSpacing = 90,
+                    //VerticalSpacing = 80,
+                },
+            };
+        }
+
+        private void OnItemAddedCommand(object obj)
+        {
+            var args = obj as ItemAddedEventArgs;
+            //if (args.Item is ConnectorViewModel)
+            //{
+            //    var connectorannotations = (args.Item as ConnectorViewModel).Annotations as AnnotationCollection;
+            //    foreach (AnnotationEditorViewModel anno in connectorannotations)
+            //    {
+            //        anno.Alignment = ConnectorAnnotationAlignment.Center;
+            //        anno.Length = 0.5;
+            //        anno.Displacement = 0;
+            //    }
+            //}
+            //else if (args.Item is NodeViewModel)
+            //{
+            //    var nodeannotations = (args.Item as NodeViewModel).Annotations as AnnotationCollection;
+            //    foreach (AnnotationEditorViewModel anno in nodeannotations)
+            //    {
+            //        anno.TextHorizontalAlignment = TextAlignment.Center;
+            //    }
+            //}
+
+            if (args.Item is NodeViewModel)
+            {
+                (args.Item as NodeViewModel).Annotations = null;
+            }
+        }
+
+        
+        #region Commands
+
+        public ICommand ExpandCollapseCommand
+        {
+            get { return _ExpandCollapseCommand; }
+            set
+            {
+                if (_ExpandCollapseCommand != value)
+                {
+                    _ExpandCollapseCommand = value;
+                }
+            }
+        }
+
+        public bool canExecuteMethod(object param)
+        {
+            return true;
+        }
+
+        #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        #region Helper Methods
+        /// <summary>
+        /// The method to execute the expand and collapse operation.
+        /// </summary>
+        /// <param name="args">The parent node to be expanded or collapsed</param>
+        private void OnExpandCollaseCommand(object args)
+        {
+            if (args is Node && (args as Node).DataContext is NodeViewModel)
+            {
+                ExpandCollapseParameter obj = new ExpandCollapseParameter();
+                obj.node = (args as Node).DataContext as NodeViewModel;
+                obj.IsUpdateLayout = true;
+                IGraphInfo graphinfo = Info as IGraphInfo;
+                if (((args as Node).DataContext as NodeViewModel).IsExpanded)
+                {
+                    graphinfo.Commands.ExpandCollapse.Execute(obj);
+                    ((args as Node).DataContext as NodeViewModel).IsExpanded = false;
+                    ((args as Node).Content as BudgetData).IsExpand = State.Collapse;
+                }
+                else
+                {
+                    graphinfo.Commands.ExpandCollapse.Execute(obj);
+                    ((args as Node).DataContext as NodeViewModel).IsExpanded = true;
+                    ((args as Node).Content as BudgetData).IsExpand = State.Expand;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method to Get the data for DataSource
+        /// </summary>
+        /// <param name="data"></param>
+        private BudgetDataList Getdata()
+        {
+            kirinentities = new KIRINEntities1();
+            var budgetData = kirinentities.GetBudgetData().ToList();
+
+            //BudgetDataList budgets = new BudgetDataList();
+            //foreach (GetBudgetData_Result item in budgetData)
+            //{
+            //    budgets.Add(new BudgetData()
+            //    {
+            //        Id = item.ID.ToString(),
+            //        Label = !string.IsNullOrWhiteSpace(item.BUDGET) ? item.BUDGET_LABEL + " \n" + item.BUDGET + "$" : item.BUDGET_LABEL,
+            //        ParentId = item.PARENTID.ToString(),
+            //        RatingColor = item.COLOR,
+            //        IsRoot = Convert.ToBoolean(item.ISHEADER)
+            //    });
+            //}
+
+            BudgetDataList budgets = new BudgetDataList();
+
+            foreach (GetBudgetData_Result item in budgetData)
+            {
+                budgets.Add(new BudgetData()
+                {
+                    Id = item.ID.ToString(),
+                    Label = item.LEVEL_NUMBER > 3 ? item.BUDGET + "$" : null,
+                    //Name = item.LEVEL_NUMBER <= 3 && !string.IsNullOrWhiteSpace(item.BUDGET) ? item.BUDGET_LABEL + "\n" + item.BUDGET + "$" : item.BUDGET_LABEL,
+                    Name = !string.IsNullOrWhiteSpace(item.BUDGET) ? item.BUDGET_LABEL + " \n" + item.BUDGET + "$" : item.BUDGET_LABEL,
+                    ParentId = item.PARENTID.ToString(),
+                    _Shape = App.Current.Resources["OnPageReference"] as string,
+                    _Width = Convert.ToDouble(item.WIDTH),
+                    _Height = Convert.ToDouble(item.HEIGHT),
+                    RatingColor = item.COLOR,
+                    IsRoot = Convert.ToBoolean(item.ISHEADER)
+                });
+            }
+            return budgets;
+        }
+
+        #endregion
+
+
+
+        //#region Constructor
+        //public Flowchart()
+        //{
+
+        //    //This command will get invoked when an item is added to the diagram.
+        //    ItemAddedCommand = new CommandFlow(args => OnItemAdded((ItemAddedEventArgs)args));
+
+        //    // Initialize Gridlines for SfDiagram
+
+
+        //    SnapSettings = new SnapSettings()
+        //    {
+        //        SnapToObject = SnapToObject.All,
+        //        SnapConstraints = SnapConstraints.None,
+
+        //    };
+
+
+        //    //Initialize Context menu for diagram.
+        //    Menu = null;
+
+        //    // Initialize DataSourceSettings for SfDiagram
+        //    DataSourceSettings = new FlowchartDataSourceSettings()
+        //    {
+        //        ParentId = "ParentId",
+        //        Id = "Id",
+        //        DataSource = GetData(),
+        //        ConnectorTextMapping = "Label",
+
+        //        ShapeMapping = "_Shape",
+        //        WidthMapping = "_Width",
+        //        HeightMapping = "_Height"
+        //    };
+
+        //    // Initialize LayoutSettings for SfDiagram
+        //    LayoutManager = new LayoutManager()
+        //    {
+        //        Layout = new FlowchartLayout()
+        //        {
+        //            Orientation = FlowchartOrientation.TopToBottom,
+
+        //            HorizontalSpacing = 90,
+        //            VerticalSpacing = 150,
+        //        },
+        //    };
+        //}
+
+        //private void OnItemAdded(ItemAddedEventArgs args)
+        //{
+        //    if (args.Item is ConnectorViewModel)
+        //    {
+        //        var connectorannotations = (args.Item as ConnectorViewModel).Annotations as AnnotationCollection;
+        //        foreach (AnnotationEditorViewModel anno in connectorannotations)
+        //        {
+        //            anno.Alignment = ConnectorAnnotationAlignment.Center;
+        //           // anno.Pivot = new Point(1, 0);
+        //            anno.Length = 0.5;
+        //            anno.Displacement = 0;
+
+
+        //        }
+        //    }
+        //    else if (args.Item is NodeViewModel)
+        //    {
+        //        var nodeannotations = (args.Item as NodeViewModel).Annotations as AnnotationCollection;
+        //        foreach (AnnotationEditorViewModel anno in nodeannotations)
+        //        {
+        //            anno.TextHorizontalAlignment = TextAlignment.Center;
+        //        }
+        //    }
+        //}
+
+
+        //#endregion
+
+        ///// <summary>
+        ///// Method to Get Data for DataSource
+        ///// </summary>
+        ///// <param name="data"></param>
+        //
+        //private DataItems GetData() {
+        //    kirinentities = new KIRINEntities1();
+        //    var staffData = kirinentities.GetBudgetData().ToList();
+
+        //    DataItems ItemsInfo = new DataItems();
+
+        //    foreach (GetBudgetData_Result item in staffData) {
+        //        ItemsInfo.Add(new ItemInfo()
+        //        {
+        //            Id = item.ID.ToString(),
+        //            Label = item.LEVEL_NUMBER > 3 ? new List<string> { item.BUDGET +"$" } : null,
+        //            Name = item.LEVEL_NUMBER <= 3 ? item.BUDGET_LABEL +"($) \n"+ item.BUDGET  : item.BUDGET_LABEL,
+        //            ParentId = new List<string> { item.PARENTID.ToString() },
+        //            _Shape = App.Current.Resources["OnPageReference"] as string,
+        //            _Width = Convert.ToDouble(item.WIDTH),
+        //            _Height = Convert.ToDouble(item.HEIGHT),
+        //            _Color = item.COLOR
+        //        });
+        //    }
+
+        //    return ItemsInfo;
+        //}
+
+
+
+
+
+
+        //private DataItems GetData()
+        //{
+        //    DataItems ItemsInfo = new DataItems();
+        //    #region flow
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "1",
+        //        //Label = new List<string> { "20$" },
+        //        Name = "Schoolboard \n [LDCSB]",
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 120,
+        //        _Height = 120,
+        //        _Color = "#034d6d"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "2",
+        //        //Label = new List<string> { "209,719,387,000$" },
+        //        Name = "Expenditures \n Total($): \n 209,719,387",
+        //        ParentId = new List<string> { "1" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 110,
+        //        _Height = 110,
+        //        _Color = "#034d6d"
+        //    });
+
+
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "3",
+        //        // Label = new List<string> { "20$" },
+        //        Name = "Revenues \n Total($): \n 272,708,618",
+        //        ParentId = new List<string> { "1" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 110,
+        //        _Height = 110,
+        //        _Color = "#034d6d"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "13",
+        //        Label = new List<string> { "209,719,387$" },
+        //        Name = "Grants for Student Needs",
+        //        ParentId = new List<string> { "3" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 90,
+        //        _Height = 90,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "14",
+        //        Label = new List<string> { "13,371,445$" },
+        //        Name = "Other Revenue",
+        //        ParentId = new List<string> { "3" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 90,
+        //        _Height = 90,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "15",
+        //        Label = new List<string> { "7,006,000$" },
+        //        Name = "School Generated Funds",
+        //        ParentId = new List<string> { "3" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 90,
+        //        _Height = 90,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "16",
+        //        Label = new List<string> { "553,125$" },
+        //        Name = "Tuition Fees",
+        //        ParentId = new List<string> { "3" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 90,
+        //        _Height = 90,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "17",
+        //        Label = new List<string> { "1,222,563$" },
+        //        Name = "Adult / Continuing Education",
+        //        ParentId = new List<string> { "3" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 90,
+        //        _Height = 90,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "4",
+        //        Name = "Elementary Panel \n Total($): \n 99,276,830",
+        //        ParentId = new List<string> { "2" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 110,
+        //        _Height = 110,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "5",
+        //        Name = "Secondary Panel \n Total($): \n 53,187,720",
+        //        ParentId = new List<string> { "2" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 110,
+        //        _Height = 110,
+        //        _Color = "#1759B7"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "6",
+        //        Label = new List<string> { "84,077,403$" },
+        //        Name = "Salaries",
+        //        ParentId = new List<string> { "4" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "7",
+        //        Label = new List<string> { "13,915,907$" },
+        //        Name = "Benefits",
+        //        ParentId = new List<string>() { "4" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "8",
+        //        Label = new List<string> { "165,745$" },
+        //        Name = "Operating \n Expenses",
+        //        ParentId = new List<string> { "4" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "9",
+        //        Label = new List<string> { "111,775$" },
+        //        Name = "Schools",
+        //        ParentId = new List<string> { "4" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "18",
+        //        Label = new List<string> { "22,204$" },
+        //        Name = "Blessed Sacrament, \n London",
+        //        ParentId = new List<string> { "9" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 85,
+        //        _Height = 85,
+        //        _Color = "#76d13b"
+        //    });
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "19",
+        //        Label = new List<string> { "18,624$" },
+        //        Name = "Holy Family, \n London",
+        //        ParentId = new List<string> { "9" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#76d13b"
+        //    });
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "20",
+        //        Label = new List<string> { "15,946$" },
+        //        Name = "Holy Rosary, \n London",
+        //        ParentId = new List<string> { "9" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "21",
+        //        Label = new List<string> { "39,574$" },
+        //        Name = "Jean Vanier, \n London",
+        //        ParentId = new List<string> { "9" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "22",
+        //        Label = new List<string> { "24,126$" },
+        //        Name = "Notre Dame, \n London",
+        //        ParentId = new List<string> { "9" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "23",
+        //        Label = new List<string> { "24,950$" },
+        //        Name = "Our Lady Immaculate, \n Strathroy",
+        //        ParentId = new List<string> { "9" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 85,
+        //        _Height = 85,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "10",
+        //        Label = new List<string> { "44,882,235$" },
+        //        Name = "Salaries",
+        //        ParentId = new List<string> { "5" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "10",
+        //        Label = new List<string> { "6,758,130$" },
+        //        Name = "Benefits",
+        //        ParentId = new List<string> { "5" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "11",
+        //        Label = new List<string> { "251,640$" },
+        //        Name = "Operating \n Expenses",
+        //        ParentId = new List<string> { "5" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 90,
+        //        _Height = 90,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "12",
+        //        Label = new List<string> { "129,571$" },
+        //        Name = "Schools",
+        //        ParentId = new List<string> { "5" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 70,
+        //        _Height = 70,
+        //        _Color = "#2F95D8"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "24",
+        //        Label = new List<string> { "158,676$" },
+        //        Name = "Catholic Central \n High School",
+        //        ParentId = new List<string> { "12" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 100,
+        //        _Height = 100,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "25",
+        //        Label = new List<string> { "105,742$" },
+        //        Name = "John Paul II \n Secondary School",
+        //        ParentId = new List<string> { "12" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 100,
+        //        _Height = 100,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "26",
+        //        Label = new List<string> { "118,689$" },
+        //        Name = "Mother Teresa \n Secondary School",
+        //        ParentId = new List<string> { "12" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 100,
+        //        _Height = 100,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "27",
+        //        Label = new List<string> { "118,689$" },
+        //        Name = "Regina Mundi \n College",
+        //        ParentId = new List<string> { "12" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 100,
+        //        _Height = 100,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    ItemsInfo.Add(new ItemInfo()
+        //    {
+        //        Id = "28",
+        //        Label = new List<string> { "94,569$" },
+        //        Name = "St. Mary's \n High School",
+        //        ParentId = new List<string> { "12" },
+        //        _Shape = App.Current.Resources["OnPageReference"] as string,
+        //        _Width = 100,
+        //        _Height = 100,
+        //        _Color = "#76d13b"
+        //    });
+
+        //    #endregion
+
+        //    return ItemsInfo;
+        //}
+    }
+}

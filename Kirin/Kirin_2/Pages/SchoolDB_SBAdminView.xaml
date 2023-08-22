@@ -1,0 +1,78 @@
+﻿<Page x:Class="Kirin_2.Pages.SchoolDB_SBAdminView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="SchoolDB_SBAdminView"
+      Background="White">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="HeaderTemplate_HeaderDay">
+            <Grid Width="Auto" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Width="30" FontSize="11" FontWeight="Bold" Foreground="White" >Day</Label>
+            </Grid>
+            </DataTemplate>
+
+
+            <Style x:Key="HighlightBorder"
+       TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="REd" />
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Trigger>                    
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="9*"/>            
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+
+            <Rectangle  Width="70" Height="90" VerticalAlignment="Center" >
+                <Rectangle.Stroke>
+                    <SolidColorBrush  Color="DarkSlateGray"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="{Binding TEACHER_PHOTO}"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel>
+                <Label Content="Schoolboard Admin Info" FontSize="18" FontWeight="Bold" Margin="10 20 0 20" ></Label>
+                <StackPanel Orientation="Horizontal" Width="Auto" >
+                    <Label Content="Name: " FontWeight="Bold"/>
+                    <Label Content="{Binding Path=TEACHERPROF.FULLNAME}"/>
+                    <Label Content="Employeee ID : " FontWeight="Bold"/>
+                    <Label Content="{Binding Path=TEACHERPROF.TEACHER_ID}"/>
+                    <Label Content="Primary Email: " FontWeight="Bold"/>
+                    <Label Content="{Binding Path=TEACHERPROF.EMAIL}"/>
+                    <Label Content="Gen: " FontWeight="Bold"/>
+                    <Label Content="{Binding Path=TEACHERPROF.GENDER}"/>
+                    <Label Content="School: " FontWeight="Bold"/>
+                    <Label Content="{Binding Path=TEACHERPROF.SCHOOL_NAME}"/> 
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

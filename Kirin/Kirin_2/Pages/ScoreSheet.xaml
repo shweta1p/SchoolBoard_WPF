@@ -1,0 +1,538 @@
+﻿<Page x:Class="Kirin_2.Pages.ScoreSheet"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:settings="clr-namespace:Kirin_2.Properties"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="1000"
+      SizeChanged="Window_SizeChanged"      
+      Width="Auto"
+      Background="WhiteSmoke"
+      Title="ScoreSheet">
+
+    <Page.Resources>
+        <!-- Flat ComboBox -->
+        <!--
+        <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#e3e9ef" />
+        <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="White" />
+        <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
+
+        <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="2" Name="Border"
+              BorderBrush="{StaticResource ComboBoxNormalBorderBrush}" 
+              CornerRadius="0" BorderThickness="1, 1, 1, 1" 
+              Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
+                <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="#444" Name="ButtonBorder"
+              CornerRadius="0, 0, 0, 0" BorderThickness="0, 0, 0, 0" 
+              Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
+
+                <Path Name="Arrow" Grid.Column="1" 
+            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+            HorizontalAlignment="Center" Fill="#444"
+            VerticalAlignment="Center" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke"/>
+                    <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E"/>
+
+                </Trigger>
+                <Trigger Property="UIElement.IsEnabled" Value="False">
+                    <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                    <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}"/>
+                    <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+                    <Setter Property="TextElement.Foreground" Value="WhiteSmoke"/>
+
+                    <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ComboBoxFlatStyle"  TargetType="{x:Type ComboBox}">
+            <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+
+            <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+            <Setter Property="TextElement.Foreground" Value="Black"/>
+            <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton" Grid.Column="0" 
+                ClickMode="Press" Focusable="False"
+                IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                Template="{StaticResource ComboBoxToggleButtonTemplate}" Margin="2,0,-2,-0.4"/>
+
+                            <ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False"
+                              HorizontalAlignment="Left" VerticalAlignment="Center"                              
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}" 
+                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                            <TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3"                     
+                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                     Visibility="Hidden" Background="Transparent"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                     Focusable="True" >
+                                <TextBox.Template>
+                                    <ControlTemplate TargetType="TextBox" >
+                                        <Border Name="PART_ContentHost" Focusable="False" />
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </TextBox>
+                            -->
+        <!-- Popup showing items -->
+        <!--
+                            <Popup Name="Popup" Placement="Bottom"
+                   Focusable="False" AllowsTransparency="True"
+                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                   PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True"
+                    MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                    MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                                    <Border Name="DropDownBorder" Background="#7d868a" Margin="0, 1, 0, 0"
+                        CornerRadius="0" BorderThickness="1,1,1,1" 
+                        BorderBrush="{StaticResource ComboBoxNormalBorderBrush}"/>
+                                    <ScrollViewer Margin="4" SnapsToDevicePixels="True" Foreground="WhiteSmoke" FontWeight="DemiBold">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="ItemsControl.HasItems" Value="False">
+                                <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+
+                            </Trigger>
+                            <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                            </Trigger>
+                            <Trigger Property="ComboBox.IsEditable" Value="True">
+                                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                                <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
+                                <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+        <Style x:Key="WrappedColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Background="LightBlue">
+                            <TextBlock TextWrapping="NoWrap"  >
+                                <TextBlock.Inlines >
+                                    <Run FontWeight="Bold" FontSize="12" Text="Responsibility &#x0a;" />
+                                    <Run Foreground="DarkOliveGreen" Text="Fulfills responsibilties and commitments with the learning environment.&#x0a; " />
+                                    <Run Foreground="DarkOliveGreen" Text="Completes and submits class work, homework, and assignments according to agreed-upon timelines.&#x0a; " />
+                                    <Run Foreground="DarkOliveGreen" Text="Takes responsibility for and manages own behavior.&#x0a; " />
+                                </TextBlock.Inlines>
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="-90" />
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HeaderTemplateMain" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <DataTemplate x:Key="HeaderTemplateMain1">
+            <Border Background="WhiteSmoke" Height="35" VerticalAlignment="Bottom" Margin="0 80 0 0" HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding}" Margin="0" VerticalAlignment="Bottom"/>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplate_col1" >
+            <Border Background="LightBlue">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap">
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Responsibility&#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Fulfills responsibilties and commitments with the learning environment.&#x0a;" />
+                                <Run Foreground="White" Text="Completes and submits class work, homework, and assignments according to agreed-upon timelines.&#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Takes responsibility for and manages own behavior.&#x0a;" />
+                            </TextBlock.Inlines>
+
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <TextBlock TextWrapping="NoWrap"  >
+                    <TextBlock.Inlines >
+                        <Run FontWeight="Bold" FontSize="12" Text="Responsibility &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Fulfills responsibilties and commitments with the learning environment.&#x0a; " />
+                        <Run Foreground="DarkOliveGreen" Text="Completes and submits class work, homework, and assignments according to agreed-upon timelines.&#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Takes responsibility for and manages own behavior.&#x0a;" />
+                    </TextBlock.Inlines>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Border>
+
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplate_col2" >
+            <Border Background="#83b55c">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Organization &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Devises and follows a plan for completing work and tasks&#x0a; " />
+                                <Run Foreground="WhiteSmoke"  Text="Establishes priorities&#x0a; " />
+                                <Run Foreground="WhiteSmoke"  Text="Identifies , gathers, evaluates, and uses .. " />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <TextBlock TextWrapping="NoWrap"   >
+                    <TextBlock.Inlines >
+                        <Run FontWeight="Bold" FontSize="12" Text="Organization&#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Devises and follows a plan for completing work and tasks &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Establishes priorities &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Identifies , gathers, evaluates, and uses .." />
+                    </TextBlock.Inlines>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplate_col3"  >
+            <Border Background="LightBlue" >
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Independent Work &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Independently monitors, assesses, and revises&#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Uses class time appropriately &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Follow instructions with minimal supervision." />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <TextBlock TextWrapping="NoWrap"  >
+                    <TextBlock.Inlines >
+                        <Run FontWeight="Bold" FontSize="12" Text="Independent Work &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Independently monitors, assesses, and revises &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Uses class time appropriately &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Follow instructions with minimal supervision." />
+                    </TextBlock.Inlines>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+       
+        <DataTemplate x:Key="HeaderTemplate_col4">
+            <Border Background="#83b55c" >
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap">
+                            <TextBlock.Inlines>
+                                <Run FontWeight="Bold" FontSize="12" Text="Collaboration &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Accepts various roles and an equitable share of work in a group &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Responds positively to the ideas, opinions,&#x0a; " />
+                                <Run Foreground="WhiteSmoke" Text="builds healthy peer-to-peer relationships in person." />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <TextBlock TextWrapping="NoWrap">
+                    <TextBlock.Inlines>
+                        <Run FontWeight="Bold" FontSize="12" Text="Collaboration &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Accepts various roles and an equitable share of work in a group &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Responds positively to the ideas, opinions,&#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="builds healthy peer-to-peer relationships in person. " />
+                    </TextBlock.Inlines>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplate_col5">
+            <Border Background="LightBlue">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap">
+                            <TextBlock.Inlines>
+                                <Run FontWeight="Bold" FontSize="12" Text="Initiative &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Looks and acts on new ideas and opportunities for learning &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Demonstrates the capacity for innovation and &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Demonstrates curiousity and interest in learning" />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <TextBlock TextWrapping="NoWrap">
+                    <TextBlock.Inlines >
+                        <Run FontWeight="Bold" FontSize="12" Text="Initiative &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Looks and acts on new ideas and opportunities for learning &#x0a; " />
+                        <Run Foreground="DarkOliveGreen" Text="Demonstrates the capacity for innovation and  &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Demonstrates curiousity and interest in learning" />
+                    </TextBlock.Inlines>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplate_col6"  >
+            <Border Background="#83b55c" >
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap" >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Self-regulation  &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Sets own individual goals and monitors progress towards achieving them &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Seeks clarification and assistance when needed  &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Assess and reflects critically on own strengths." />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <TextBlock TextWrapping="NoWrap"  >
+                    <TextBlock.Inlines >
+                        <Run FontWeight="Bold" FontSize="12" Text="Self-regulation  &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Sets own individual goals and monitors progress towards achieving them &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Seeks clarification and assistance when needed  &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Assess and reflects critically on own strengths." />
+                    </TextBlock.Inlines>
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+
+        <Style x:Key="Centering" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+
+        <Style x:Key="Null"></Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- the background for the button -->
+                            <Rectangle RadiusX="5" RadiusY="5" Grid.RowSpan="2" Height="20">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#3d78a6" Offset="0"/>
+                                            <GradientStop Color="#3d78a6" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <!-- place for the content inside the button to be displayed -->
+                            <ContentPresenter Grid.RowSpan="2"  
+              x:Name="PrimaryContent"
+              HorizontalAlignment="Center" VerticalAlignment="Center"
+              Margin="{TemplateBinding Padding}"
+              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <StackPanel>
+            <Viewbox Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" >
+                <WrapPanel >
+                    <TextBlock Grid.Row="0" Grid.Column="0"  FontSize="17" FontWeight="SemiBold" Margin="10 10 0 10">SCORESHEET</TextBlock>
+
+                    <DockPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="550,0,0,0" DockPanel.Dock="Right" >
+                            <materialDesign:ColorZone
+                                CornerRadius="20"
+                                Margin="0 10 10 0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Left"
+                                Mode="Light"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="30" Width="200" Background="White"  >
+                                <StackPanel Width="200" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" >
+                                    <Button Focusable="False" Style="{DynamicResource MaterialDesignToolButton}" VerticalContentAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Search" Width="20" Height="30" Opacity=".56"  />
+                                    </Button>
+                                    <TextBox Width="170"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Margin="-4 0 0 0"
+                                        materialDesign:HintAssist.Hint=""
+                                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                        BorderThickness="0"
+                                        MinWidth="100"
+                                        TextChanged="SearchBox_TextChanged"
+                                        Name="SearchBox"         
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </materialDesign:ColorZone>
+                            <!--<ComboBox DisplayMemberPath="SEMESTER" Margin="20 0" Width="160"  
+                                      VerticalAlignment="Center" Style="{DynamicResource ComboBoxFlatStyle}" 
+                                      HorizontalAlignment="Right" SelectedValue="{Binding ID}" 
+                                      SelectedValuePath="ID" Name="cmbSemesterList"
+                                      SelectionChanged="cmbSemester_SelectionChanged" >
+                            </ComboBox>-->
+                        </StackPanel>
+                    </DockPanel>
+                </WrapPanel>
+            </Viewbox>
+
+            <Viewbox Stretch="UniformToFill" Grid.Row="1" Grid.Column="0" >
+                <Border BorderThickness="1" Grid.Row="1" Grid.Column="0"  Panel.ZIndex="-100" CornerRadius="5,5,5,5" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"  Height="Auto"  Background="Transparent" Margin="10" >
+                    <DataGrid x:Name="DGScoresheet" ItemsSource="{Binding STUDENTLIST, Mode=TwoWay}" Margin="10" FontSize="16" CanUserAddRows="false"  
+                            GridLinesVisibility="Vertical" CanUserResizeColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False"  VerticalAlignment="Top" AlternationCount="2" AlternatingRowBackground="{Binding Source={x:Static settings:Settings.Default}, Path=AlternatingBGColor, Mode=TwoWay }" 
+                            CanUserSortColumns="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" RowHeight="30">
+                        <DataGrid.Resources>
+                            <Style x:Key="DoubleLeftBorderCell" TargetType="DataGridCell">
+                                <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Style>
+
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                                <Setter Property="Height" Value="25" />
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="Foreground" Value="WhiteSmoke" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="CEnter"/>
+                                <Setter Property="Padding" Value=" 0" />
+                            </Style>
+                            <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontFamily" Value="Roboto" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Justify" />
+                                <Setter Property="Height" Value="20" />
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Focusable" Value="False"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="420">
+                                <DataGridTemplateColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                                        <Setter Property="Height" Value="25" />
+                                    </Style>
+                                </DataGridTemplateColumn.HeaderStyle>
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="Students " Margin="0" FontSize="16" VerticalContentAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Foreground="WhiteSmoke"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <StackPanel Orientation="Horizontal"  >
+                                            <Button Focusable="False" Click="ViewScoreSheetPagePerStudent" Tag="{Binding Path=ID}" CommandParameter="{Binding}"  >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <TextBlock Text="{Binding Path=FULLNAME}" Foreground="Black" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="290"  >
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="Final Grades" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Foreground="WhiteSmoke"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                            <TextBlock TextAlignment="Center" Text="{Binding Path=Grade}" >
+                                            <!--<Run FontSize="16" FontWeight="Bold" Text="89          "/> 
+                                            <Run FontSize="16" FontWeight="Bold" Text="           89% "/>-->
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="135">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="Absent" HorizontalAlignment="Center" FontSize="16"  VerticalAlignment="Bottom" FontWeight="Bold" Foreground="WhiteSmoke" HorizontalContentAlignment="Center"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  >
+                                            <TextBlock Text="{Binding Path=Absent}" FontSize="15" FontWeight="Bold" TextAlignment="Center">
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn >
+                            <DataGridTemplateColumn Width="135">
+                                <DataGridTemplateColumn.Header>
+                                    <Label Content="Late" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Foreground="WhiteSmoke"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  >
+                                            <TextBlock Text="{Binding Path=Late}" FontSize="15" FontWeight="Bold" TextAlignment="Center">
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Viewbox>
+        </StackPanel>
+    </Grid>
+</Page>

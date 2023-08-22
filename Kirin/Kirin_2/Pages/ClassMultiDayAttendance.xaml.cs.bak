@@ -1,0 +1,68 @@
+﻿using Kirin_2.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Kirin_2.Pages
+{
+    /// <summary>
+    /// Interaction logic for ClassMultiDayAttendancec.xaml
+    /// </summary>
+    public partial class ClassMultiDayAttendance : Page
+    {
+        public ClassMultiDayAttendance(string classID)
+        {
+            InitializeComponent();
+            ClassAttendanceViewModel classVM = new ClassAttendanceViewModel();
+            DataContext = classVM;
+            classVM.getClassListAttendanceMultiDay(Int32.Parse(classID));
+            classVM.CURRENTCLASSID = Int32.Parse(classID);
+            classVM.DateRangeFilter_From = DateTime.Now;
+            classVM.DateRangeFilter_To = DateTime.Now.AddDays(7);
+            ClassTitle.Content = "Record Meeting Attendance: " + classVM.getClassName(Int32.Parse(classID));
+        }
+        private void SwitchToSingleDayView(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var item = sender as Button;
+
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            if (mw != null)
+            {
+                mw.MainWindowFrame.Content = new ClassAttendance(item.Tag.ToString());
+                //mw.MainWindowFrame.Content = new ClassMultiDayAttendance(ClassID);
+            }
+        }
+
+
+        private void SubmitAttendance(object sender, RoutedEventArgs e)
+        {
+            var item = sender as Button;
+
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            if (mw != null)
+            {
+                
+                //mw.MainWindowFrame.Content = new ClassMultiDayAttendance(item.Tag.ToString());
+                mw.MainWindowFrame.Content = new AttendancePage();
+            }
+        }
+
+        private void AddAlertComment(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Add alert comment");
+        }
+    }
+}

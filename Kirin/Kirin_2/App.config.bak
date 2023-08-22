@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<configSections>
+		<!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+		<section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+		<sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+			<section name="Kirin_2.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+		</sectionGroup>
+		<sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+			<section name="Kirin_2.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+		</sectionGroup>
+	</configSections>
+	<startup>
+		<supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+	</startup>
+	<entityFramework>
+		<providers>
+			<provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+		</providers>
+	</entityFramework>
+	<connectionStrings>
+  <add name="Kirin_2.Properties.Settings.Setting" connectionString="Data Source=DESKTOP-H0S5QUB\MSSQLKIRIN;Initial Catalog=KIRIN;User ID=sa;Password=1234"
+   providerName="System.Data.SqlClient" />
+  <add name="KIRINEntities1" connectionString="metadata=res://*/Models.KIRIN.csdl|res://*/Models.KIRIN.ssdl|res://*/Models.KIRIN.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\MSSqlLocalDb;initial catalog=KIRIN;user id=sa;password=123456;MultipleActiveResultSets=True;App=EntityFramework&quot;"
+   providerName="System.Data.EntityClient" />
+  <add name="KIRINEntities" connectionString="metadata=res://*/Models.KIRIN.csdl|res://*/Models.KIRIN.ssdl|res://*/Models.KIRIN.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(localdb)\MSSqlLocalDb;initial catalog=KIRIN;user id=sa;password=123456;MultipleActiveResultSets=True;App=EntityFramework&quot;"
+   providerName="System.Data.EntityClient" />
+  <add name="KIRIN" connectionString="Server=(localdb)\MSSqlLocalDb;Initial Catalog=KIRIN;User ID=sa;Password=123456"
+   providerName="System.Data.SqlClient" />
+  <add name="Kirin_2.Properties.Settings.Setting1" connectionString="Data Source=DESKTOP-H0S5QUB\MSSQLKIRIN;Initial Catalog=KIRIN;User ID=sa;Password=1234"
+   providerName="System.Data.SqlClient" />
+ </connectionStrings>
+	<appSettings>
+		<add key="excelPath" value="\\Financial_Budget\\" />
+		<add key="excelFileName" value="FinancialBudget.xlsx" />
+		<add key="ImagePath" value="D:\KIRIN\Kirin\Kirin_2\Images\" />
+	</appSettings>
+	<applicationSettings>
+		<Kirin_2.Properties.Settings>
+   <setting name="MainPalette_Cyan" serializeAs="String">
+    <value>#2BC0E1</value>
+   </setting>
+   <setting name="MainPalette_Red" serializeAs="String">
+    <value>#E63E39</value>
+   </setting>
+   <setting name="MainPalette_Yellow" serializeAs="String">
+    <value>#FAED41</value>
+   </setting>
+   <setting name="MainPalette_Gray1" serializeAs="String">
+    <value>#c7cdd6</value>
+   </setting>
+   <setting name="MainPalette_White" serializeAs="String">
+    <value>WhiteSmoke</value>
+   </setting>
+  </Kirin_2.Properties.Settings>
+	</applicationSettings>
+	<userSettings>
+		<Kirin_2.Properties.Settings>
+   <setting name="MainPalette_Blue" serializeAs="String">
+    <value>#247BC0</value>
+   </setting>
+   <setting name="color1" serializeAs="String">
+    <value>ControlLight</value>
+   </setting>
+   <setting name="AlternatingBGColor" serializeAs="String">
+    <value>#26247BC0</value>
+   </setting>
+   <setting name="Datagrid_header" serializeAs="String">
+    <value>#247BC0</value>
+   </setting>
+   <setting name="Datagrid_selector" serializeAs="String">
+    <value>#0D247BC0</value>
+   </setting>
+   <setting name="Datagrid_selectedRow" serializeAs="String">
+    <value>#00be00</value>
+   </setting>
+   <setting name="Combobox_bg" serializeAs="String">
+    <value>#E62581C6</value>
+   </setting>
+   <setting name="Border_color" serializeAs="String">
+    <value>#247BC0</value>
+   </setting>
+   <setting name="Border_color_inner" serializeAs="String">
+    <value>#A6247BC0</value>
+   </setting>
+   <setting name="Modal_bg" serializeAs="String">
+    <value>#33247BC0</value>
+   </setting>
+   <setting name="ClassSelector" serializeAs="String">
+    <value>#A6FFFFFF</value>
+   </setting>
+   <setting name="ClassSelectorHeader" serializeAs="String">
+    <value>#E62581C6</value>
+   </setting>
+   <setting name="Datagrid_header_multidayView" serializeAs="String">
+    <value>#65a2d2</value>
+   </setting>
+   <setting name="Subsection_BG" serializeAs="String">
+    <value>#80FFFFFF</value>
+   </setting>
+   <setting name="AttendanceCheckered" serializeAs="String">
+    <value>#D6E4ED</value>
+   </setting>
+   <setting name="AttendanceCheckeredWhite" serializeAs="String">
+    <value>#92B7CA</value>
+   </setting>
+   <setting name="BG_staffprofile" serializeAs="String">
+    <value>#33247BC0</value>
+   </setting>
+   <setting name="SPanelItemForeground" serializeAs="String">
+    <value>#4f95cc</value>
+   </setting>
+   <setting name="LearningSkill_AlterColor1" serializeAs="String">
+    <value>#65a2d2</value>
+   </setting>
+   <setting name="LearningSkill_AlterColor2" serializeAs="String">
+    <value>#91bddf</value>
+   </setting>
+   <setting name="Dashboard_Box_Outline" serializeAs="String">
+    <value>#D5D8DC</value>
+   </setting>
+   <setting name="ProgressBar_color" serializeAs="String">
+    <value>#247BC0</value>
+   </setting>
+  </Kirin_2.Properties.Settings>
+	</userSettings>
+	<runtime>
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<dependentAssembly>
+				<assemblyIdentity name="Syncfusion.Licensing" publicKeyToken="632609b4d040f6b4" culture="neutral" />
+				<bindingRedirect oldVersion="0.0.0.0-19.4460.0.54" newVersion="19.4460.0.54" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="Syncfusion.Shared.Wpf" publicKeyToken="3d67ed1f87d44c89" culture="neutral" />
+				<bindingRedirect oldVersion="0.0.0.0-19.4460.0.54" newVersion="19.4460.0.54" />
+			</dependentAssembly>
+			<dependentAssembly>
+				<assemblyIdentity name="Syncfusion.SfSkinManager.WPF" publicKeyToken="3d67ed1f87d44c89" culture="neutral" />
+				<bindingRedirect oldVersion="0.0.0.0-19.4460.0.54" newVersion="19.4460.0.54" />
+			</dependentAssembly>
+		</assemblyBinding>
+	</runtime>
+</configuration>

@@ -1,0 +1,62 @@
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\LoginPage.exe.config
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\LoginPage.exe
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\LoginPage.pdb
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\MaterialDesignColors.dll
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Security.AccessControl.dll
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Security.Permissions.dll
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Security.AccessControl.xml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Security.Permissions.xml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.csproj.AssemblyReference.cache
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\Login.g.cs
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\PasswordChange.g.cs
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\App.g.cs
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage_MarkupCompile.cache
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage_MarkupCompile.lref
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\Login.baml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\PasswordChange.baml
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.g.resources
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.Properties.Resources.resources
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.csproj.GenerateResource.cache
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.csproj.CoreCompileInputs.cache
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.exe
+C:\Users\Yoga Slim 7\git_test\Kirin\Kirin\LoginPage\obj\Debug\LoginPage.pdb
+D:\KIRIN\Kirin\LoginPage\bin\Debug\LoginPage.exe.config
+D:\KIRIN\Kirin\LoginPage\bin\Debug\LoginPage.exe
+D:\KIRIN\Kirin\LoginPage\bin\Debug\LoginPage.pdb
+D:\KIRIN\Kirin\LoginPage\bin\Debug\MaterialDesignColors.dll
+D:\KIRIN\Kirin\LoginPage\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Security.AccessControl.dll
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Security.Permissions.dll
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Security.Principal.Windows.dll
+D:\KIRIN\Kirin\LoginPage\bin\Debug\MaterialDesignColors.pdb
+D:\KIRIN\Kirin\LoginPage\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\KIRIN\Kirin\LoginPage\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Security.AccessControl.xml
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Security.Permissions.xml
+D:\KIRIN\Kirin\LoginPage\bin\Debug\System.Security.Principal.Windows.xml
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.csproj.AssemblyReference.cache
+D:\KIRIN\Kirin\LoginPage\obj\Debug\Login.g.cs
+D:\KIRIN\Kirin\LoginPage\obj\Debug\PasswordChange.g.cs
+D:\KIRIN\Kirin\LoginPage\obj\Debug\App.g.cs
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage_MarkupCompile.cache
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage_MarkupCompile.lref
+D:\KIRIN\Kirin\LoginPage\obj\Debug\Login.baml
+D:\KIRIN\Kirin\LoginPage\obj\Debug\PasswordChange.baml
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.g.resources
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.Properties.Resources.resources
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.csproj.GenerateResource.cache
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.csproj.CoreCompileInputs.cache
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.exe
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.pdb
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.csproj.SuggestedBindingRedirects.cache
+D:\KIRIN\Kirin\LoginPage\obj\Debug\LoginPage.csproj.CopyComplete

@@ -1,0 +1,1177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KIRINModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="APPROVED_BUDGET">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BUDGET_LABEL" Type="nvarchar" MaxLength="255" />
+    <Property Name="BUDGET" Type="nvarchar" MaxLength="255" />
+    <Property Name="WIDTH" Type="nvarchar" MaxLength="50" />
+    <Property Name="HEIGHT" Type="nvarchar" MaxLength="50" />
+    <Property Name="COLOR" Type="nvarchar" MaxLength="50" />
+    <Property Name="ISHEADER" Type="bit" />
+    <Property Name="PARENTID" Type="int" />
+    <Property Name="LEVEL_NUMBER" Type="int" />
+    <Property Name="YEAR" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ASSIGNMENT">
+    <Key>
+      <PropertyRef Name="ASSIGNMENT_ID" />
+    </Key>
+    <Property Name="ASSIGNMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UNIQUE_ID" Type="varchar" MaxLength="250" />
+    <Property Name="REPORTING_TERM" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="ABRV" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CATEGORY" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="POINTS_POSSIBLE" Type="int" Nullable="false" />
+    <Property Name="WEIGHT" Type="float" Nullable="false" />
+    <Property Name="DATE_DUE" Type="date" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="int" Nullable="false" />
+    <Property Name="SCORE_TYPE" Type="varchar" MaxLength="50" />
+    <Property Name="ISLOADED" Type="int" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ASSIGNMENT_CATEGORY">
+    <Key>
+      <PropertyRef Name="ASSIGNMENT_CATEGORY_ID" />
+    </Key>
+    <Property Name="ASSIGNMENT_CATEGORY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORY" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ATTENDANCE_CODES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="5" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="100" />
+    <Property Name="WEIGHT" Type="nvarchar" MaxLength="50" />
+    <Property Name="COLOR" Type="nvarchar" MaxLength="250" />
+    <Property Name="COLOR2" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="CLASS_ATTENDANCE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="int" Nullable="false" />
+    <Property Name="COMMENT" Type="varchar(max)" Nullable="false" />
+    <Property Name="ATTENDANCE_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="SECRETARY_COMMENT" Type="varchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6005: The data type 'sql_variant' is currently not supported for the target Entity Framework version; the column 'StartTime' in the table 'KIRIN.dbo.Class_DayofWeek' was excluded.
+warning 6005: The data type 'sql_variant' is currently not supported for the target Entity Framework version; the column 'EndTime' in the table 'KIRIN.dbo.Class_DayofWeek' was excluded.-->
+  <EntityType Name="Class_DayofWeek">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DayOfWeekID" Type="int" Nullable="false" />
+    <Property Name="ClassID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLASS_STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="int" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLUBS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+    <Property Name="COLOR" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="COUNTRIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="250" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="Color" Type="nvarchar" MaxLength="250" />
+    <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DAILYBULLETIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SCHOOLID" Type="int" />
+    <Property Name="MESSAGE" Type="nvarchar(max)" />
+    <Property Name="UPLOADED_DATE" Type="datetime" />
+    <Property Name="PRIORITY" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DEPARTMENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="DOMAIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="MD5" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FEEDBACK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Feedback" Type="nvarchar(max)" />
+    <Property Name="Screenshot" Type="varbinary(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="User" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="GRADE_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Letter" Type="nvarchar" MaxLength="50" />
+    <Property Name="Points" Type="float" />
+    <Property Name="Percent" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GRADES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GRADE" Type="varchar" MaxLength="50" />
+    <Property Name="SUBJECT_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HOLIDAY_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="HOLIDAY" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="IMG_TBL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IMAGE_PATH" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="IMG" Type="varbinary(max)" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="REFRENCE_ID" Type="int" Nullable="false" />
+    <Property Name="CLASSFICATION_TYPE" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMG_TYPE_CLASSIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CLASSIFICATION_TYPE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LANGUAGE_PRIORITY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRIORITY" Type="nvarchar" MaxLength="250" />
+    <Property Name="ORDER" Type="nvarchar" MaxLength="50" />
+    <Property Name="COLOR" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LANGUAGES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LANGUAGE" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NOTIFICATION_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TYPE" Type="nvarchar" MaxLength="50" />
+    <Property Name="TEMPLATE" Type="nvarchar(max)" />
+    <Property Name="PAGE_LINK" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="NOTIFICATIONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOTIFICATION_TYPE" Type="nvarchar" MaxLength="50" />
+    <Property Name="SCHOOLID" Type="nvarchar" MaxLength="50" />
+    <Property Name="MESSAGE" Type="nvarchar(max)" />
+    <Property Name="UPDATED_DATE" Type="datetime" />
+    <Property Name="ICON" Type="varbinary(max)" />
+    <Property Name="USERID" Type="nvarchar" MaxLength="50" />
+    <Property Name="STUDENT" Type="nvarchar" MaxLength="250" />
+    <Property Name="CLASS" Type="nvarchar" MaxLength="250" />
+    <Property Name="DOCUMENT" Type="nvarchar" MaxLength="250" />
+    <Property Name="UPDATEDBY" Type="nvarchar" MaxLength="250" />
+    <Property Name="STUDENTID" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LEVEL" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SCHOOL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SCHOOL_NAME" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="SCHOOLBOARD_ID" Type="int" Nullable="false" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="255" />
+    <Property Name="DISTRICT" Type="nvarchar" MaxLength="255" />
+    <Property Name="SCHOOL_TYPE" Type="nvarchar" MaxLength="255" />
+    <Property Name="PHONE_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="LATITUDE" Type="nvarchar" MaxLength="255" />
+    <Property Name="LONGITUDE" Type="nvarchar" MaxLength="255" />
+    <Property Name="SCHOOL_ID" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="SCHOOLBOARD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SCHOOLBOARD_ID" Type="nvarchar" MaxLength="250" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="nvarchar(max)" />
+    <Property Name="JURISDICTION" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="SCHOOLBOARD_ADMINS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="LAST_NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="255" />
+    <Property Name="PHONE_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="ROLEID" Type="int" />
+    <Property Name="SCOOLBOARD_ID" Type="int" />
+    <Property Name="SCHOOL_ID" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="SEMESTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SEMESTER" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ABBREVIATION" Type="nvarchar" MaxLength="50" />
+    <Property Name="YEAR" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="QUARTER" Type="varchar" MaxLength="50" />
+    <Property Name="QUARTERHALF" Type="varchar" MaxLength="50" />
+    <Property Name="STARTDATE" Type="date" />
+    <Property Name="ENDDATE" Type="date" />
+  </EntityType>
+  <EntityType Name="STAFF_DIRECTORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="BIRTHDATE" Type="date" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="BIRTH_ORIGIN" Type="varchar" MaxLength="500" />
+    <Property Name="CITIZENSHIP" Type="varchar" MaxLength="500" />
+    <Property Name="ETHNICITY_DIVERSITY" Type="varchar" MaxLength="100" />
+    <Property Name="YEARS_OF_EXPERIENCE" Type="int" />
+    <Property Name="SCORE_HAPPINESS" Type="int" />
+    <Property Name="SALARY" Type="float" />
+    <Property Name="SPECIAL_NEEDS_TEACHER" Type="varchar" MaxLength="1000" />
+    <Property Name="TEACHER_QUALIFICATION" Type="varchar" MaxLength="500" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+    <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="50" />
+    <Property Name="GENDER" Type="varchar" MaxLength="50" />
+    <Property Name="ROLEID" Type="int" />
+    <Property Name="ROOM_NUMBER" Type="nvarchar" MaxLength="50" />
+    <Property Name="DEPARTMENTID" Type="int" />
+    <Property Name="SCHOOL_ID" Type="int" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="SUPERVISOR" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STAFF_PHONE_NO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STAFF_ID" Type="int" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BIRTHDATE" Type="date" Nullable="false" />
+    <Property Name="DIVERSITY" Type="varchar" MaxLength="50" />
+    <Property Name="ORIGIN_OF_BIRTH" Type="varchar" MaxLength="50" />
+    <Property Name="CITIZENSHIP" Type="varchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="250" />
+    <Property Name="GENDER" Type="varchar" MaxLength="50" />
+    <Property Name="ETHNICITY" Type="varchar" MaxLength="50" />
+    <Property Name="HOMEROOM" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="255" />
+    <Property Name="STUDENT_ID" Type="varchar" MaxLength="50" />
+    <Property Name="SCHOOL_ID" Type="int" />
+    <Property Name="LATITUDE" Type="nvarchar" MaxLength="255" />
+    <Property Name="LONGITUDE" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="ParentCount" Type="int" />
+    <Property Name="IsTransferred" Type="bit" />
+    <Property Name="SiblingCount" Type="int" />
+    <Property Name="HouseholdIncome" Type="nvarchar" MaxLength="50" />
+    <Property Name="Transportation" Type="nvarchar" MaxLength="250" />
+    <Property Name="TransportationAbvr" Type="nvarchar" MaxLength="50" />
+    <Property Name="Parantal_Involvement" Type="nvarchar" MaxLength="250" />
+    <Property Name="Distance" Type="nvarchar" MaxLength="50" />
+    <Property Name="Distance1" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STUDENT_ALERT_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="ALERT_ID" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ALERT" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STUDENT_ALERTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ALERT_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="STUDENT_AVG_GRADE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENTID" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUBJECTID" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE1" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE2" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE3" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE4" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE5" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE6" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE7" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE8" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE9" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE10" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE11" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRADE12" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STUDENT_COCURRICULAR">
+    <Key>
+      <PropertyRef Name="STUDENTS_COCURRICULAR_ID" />
+    </Key>
+    <Property Name="STUDENTS_COCURRICULAR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="CLUB_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="STUDENT_COMMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENTID" Type="nvarchar" MaxLength="50" />
+    <Property Name="COMMENT" Type="nvarchar(max)" />
+    <Property Name="UPDATEDBY" Type="nvarchar" MaxLength="50" />
+    <Property Name="UPDATEDDATE" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="STUDENT_EXTRA_CO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="EXTRA_CO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="CLUB_ID" Type="int" />
+    <Property Name="ABBREVIATION" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STUDENT_GRADE">
+    <Key>
+      <PropertyRef Name="STUDENT_GRADE_ID" />
+    </Key>
+    <Property Name="STUDENT_GRADE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SEMESTER_ID" Type="int" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="GRADE" Type="float" Nullable="false" />
+    <Property Name="TRANSFER_STATUS" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STUDENT_LANGUAGE_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="LANGUAGE_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PRIORITY" Type="int" />
+    <Property Name="ISHOUSEHOLD_LANGUAGE" Type="bit" />
+  </EntityType>
+  <EntityType Name="STUDENT_PHONE_NO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="PRIMARY_CONTACT" Type="nvarchar" MaxLength="255" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RELATION" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PRIMARY_EMAIL" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="STUDENT_SCORE">
+    <Key>
+      <PropertyRef Name="STUDENT_SCORE_ID" />
+    </Key>
+    <Property Name="STUDENT_SCORE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="SCORE_ON_TYPE_OF_EXAM" Type="float" Nullable="false" />
+    <Property Name="ENGAGEMENT_SCORE" Type="float" Nullable="false" />
+    <Property Name="ASSIGNMENT_ID" Type="int" Nullable="false" />
+    <Property Name="POINTS" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STUDENT_SPECIAL_NEEDS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" Nullable="false" />
+    <Property Name="SPECIAL_NEEDS" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STUDENT_SUBJECT_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUBJECT_ID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STUDENT_TRANSFERRED">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="int" />
+    <Property Name="TRANSFER_TYPE" Type="int" />
+    <Property Name="TRANSFERRED_FROM" Type="nvarchar" MaxLength="255" />
+    <Property Name="TRANSFERRED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SUBJECT_TEACHER_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="int" Nullable="false" />
+    <Property Name="SEMESTER_ID" Type="int" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SUBJECT_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUBJECT" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="SUBJECTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="COURSE_NAME" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="COURSE_CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GRADE" Type="nvarchar" MaxLength="50" />
+    <Property Name="CREDIT" Type="nvarchar" MaxLength="50" />
+    <Property Name="SCHOOL_ID" Type="int" Nullable="false" />
+    <Property Name="DEPARTMENTID" Type="int" />
+    <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TEACHER_DISABILITY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="int" Nullable="false" />
+    <Property Name="DISABILITY" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TEACHER_DISCIPLINARY_ACTIONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="int" Nullable="false" />
+    <Property Name="DISCIPLINARY_ACTIONS" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TEACHER_EXTRA_CO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="int" Nullable="false" />
+    <Property Name="EXTRA_CO" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TEACHER_LANGUAGE_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="int" Nullable="false" />
+    <Property Name="LANGUAGE_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TEACHING_STATUS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="int" Nullable="false" />
+    <Property Name="TEACHING_STATUS" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TRANSFER_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TRANSFER_TYPE" Type="nvarchar" MaxLength="250" />
+    <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+    <Property Name="COLOR" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="ROLEID" Type="int" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="LASTNAME" Type="varchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <Function Name="AddComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClassAttendaceId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Comment" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AddStudentComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Comment" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UpdatedBy" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="EthnicityVSLanguageDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAlertType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAssignmentCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAssignmentDatabyCourseID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="CourseId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetAssignmentforSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetAssignmentList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SUBJECT_ID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetAssignmentScoreSheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AssignmentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetAssignmentsforSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAttendanceCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAttendanceReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="FromDate" Type="date" Mode="In" />
+    <Parameter Name="ToDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetAverageGradesbySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="getBirthOriginCountbySubjectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetBudgetData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetBudgetLegendChildData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ParentID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetBudgetLegendData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="YEAR" Type="nvarchar" Mode="In" />
+    <Parameter Name="ParentID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetChildNodeDataforMindTree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetChildNodeofBudgetData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+    <Parameter Name="YEAR" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetClassAttendanceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetClassDataforTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TeacherId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetClassInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="getClassListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="schoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetCourseInstructorData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDailyBulletinData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDailyBulletinDatabyDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="int" Mode="In" />
+    <Parameter Name="SelectedDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GetDateRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FromDate" Type="date" Mode="In" />
+    <Parameter Name="ToDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetDateRangeforAttendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FromDate" Type="date" Mode="In" />
+    <Parameter Name="ToDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetDistinctCitizenshipCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDiversityData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDOBDatabyMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Month" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetEarlierNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetEthnicityData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetEthnicityfromDiversity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Diversity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetEthnicityVsCocurricularBubbleChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetEthnicityVsLanguagesBubbleChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetExtraCoDataforTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TeacherId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetFinancialYearforBudget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetGradesbyCitizenship" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Citizenship" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesbyDiversity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Diversity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesbyLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="LanguageID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesbySubjectforRadar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesbySubjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="ToggleType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsAttendanceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsAttendanceHistogramData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsCitizenshipAreaChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsCitizenshipBubbleChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsCitizenshipRadarChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsDiversityAreaChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsDiversityBoxPlotChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsDiversityBubbleChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsDiversityRadarChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetGradesVsLanguagesChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetHierarchicalData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getLanguageCountAllStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getLanguageCountofStudentsbySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetLanguagefromEthnicity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ethnicity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetMultiClassAttendanceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="FromDate" Type="date" Mode="In" />
+    <Parameter Name="ToDate" Type="date" Mode="In" />
+  </Function>
+  <Function Name="GetNewNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetOrganizationalData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetParentBudgetData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="YEAR" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ParentID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetPieTransfferedStudentData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="LabelPoint" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSchoolAlerts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSchoolDBData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Role" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSchoolList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSchoolNameforUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetScoresheetbySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSemesterList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetShortBudgetData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="YEAR" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSportsfromEthnicity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ethnicity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStackedBarAttandanceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FromDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="ToDate" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectId" Type="int" Mode="In" />
+    <Parameter Name="SchoolId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetStackedDiversityData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStackedDiversityEthnicityData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStackedEthnicityData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStackedEthnicityVsLanguagesData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStackedEthnicityVsSportsData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStaffData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Role" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStaffDatabyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Role" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStaffforSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentAlertsData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentAttendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="FName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentAttendancebyCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="int" Mode="In" />
+    <Parameter Name="SchoolId" Type="int" Mode="In" />
+    <Parameter Name="Date" Type="nvarchar" Mode="In" />
+    <Parameter Name="AttendanceCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentAttendanceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentCitizenshipCountbySubjectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentCitizenshipData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentClubData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyCitizenship" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Citizenship" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyClub" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Club" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyDiversity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Diversity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyEthnicity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ethnicity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyEthnicityandDivesity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ethnicity" Type="nvarchar" Mode="In" />
+    <Parameter Name="Diversity" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyEthnicityandLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ethnicity" Type="nvarchar" Mode="In" />
+    <Parameter Name="Language" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyEthnicityandSports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ethnicity" Type="nvarchar" Mode="In" />
+    <Parameter Name="ExtraCo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabyLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Language" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatabySports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Sport" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDataforMapPoint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDataforScatterPoint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+    <Parameter Name="FName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDatafromTeacherID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ParentID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDateofBirthCountbySubjectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDateofBirthData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentDOBdataforLegend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentEthnicityLegendData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentExtraCo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentGenderCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentGradesbySubjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentLanguageDataforHeatmap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentListbySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentListbySubjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentMapData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentModeofTransportation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentProfileData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetStudentProfileDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentsbyCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentScatterPlotData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentScoreandAverage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectId" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentScorebyClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="getStudentScoreSheet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentsforSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentTransfferedCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetStudentTransfferedStackBarLegend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSubjectIdforStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSubjectList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SemesterID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTeacherProfileData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetTransferredStudentDataforBarGraph" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTransferredStudentDataforStackedBar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTransferStudentDatabyMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Month" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTransferStudentDatabyType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SchoolID" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubjectID" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransferType" Type="nvarchar" Mode="In" />
+    <Parameter Name="Month" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetTransferType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetUserData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SaveFeedback" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Feedback" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Image" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="User" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SaveStudentAlerts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StudentId" Type="nvarchar" Mode="In" />
+    <Parameter Name="AlertId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sString" Type="nvarchar" Mode="In" />
+    <Parameter Name="cDelimiter" Type="nchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="part" Type="nvarchar" MaxLength="2048" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="usp_ImportImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PicName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ImageFolderPath" Type="nvarchar" Mode="In" />
+    <Parameter Name="Filename" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="KIRINModel1StoreContainer">
+    <EntitySet Name="APPROVED_BUDGET" EntityType="Self.APPROVED_BUDGET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASSIGNMENT" EntityType="Self.ASSIGNMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASSIGNMENT_CATEGORY" EntityType="Self.ASSIGNMENT_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ATTENDANCE_CODES" EntityType="Self.ATTENDANCE_CODES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLASS_ATTENDANCE" EntityType="Self.CLASS_ATTENDANCE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Class_DayofWeek" EntityType="Self.Class_DayofWeek" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLASS_STUDENT" EntityType="Self.CLASS_STUDENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLUBS" EntityType="Self.CLUBS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COUNTRIES" EntityType="Self.COUNTRIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DAILYBULLETIN" EntityType="Self.DAILYBULLETIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOMAIN" EntityType="Self.DOMAIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEEDBACK" EntityType="Self.FEEDBACK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GRADE_MASTER" EntityType="Self.GRADE_MASTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GRADES" EntityType="Self.GRADES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOLIDAY_LIST" EntityType="Self.HOLIDAY_LIST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMG_TBL" EntityType="Self.IMG_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMG_TYPE_CLASSIFICATION" EntityType="Self.IMG_TYPE_CLASSIFICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LANGUAGE_PRIORITY" EntityType="Self.LANGUAGE_PRIORITY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LANGUAGES" EntityType="Self.LANGUAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NOTIFICATION_TYPE" EntityType="Self.NOTIFICATION_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NOTIFICATIONS" EntityType="Self.NOTIFICATIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCHOOL" EntityType="Self.SCHOOL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCHOOLBOARD" EntityType="Self.SCHOOLBOARD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCHOOLBOARD_ADMINS" EntityType="Self.SCHOOLBOARD_ADMINS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SEMESTER" EntityType="Self.SEMESTER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STAFF_DIRECTORY" EntityType="Self.STAFF_DIRECTORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STAFF_PHONE_NO" EntityType="Self.STAFF_PHONE_NO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_ALERT_MAPPING" EntityType="Self.STUDENT_ALERT_MAPPING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_ALERTS" EntityType="Self.STUDENT_ALERTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_AVG_GRADE" EntityType="Self.STUDENT_AVG_GRADE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_COCURRICULAR" EntityType="Self.STUDENT_COCURRICULAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_COMMENT" EntityType="Self.STUDENT_COMMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_EXTRA_CO" EntityType="Self.STUDENT_EXTRA_CO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_GRADE" EntityType="Self.STUDENT_GRADE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_LANGUAGE_MAPPING" EntityType="Self.STUDENT_LANGUAGE_MAPPING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_PHONE_NO" EntityType="Self.STUDENT_PHONE_NO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_SCORE" EntityType="Self.STUDENT_SCORE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_SPECIAL_NEEDS" EntityType="Self.STUDENT_SPECIAL_NEEDS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_SUBJECT_MAPPING" EntityType="Self.STUDENT_SUBJECT_MAPPING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_TRANSFERRED" EntityType="Self.STUDENT_TRANSFERRED" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUBJECT_TEACHER_MAPPING" EntityType="Self.SUBJECT_TEACHER_MAPPING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUBJECT_TYPE" EntityType="Self.SUBJECT_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUBJECTS" EntityType="Self.SUBJECTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER_DISABILITY" EntityType="Self.TEACHER_DISABILITY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER_DISCIPLINARY_ACTIONS" EntityType="Self.TEACHER_DISCIPLINARY_ACTIONS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER_EXTRA_CO" EntityType="Self.TEACHER_EXTRA_CO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHER_LANGUAGE_MAPPING" EntityType="Self.TEACHER_LANGUAGE_MAPPING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEACHING_STATUS" EntityType="Self.TEACHING_STATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRANSFER_TYPE" EntityType="Self.TRANSFER_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

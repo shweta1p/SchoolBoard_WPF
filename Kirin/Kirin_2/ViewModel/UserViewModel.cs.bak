@@ -1,0 +1,857 @@
+﻿using Kirin_2.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+
+namespace Kirin_2.ViewModel
+{
+    public class UserViewModel : INotifyPropertyChanged
+    {
+        public ICommand cGridDataShowAll { get; set; }
+        public ICommand cGridDataShowTeacher { get; set; }
+        public ICommand cGridDataShowStudent { get; set; }
+        public ICommand cViewStaffProfile { get; set; }
+        public ICommand cGridDataShowAdmin { get; set; }
+        public ICommand cGridDataShowSupportStaff { get; set; }
+        //public ICommand cGridDataShowAllStaff { get; set; }
+        //public ICommand cGridDataShowStudents { get; set; }
+        
+
+        string schoolId = "1";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private ObservableCollection<SCHOOLDB_DESC> _SCHOOLDB_ALL;
+
+        public ObservableCollection<SCHOOLDB_DESC> SCHOOLDB_ALL
+        {
+            get { return _SCHOOLDB_ALL; }
+            set { _SCHOOLDB_ALL = value;
+                OnPropertyChanged("SCHOOLDB_ALL");
+            }
+        }
+
+        private string _PhoneNumberLabel;
+        public string PhoneNumberLabel
+        {
+            get { return  _PhoneNumberLabel; }
+            set {  _PhoneNumberLabel = value;
+                OnPropertyChanged("PhoneNumberLabel");
+            }
+        }
+
+
+        private bool _IsRoleVisible;
+
+        public bool IsRoleVisible
+        {
+            get { return _IsRoleVisible; }
+            set
+            {
+                _IsRoleVisible = value;
+                OnPropertyChanged("IsRoleVisible");
+            }
+        }
+
+        private bool _IsContactVisible;
+
+        public bool IsContactVisible
+        {
+            get { return _IsContactVisible; }
+            set
+            {
+                _IsContactVisible = value;
+                OnPropertyChanged("IsContactVisible");
+            }
+        }
+
+        private bool _IsRelationVisible;
+
+        public bool IsRelationVisible
+        {
+            get { return _IsRelationVisible; }
+            set
+            {
+                _IsRelationVisible = value;
+                OnPropertyChanged("IsRelationVisible");
+            }
+        }
+
+        private bool _IsStatusVisible;
+
+        public bool IsStatusVisible
+        {
+            get { return _IsStatusVisible; }
+            set
+            {
+                _IsStatusVisible = value;
+                OnPropertyChanged("IsStatusVisible");
+            }
+        }
+
+        private ObservableCollection<STAFF_DIRECTORY_DESC> _STAFFDIRECTORY;
+
+        public ObservableCollection<STAFF_DIRECTORY_DESC> STAFFDIRECTORY
+        {
+            get { return _STAFFDIRECTORY; }
+            set
+            {
+                _STAFFDIRECTORY = value;
+                OnPropertyChanged("STAFFDIRECTORY");
+            }
+        }
+
+        private STUDENTPROFILE _STUDENTPROF;
+
+        public STUDENTPROFILE STUDENTPROF
+        {
+            get { return _STUDENTPROF;; }
+            set { _STUDENTPROF = value;
+                OnPropertyChanged("STUDENTPROF");
+            }
+        }
+
+        private TEACHERPROFILE _TEACHERPROF;
+
+        public TEACHERPROFILE TEACHERPROF
+        {
+            get { return _TEACHERPROF; }
+            set { _TEACHERPROF = value;
+                OnPropertyChanged("TEACHERPROF");
+            }
+        }
+
+        private STAFF_DIRECTORY_DESC _STAFFPROF;
+
+        public STAFF_DIRECTORY_DESC STAFFPROF
+        {
+            get { return _STAFFPROF; }
+            set
+            {
+                _STAFFPROF = value;
+                OnPropertyChanged("STAFFPROF");
+            }
+        }
+
+
+        KIRINEntities1 kirinentities;
+        public App app;
+        public UserViewModel()
+        {
+            kirinentities = new KIRINEntities1();
+            kirinentities.Database.CommandTimeout = 300;
+            app = (App)Application.Current;
+            //LoadStaffDirectory();
+            //LoadSchoolDB();
+
+            cGridDataShowAll = new CommandVM(GridDataShowAll, canExecuteMethod);
+            cGridDataShowTeacher = new CommandVM(GridDataShowTeacher, canExecuteMethod);
+            cGridDataShowStudent = new CommandVM(GridDataShowStudent, canExecuteMethod);
+            cViewStaffProfile = new CommandVM(ViewStaffProfile, canExecuteMethod);
+            cGridDataShowAdmin = new CommandVM(GridDataShowAdmin, canExecuteMethod);
+            cGridDataShowSupportStaff = new CommandVM(GridDataShowSupportStaff, canExecuteMethod);
+            //cGridDataShowAllStaff = new CommandVM(GridDataShowAllStaff, canExecuteMethod);
+            //cGridDataShowStudents = new CommandVM(GridDataShowStudents, canExecuteMethod);
+
+            STUDENTPROFILE_DETAILS studprofdetails = new STUDENTPROFILE_DETAILS()
+            {
+
+                EXP = "1",
+                LastWeekAttendance_M = "LU",
+                LastWeekAttendance_T = "",
+                LastWeekAttendance_W = "FT",
+                LastWeekAttendance_H = "BT",
+                LastWeekAttendance_F = "AU",
+                ThisWeekAttendance_M = "AI",
+                ThisWeekAttendance_T = "BD",
+                ThisWeekAttendance_W = "",
+                ThisWeekAttendance_F = "LI",
+                ThisWeekAttendance_H = "AU",
+                Course  = "Introduction to Business Management",
+                S1 =   "S1",
+                S2 = "S2",
+                Y1 = "2021",
+                Absences = 3,
+                Lates = 2
+
+
+
+            };
+
+            StudentProfileDetailsList.Add(studprofdetails);
+            StudentProfileDetailsList.Add(
+                new STUDENTPROFILE_DETAILS()
+                {
+
+                    EXP = "2",
+                    LastWeekAttendance_M = " ",
+                    LastWeekAttendance_T = "LI",
+                    LastWeekAttendance_W = " ",
+                    LastWeekAttendance_H = " ",
+                    LastWeekAttendance_F = " ",
+                    ThisWeekAttendance_M = "FT",
+                    ThisWeekAttendance_T = " ",
+                    ThisWeekAttendance_W = "",
+                    ThisWeekAttendance_F = " ",
+                    ThisWeekAttendance_H = "AU",
+                    Course  = "Civics",
+                    S1 =   "S1",
+                    S2 = "S2",
+                    Y1 = "2021",
+                    Absences = 3,
+                    Lates = 2 }
+                );
+            StudentProfileDetailsList.Add(
+              new STUDENTPROFILE_DETAILS()
+              {
+
+                  EXP = "3",
+                  LastWeekAttendance_M = "AI",
+                  LastWeekAttendance_T = " ",
+                  LastWeekAttendance_W = " ",
+                  LastWeekAttendance_H = "BD",
+                  LastWeekAttendance_F = " ",
+                  ThisWeekAttendance_M = "",
+                  ThisWeekAttendance_T = " ",
+                  ThisWeekAttendance_W = "LU",
+                  ThisWeekAttendance_F = " ",
+                  ThisWeekAttendance_H = " ",
+                  Course  = "Entrepreneurhip",
+                  S1 =   "S1",
+                  S2 = "S2",
+                  Y1 = "2021",
+                  Absences = 6,
+                  Lates = 2
+              }
+              );
+            StudentProfileDetailsList.Add(
+              new STUDENTPROFILE_DETAILS()
+              {
+
+                  EXP = "4",
+                  LastWeekAttendance_M = "",
+                  LastWeekAttendance_T = " ",
+                  LastWeekAttendance_W = " ",
+                  LastWeekAttendance_H = "BD",
+                  LastWeekAttendance_F = " ",
+                  ThisWeekAttendance_M = "",
+                  ThisWeekAttendance_T = " ",
+                  ThisWeekAttendance_W = "",
+                  ThisWeekAttendance_F = " ",
+                  ThisWeekAttendance_H = "FT",
+                  Course  = "Business Structure Part 1",
+                  S1 =   "S1",
+                  S2 = "S2",
+                  Y1 = "2021",
+                  Absences = 6,
+                  Lates = 2
+              }
+              );
+           StudentProfileDetailsList.Add(
+           new STUDENTPROFILE_DETAILS()
+            {
+
+                EXP = "5",
+                LastWeekAttendance_M = "",
+                LastWeekAttendance_T = " ",
+                LastWeekAttendance_W = " ",
+                LastWeekAttendance_H = " ",
+                LastWeekAttendance_F = " ",
+                ThisWeekAttendance_M = "",
+                ThisWeekAttendance_T = " ",
+                ThisWeekAttendance_W = "",
+                ThisWeekAttendance_F = " ",
+                ThisWeekAttendance_H = "",
+                Course  = "Business Structure Part 2",
+                S1 =   "S1",
+                S2 = "S2",
+                Y1 = "2021",
+                Absences = 0,
+                Lates = 5
+            });
+
+        }
+
+        private ObservableCollection<STUDENTPROFILE_DETAILS> _studentProfileDetailsList = new ObservableCollection<STUDENTPROFILE_DETAILS>();
+
+        public ObservableCollection<STUDENTPROFILE_DETAILS> StudentProfileDetailsList
+        {
+            get { return _studentProfileDetailsList; }
+            set { _studentProfileDetailsList = value;
+                OnPropertyChanged("StudentProfileDetailsList");
+            }
+        }
+
+
+        private void GridDataShowAll(object param)
+        {
+            LoadSchoolDB();
+        }
+
+        //private void GridDataShowAllStaff(object param)
+        //{
+        //    LoadStaffDirectory(schoolId,"All");
+        //}
+
+        //private void GridDataShowStudents(object param)
+        //{
+        //    LoadStaffDirectory(schoolId, "Student");
+        //}
+        
+
+        private void GridDataShowAdmin(object param)
+        {
+            var studentData = kirinentities.GetSchoolDBData("Admin", schoolId).ToList();
+
+            SCHOOLDB_ALL = new ObservableCollection<SCHOOLDB_DESC>(from obj in studentData
+                                                                   select new SCHOOLDB_DESC
+                                                                   {
+                                                                       RowNo = (int)obj.RNo,
+                                                                       ID = (int)obj.ID,
+                                                                       NAME = obj.LAST_NAME + ',' + obj.FIRST_NAME,
+                                                                       EMAIL = obj.EMAIL,
+                                                                       ROOM_NUMBER = obj.ROOM_NUMBER,
+                                                                       PHONE_NUMBER = obj.PHONE_NUMBER,
+                                                                       RELATIONSHIP = obj.RELATIONSHIP,
+                                                                       ROLE = obj.ROLE,
+                                                                       SCHOOL_NAME = obj.SCHOOL_NAME
+                                                                   });
+
+            IsRoleVisible = true;
+            PhoneNumberLabel = "Phone #";
+            IsContactVisible = false;
+            IsRelationVisible = false;
+            IsStatusVisible = false;
+        }
+        
+        private void GridDataShowTeacher(object param)
+        {
+            var studentData = kirinentities.GetSchoolDBData("Teacher", schoolId).ToList();
+
+            SCHOOLDB_ALL = new ObservableCollection<SCHOOLDB_DESC>(from obj in studentData
+                                                                   select new SCHOOLDB_DESC
+                                                                   {
+                                                                       RowNo = (int)obj.RNo,
+                                                                       ID = (int)obj.ID,
+                                                                       NAME = obj.LAST_NAME + ',' + obj.FIRST_NAME,
+                                                                       EMAIL = obj.EMAIL,
+                                                                       ROOM_NUMBER = obj.ROOM_NUMBER,
+                                                                       PHONE_NUMBER = obj.PHONE_NUMBER,
+                                                                       RELATIONSHIP = obj.RELATIONSHIP,
+                                                                       ROLE = obj.ROLE,
+                                                                       SCHOOL_NAME = obj.SCHOOL_NAME,
+                                                                       STATUS = obj.STATUS
+                                                                   });
+
+            IsRoleVisible = true;
+            PhoneNumberLabel = "Phone #";
+            IsContactVisible = false;
+            IsRelationVisible = false;
+            IsStatusVisible = true;
+        }
+
+        private void GridDataShowStudent(object param)
+        {
+            var studentData = kirinentities.GetSchoolDBData("Student", schoolId).ToList();
+
+            SCHOOLDB_ALL = new ObservableCollection<SCHOOLDB_DESC>(from obj in studentData
+                                                                   select new SCHOOLDB_DESC
+                                                                   {
+                                                                       RowNo = (int)obj.RNo,
+                                                                       ID = (int)obj.ID,
+                                                                       NAME = obj.LAST_NAME + ',' + obj.FIRST_NAME,
+                                                                       EMAIL = obj.EMAIL,
+                                                                       ROOM_NUMBER = obj.ROOM_NUMBER,
+                                                                       PHONE_NUMBER = obj.PHONE_NUMBER,
+                                                                       PRIMARY_CONTACT = obj.PRIMARY_CONTACT,
+                                                                       RELATIONSHIP = obj.RELATIONSHIP,
+                                                                       ROLE = obj.ROLE,
+                                                                       SCHOOL_NAME = obj.SCHOOL_NAME
+                                                                   });
+
+            IsRoleVisible = false;
+            PhoneNumberLabel = "Emergency Phone #";
+            IsContactVisible = true;
+            IsRelationVisible = true;
+            IsStatusVisible = false;
+        }
+
+        private void GridDataShowSupportStaff(object param)
+        {
+            var supportStaffData = kirinentities.GetSchoolDBData("Support", schoolId).ToList();
+
+            SCHOOLDB_ALL = new ObservableCollection<SCHOOLDB_DESC>(from obj in supportStaffData
+                                                                   select new SCHOOLDB_DESC
+                                                                   {
+                                                                       RowNo = (int)obj.RNo,
+                                                                       ID = (int)obj.ID,
+                                                                       NAME = obj.LAST_NAME + ',' + obj.FIRST_NAME,
+                                                                       EMAIL = obj.EMAIL,
+                                                                       ROOM_NUMBER = obj.ROOM_NUMBER,
+                                                                       PHONE_NUMBER = obj.PHONE_NUMBER,
+                                                                       PRIMARY_CONTACT = obj.PRIMARY_CONTACT,
+                                                                       RELATIONSHIP = obj.RELATIONSHIP,
+                                                                       ROLE = obj.ROLE,
+                                                                       SCHOOL_NAME = obj.SCHOOL_NAME
+                                                                   });
+
+            IsRoleVisible = true;
+            PhoneNumberLabel = "Phone #";
+            IsContactVisible = false;
+            IsRelationVisible = false;
+            IsStatusVisible = false;
+        }
+        
+
+        private void ViewStaffProfile(object param)
+        {
+            var staffDesc = (STAFF_DIRECTORY_DESC)param;
+
+            GetStaffProfile(staffDesc.ID);
+            //View Student Profile
+
+
+            app.staffProfileModal.Visibility = Visibility.Visible;
+            app.staffProfileModal.EmailAddress.Text= STAFFPROF.EMAIL;
+            app.staffProfileModal.EmpID.Content = staffDesc.ID;
+
+            app.staffProfileModal.Name.Content = staffDesc.NAME;    
+
+            string[] emailcomponents = STAFFPROF.EMAIL.Split('@');
+            app.staffProfileModal.Username.Content = emailcomponents[0];
+
+            app.staffProfileModal.ProfPic.ImageSource = STAFF_PHOTO;
+         
+
+            PhoneNumberLabel = "Phone #";
+        }
+
+
+        public void LoadStaffDirectory(string sID, string role)
+        {
+            var staffData = kirinentities.GetStaffData(sID, role).ToList();
+
+            STAFFDIRECTORY = new ObservableCollection<STAFF_DIRECTORY_DESC>((
+                from dir in staffData
+                select new STAFF_DIRECTORY_DESC
+                {
+                    RNo = (int)dir.RNo,
+                    EMAIL = dir.EMAIL,
+                    ID = dir.ID,
+                    NAME = dir.LAST_NAME + ',' + dir.FIRST_NAME,
+                    PHONE_NUMBER = dir.PHONE_NUMBER,
+                    ROLE = dir.ROLE,
+                    ROOM_NUMBER = dir.ROOM_NUMBER,
+                    IsSelected = false
+                }));
+        }
+
+        public void LoadSchoolDB()
+        {
+            var studentData = kirinentities.GetSchoolDBData("All", schoolId).ToList();
+
+            SCHOOLDB_ALL = new ObservableCollection<SCHOOLDB_DESC>(from obj in studentData
+                                                                   select new SCHOOLDB_DESC
+                                                                   {
+                                                                       RowNo = (int)obj.RNo,
+                                                                       ID = obj.ID,
+                                                                       NAME = obj.LAST_NAME + ',' + obj.FIRST_NAME,
+                                                                       EMAIL = obj.EMAIL,
+                                                                       ROOM_NUMBER = obj.ROOM_NUMBER,
+                                                                       PHONE_NUMBER = obj.PHONE_NUMBER,
+                                                                       PRIMARY_CONTACT = obj.PRIMARY_CONTACT,
+                                                                       RELATIONSHIP = obj.RELATIONSHIP,
+                                                                       ROLE = obj.ROLE,
+                                                                       SCHOOL_NAME = obj.SCHOOL_NAME
+                                                                   });
+
+            IsRoleVisible = true;
+            PhoneNumberLabel = "Phone #";
+            IsContactVisible = false;
+            IsRelationVisible = false;
+            IsStatusVisible = false;
+        }
+
+        private BitmapImage _STUDENT_PHOTO;
+
+        public BitmapImage STUDENT_PHOTO
+        {
+            get { return _STUDENT_PHOTO; }
+            set
+            {
+                _STUDENT_PHOTO = value;
+                OnPropertyChanged("STUDENT_PHOTO");
+            }
+        }
+
+
+        private BitmapImage _STAFF_PHOTO;
+
+        public BitmapImage STAFF_PHOTO
+        {
+            get { return _STAFF_PHOTO; }
+            set
+            {
+                _STAFF_PHOTO = value;
+                OnPropertyChanged("STAFF_PHOTO");
+            }
+        }
+
+
+        private BitmapImage _TEACHER_PHOTO;
+
+        public BitmapImage TEACHER_PHOTO
+        {
+            get { return _TEACHER_PHOTO; }
+            set
+            {
+                _TEACHER_PHOTO = value;
+                OnPropertyChanged("TEACHER_PHOTO");
+            }
+        }
+
+        public void ViewStudentProfile(int ID)
+        {
+            var studentProfile = kirinentities.GetStudentProfileData(ID).ToList();
+
+            STUDENTPROF = (from student in studentProfile
+                           select new STUDENTPROFILE
+                           {
+                               ID = student.ID,
+                               ADDRESS = student.ADDRESS,
+                               BIRTHDATE = !string.IsNullOrEmpty(student.BIRTHDATE.ToString()) ? Convert.ToDateTime(student.BIRTHDATE).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture) : "",
+                               CITIZENSHIP = student.CITIZENSHIP,
+                               DIVERSITY = student.DIVERSITY,
+                               ETHNICITY = student.ETHNICITY,
+                               EXTRACO = !string.IsNullOrEmpty(student.EXTRA_CO) ? student.EXTRA_CO.TrimEnd(',') : student.EXTRA_CO,
+                               FULLNAME = student.LAST_NAME + ", " + student.FIRST_NAME,
+                               GENDER = student.GENDER,
+                               HEALTH_ALERT = !string.IsNullOrEmpty(student.HEALTH_ALERT) ? student.HEALTH_ALERT.TrimEnd(',') : student.HEALTH_ALERT,
+                               HOMEROOM = student.HOMEROOM,
+                               LANGUAGE = student.LANGUAGE,
+                               imgbin = student.IMG,
+                               LEARNING_TYPE = student.LEARNING_TYPE,
+                               STUDENT_ID = student.STUDENT_NUMBER,
+                               SCHOOL_NAME = student.SCHOOL_NAME
+                           }).FirstOrDefault();
+
+       
+            if (STUDENTPROF.imgbin is null || STUDENTPROF.imgbin is byte[])
+            {
+                BitmapImage tmp = new BitmapImage();
+                tmp.BeginInit();
+                tmp.UriSource = new Uri("pack://application:,,,/Images/Logo.png");
+
+                tmp.DecodePixelWidth = 240;
+                tmp.EndInit();
+
+                STUDENT_PHOTO = tmp;
+
+            }
+            else
+            {
+                STUDENT_PHOTO = ByteArrayToImage(STUDENTPROF.imgbin);
+            }
+        }
+
+
+        public void GetStaffProfile(int ID)
+        {
+            var staffProfile = kirinentities.GetStaffDatabyId(ID).ToList();
+            
+            STAFFPROF = (from staff in staffProfile
+                         select new STAFF_DIRECTORY_DESC
+                           {
+                               ID = staff.ID,
+                               NAME = staff.NAME,
+                               EMAIL = staff.EMAIL,
+                               PHONE_NUMBER = staff.PHONE_NUMBER,
+                               ROOM_NUMBER = staff.ROOM_NUMBER,
+                               STAFF_ID = staff.EMPLOYEE_ID,
+                               imgbin = staff.IMG
+                         }).FirstOrDefault();
+
+            //STAFFPROF.imgbin = (from img in kirinentities.IMG_TBL
+            //                    where img.ID == ID
+            //                    select img.IMG).FirstOrDefault();
+
+            if (STAFFPROF.imgbin is null || STAFFPROF.imgbin is byte[])
+            {   
+                BitmapImage tmp = new BitmapImage();
+                tmp.BeginInit();
+                tmp.UriSource = new Uri("pack://application:,,,/Images/Logo.png");
+
+                tmp.DecodePixelWidth = 240;
+                tmp.EndInit();
+
+                STAFF_PHOTO = tmp;
+            }
+            else
+            {
+                STAFF_PHOTO = ByteArrayToImage(STAFFPROF.imgbin);
+            }
+        }
+
+        public void ViewTeacherProfile(int ID)
+        {
+            var teacherProfile = kirinentities.GetTeacherProfileData(ID).ToList();
+            
+
+            TEACHERPROF = (from teacher in teacherProfile
+                           select new TEACHERPROFILE
+                           {
+                               ID = teacher.ID,
+                               ADDRESS = teacher.ADDRESS,
+                               BIRTHDATE = (DateTime)teacher.BIRTHDATE,
+                               CITIZENSHIP = teacher.CITIZENSHIP,
+                               ETHNICITY = !string.IsNullOrEmpty(teacher.ETHNICITY_DIVERSITY) ? teacher.ETHNICITY_DIVERSITY.TrimEnd(',') : teacher.ETHNICITY_DIVERSITY,
+                               EXTRACO = "",
+                               FULLNAME = teacher.LAST_NAME + ", " + teacher.FIRST_NAME,
+                               GENDER = teacher.GENDER,
+                               HOMEROOM = teacher.HOMEROOM,
+                               LANGUAGE = !string.IsNullOrEmpty(teacher.LANGUAGES) ? teacher.LANGUAGES.TrimEnd(',') : teacher.LANGUAGES,
+                               imgbin = teacher.IMG,
+                               TEACHER_ID = teacher.EMPLOYEE_ID,
+                               EMAIL = teacher.EMAIL,
+                               SCHOOL_NAME = teacher.SCHOOL_NAME
+                           }).FirstOrDefault();
+
+            if (TEACHERPROF.imgbin is null || TEACHERPROF.imgbin is byte[])
+            {
+                BitmapImage tmp = new BitmapImage();
+                tmp.BeginInit();
+                tmp.UriSource = new Uri("pack://application:,,,/Images/Logo.png");
+
+                tmp.DecodePixelWidth = 240;
+                tmp.EndInit();
+
+                TEACHER_PHOTO = tmp;
+            }
+            else {
+                TEACHER_PHOTO = ByteArrayToImage(TEACHERPROF.imgbin);
+            }
+
+        }
+
+        public BitmapImage ByteArrayToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
+
+        public bool canExecuteMethod(object param)
+        {
+            return true;
+        }
+
+        public void ViewAdminProfile(int ID)
+        {
+            //var teacherProfile = kirinentities.GetTeacherProfileData(ID).ToList();
+
+
+            //TEACHERPROF = (from teacher in teacherProfile
+            //               select new TEACHERPROFILE
+            //               {
+            //                   ID = teacher.ID,
+            //                   ADDRESS = teacher.ADDRESS,
+            //                   BIRTHDATE = (DateTime)teacher.BIRTHDATE,
+            //                   CITIZENSHIP = teacher.CITIZENSHIP,
+            //                   ETHNICITY = !string.IsNullOrEmpty(teacher.ETHNICITY_DIVERSITY) ? teacher.ETHNICITY_DIVERSITY.TrimEnd(',') : teacher.ETHNICITY_DIVERSITY,
+            //                   EXTRACO = "",
+            //                   FULLNAME = teacher.LAST_NAME + ", " + teacher.FIRST_NAME,
+            //                   GENDER = teacher.GENDER,
+            //                   HOMEROOM = teacher.HOMEROOM,
+            //                   LANGUAGE = !string.IsNullOrEmpty(teacher.LANGUAGES) ? teacher.LANGUAGES.TrimEnd(',') : teacher.LANGUAGES,
+            //                   imgbin = teacher.IMG,
+            //                   TEACHER_ID = teacher.EMPLOYEE_ID,
+            //                   EMAIL = teacher.EMAIL,
+            //                   SCHOOL_NAME = teacher.SCHOOL_NAME
+            //               }).FirstOrDefault();
+
+            //if (TEACHERPROF.imgbin is null)
+            //{
+            //    BitmapImage tmp = new BitmapImage();
+            //    tmp.BeginInit();
+            //    tmp.UriSource = new Uri("pack://application:,,,/Images/Logo.png");
+
+            //    tmp.DecodePixelWidth = 240;
+            //    tmp.EndInit();
+
+            //    TEACHER_PHOTO = tmp;
+            //}
+            //else
+            //{
+            //    TEACHER_PHOTO = ByteArrayToImage(TEACHERPROF.imgbin);
+            //}
+
+        }
+    }
+
+    public class STAFF_DIRECTORY_DESC : INotifyPropertyChanged
+        {
+        public int RNo { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string PHONE_NUMBER { get; set; }
+        public string EMAIL { get; set; }
+        public string ROOM_NUMBER { get; set; }
+        public string ROLE { get; set; }
+        public string STAFF_ID { get; set; }
+
+        public byte[] imgbin { get; set; }
+        public BitmapImage PHOTO { get; set; }
+
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set { isSelected = value;
+                OnPropertyChanged("IsSelected");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+    }
+    
+    public class STUDENTPROFILE_DETAILS
+    {
+        public string EXP { get; set; }
+        public string LastWeekAttendance_M { get; set; }
+        public string LastWeekAttendance_T { get; set; }
+        public string LastWeekAttendance_W { get; set; }
+        public string LastWeekAttendance_H { get; set; }
+        public string LastWeekAttendance_F { get; set; }
+
+        public string ThisWeekAttendance_M { get; set; }
+        public string ThisWeekAttendance_T { get; set; }
+        public string ThisWeekAttendance_W { get; set; }
+        public string ThisWeekAttendance_H { get; set; }
+        public string ThisWeekAttendance_F { get; set; }
+
+        public string Course { get; set; }
+
+        public string S1 { get; set; }
+        public string S2 { get; set; }
+        public string Y1 { get; set; }
+        public int Absences { get; set; }
+        public int Lates { get; set; }
+
+    }
+
+
+    public class STUDENTPROFILE
+    {
+        public int ID { get; set; }
+        public string FULLNAME { get; set; }
+        public string BIRTHDATE { get; set; }
+        public string SPECIAL_NEEDS { get; set; }
+        public string OTHER_ALERT { get; set; }
+        public string HEALTH_ALERT { get; set; }
+        public string DIVERSITY { get; set; }
+        public string ORIGIN_OF_BIRTH { get; set; }
+        public string CITIZENSHIP { get; set; }
+        public string ADDRESS { get; set; }
+        public string LANGUAGE { get; set; }
+        public string SHSM_ALERT { get; set; }
+        public string PLUS18_ALERT { get; set; }
+        public string GENDER { get; set; }
+        public string ETHNICITY { get; set; }
+        public string HOMEROOM { get; set; }
+        public string EXTRACO { get; set; }
+        public string STUDENT_ID { get; set; }
+        public string LEARNING_TYPE { get; set; }
+        public string SCHOOL_NAME { get; set; }
+        
+        public byte[] imgbin { get; set; }
+        public BitmapImage PHOTO { get; set; }
+
+    }
+
+
+    public class TEACHERPROFILE
+    {
+        public int ID { get; set; }
+        public string FULLNAME { get; set; }
+        public string TEACHER_ID { get; set; }
+        
+        public System.DateTime BIRTHDATE { get; set; }
+        public string SPECIAL_NEEDS { get; set; }
+        
+        public string CITIZENSHIP { get; set; }
+        public string ADDRESS { get; set; }
+        public string LANGUAGE { get; set; }
+        
+        public string GENDER { get; set; }
+        public string ETHNICITY { get; set; }
+        public string HOMEROOM { get; set; }
+        public string EXTRACO { get; set; }
+        public string EMAIL { get; set; }
+        public string SCHOOL_NAME { get; set; }
+        
+        public byte[] imgbin { get; set; }
+        public BitmapImage PHOTO { get; set; }
+
+    }
+
+    public class SCHOOLDB_DESC : INotifyPropertyChanged
+    {
+        public int RowNo { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string ROOM_NUMBER { get; set; }
+        public string EMAIL { get; set; }
+        public string ROLE { get; set; }
+        public string PHONE_NUMBER { get; set; }
+        public string PRIMARY_CONTACT { get; set; }        
+        public string RELATIONSHIP { get; set; }
+        public string SCHOOL_NAME { get; set; }
+        public string STATUS { get; set; }
+        
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                OnPropertyChanged("IsSelected");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+    }
+}

@@ -1,0 +1,85 @@
+﻿<Window x:Class="Kirin_2.Pages.FeedbackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kirin_2.Pages"
+        xmlns:settings="clr-namespace:Kirin_2.Properties"
+        mc:Ignorable="d"
+        Title="FeedbackWindow" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="{DynamicResource MaterialDesignFont}" MaxHeight="740"
+        Width="485" Height="Auto" SizeToContent="Height">
+    <Window.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,-15,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="#247BC0" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!--<Popup x:Name="DefaultPopup" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade" MouseLeave="DefaultPopup_MouseLeave" Visibility="Visible">
+            <StackPanel>
+                <Rectangle Fill="{Binding Source={x:Static settings:Settings.Default}, Path=Modal_bg, Mode=TwoWay }" MouseDown="Rectangle_MouseDown"/>
+
+                <Border Name="modelBorder" BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="LightGray" Margin="7" Height="140" Width="580" Background="#F5F5F5">
+                    <StackPanel>
+                        <Grid>
+                            <TextBox FontSize="26" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,10" IsReadOnly="True" BorderThickness="0"
+                  FontWeight="Medium" Foreground="DimGray" Padding="5" TextWrapping="Wrap" Text="Draw using yellow to highhlight issues or black to hide sensitive info"></TextBox>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Popup>-->
+        
+        <StackPanel>
+            <TextBlock Text="Send feedback" TextAlignment="Left" VerticalAlignment="Center" Padding="20,15,0,0" Height="70" Foreground="White" FontSize="30" Background="#247BC0"></TextBlock>
+            <TextBox x:Name="feedbackTextBox" FontSize="17" Height="100" VerticalAlignment="Top" Style="{StaticResource MyWaterMarkStyle}"
+                   TextWrapping="Wrap" Tag="Have feedback? We'd love to hear it, but please don't share &#x0a;sensitive information.Have questions? Try help or support."></TextBox>
+            <CheckBox Name="McCheckBox" VerticalAlignment="Top" Margin="10,10,0,0"
+               Content="Include screenshot" IsChecked="False"   
+               Checked="McCheckBox_Checked" Unchecked="McCheckBox_Unchecked" FontSize="15" FontWeight="Bold" >
+                <CheckBox.Resources>
+                    <!--Unchecked state-->
+                    <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="Black"/>
+                    <!--Checked state-->
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#247BC0"/>
+                </CheckBox.Resources>
+            </CheckBox>
+            <!--<Button Name="btnEditor" Visibility="Collapsed" Width="Auto" Height="Auto" >-->
+            <local:CustomEditor EnablePanning="False" EnableZooming="False" x:Name="editor" MouseDoubleClick="editor_MouseDoubleClick" ToolTip="Double click to highlight or hide info" Visibility="Collapsed">
+            </local:CustomEditor>
+            <!--<Rectangle Name="rectView" Margin="0 20 0 0" Height="320" Fill="#F5F5F5" Visibility="Visible"></Rectangle>-->
+            <!--</Button>-->
+            <TextBox x:Name="bottomText" Padding="10,10,10,10" FontSize="16.5" Height="90" VerticalAlignment="Top" Style="{StaticResource MyWaterMarkStyle}" Margin="0,20,0,10" IsReadOnly="True"
+                     Tag="Some, account and system information may be sent to Bounce&#x0a;Back. We will use it to fix your problems and improve our &#x0a;services, subject to our Privacy Policy and Terms of Service."></TextBox>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Height="60">
+                <Button Width="100" Content="CANCEL" Click="Window_Close" Background="Transparent" BorderThickness="0" Margin="15,0,15,0"></Button>
+                <Button Name="btnSend" Foreground="#247BC0" Background="Transparent" BorderThickness="0" Content="SEND" Width="100" Click="Send_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Kirin_2.SyncFusionCalender"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kirin_2"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d"
+        Background="White"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Width="250" Height="280"
+        BorderThickness="1"
+        BorderBrush="LightGray"
+        MouseLeave="Rectangle_MouseLeave">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- the background for the button -->
+                            <Rectangle   RadiusX="5" RadiusY="5" Grid.RowSpan="2" Height="20">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#3d78a6" Offset="0"/>
+                                            <GradientStop Color="#3d78a6" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <!-- place for the content inside the button to be displayed -->
+                            <ContentPresenter Grid.RowSpan="2"  
+              x:Name="PrimaryContent"
+              HorizontalAlignment="Center" VerticalAlignment="Center"
+              Margin="{TemplateBinding Padding}"
+              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+
+    </UserControl.Resources>
+    <Grid MouseDown="Rectangle_MouseDown" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="240"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!--<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" FontWeight="Bold" FontSize="14" Content="Select Dates to Display" 
+               VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+
+            <!--<Border BorderThickness="0.5" BorderBrush="LightGray" VerticalAlignment="Bottom" Margin="0,0,0,5"
+                Grid.Row="0" Grid.ColumnSpan="5"/>-->
+
+            <syncfusion:CalendarEdit Height="220" Grid.Row="0" Margin="10 5 10 5" Width="220"
+                Name="MultidayCal" AllowMultiplySelection="True" MinMaxHidden="False" 
+                TodayRowIsVisible="True" HorizontalAlignment="Center" />
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="0 0 10 0" Height="30">
+                <Button Width="50" Height="20" Content="Get" Click="Get_Click" />
+            </StackPanel>
+        </Grid>
+</UserControl>

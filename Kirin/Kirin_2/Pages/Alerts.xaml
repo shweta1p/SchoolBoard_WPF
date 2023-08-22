@@ -1,0 +1,226 @@
+﻿<Page x:Class="Kirin_2.Pages.Alerts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:settings="clr-namespace:Kirin_2.Properties"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="1000"
+      SizeChanged="Window_SizeChanged"      
+      Width="Auto"
+      Background="WhiteSmoke"
+      Title="ScoreSheet">
+
+    <Page.Resources>
+        <Style x:Key="FBButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0 30 0 20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <StackPanel>
+            <Viewbox Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" >
+                <WrapPanel>
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="SemiBold" Margin="10 10 0 10">STUDENT ALERTS</TextBlock>
+
+                    <DockPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="550,0,0,0" DockPanel.Dock="Right" >
+                            <materialDesign:ColorZone
+                                CornerRadius="20"
+                                Margin="0 5 10 0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Left"
+                                Mode="Light"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="30" Width="200" Background="White"  >
+                                <StackPanel Width="200" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" >
+                                    <Button Focusable="False" Style="{DynamicResource MaterialDesignToolButton}" VerticalContentAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Search" Width="20" Height="30" Opacity=".56"  />
+                                    </Button>
+                                    <TextBox Width="180"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Foreground="Black"
+                                        Margin="-4 0 0 0"
+                                        materialDesign:HintAssist.Hint=""
+                                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                        BorderThickness="0"
+                                        MinWidth="100"
+                                        TextChanged="SearchBox_TextChanged"
+                                        Name="SearchBox"                                    
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </materialDesign:ColorZone>
+                            <!--<ComboBox DisplayMemberPath="SEMESTER" Margin="20 0" Width="160"  
+                                      VerticalAlignment="Center" Style="{DynamicResource ComboBoxFlatStyle}" 
+                                      HorizontalAlignment="Right" SelectedValue="{Binding ID}" 
+                                      SelectedValuePath="ID" Name="cmbSemesterList"
+                                      SelectionChanged="cmbSemester_SelectionChanged" >
+                            </ComboBox>-->
+                        </StackPanel>
+                    </DockPanel>
+
+                    <Button Style="{StaticResource MaterialDesignIconButton}" Click="Alters_Click" ToolTip="Alters" Background="Transparent" Margin="0 0 15 0"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <materialDesign:PackIcon Kind="AddAlert" VerticalAlignment="Center" Foreground="#247BC0" />
+                    </Button>
+                </WrapPanel>
+            </Viewbox>
+
+            <Viewbox Stretch="UniformToFill" Grid.Row="1" Grid.Column="0">
+                <Border BorderThickness="1" Grid.Row="1" Grid.Column="0" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                        BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }" 
+                        Height="Auto" Background="Transparent" Margin="10" >
+                    <DataGrid x:Name="DGStudentAlerts" ItemsSource="{Binding StudentAlertList}" Margin="10" FontSize="20" CanUserAddRows="false"  
+                            GridLinesVisibility="Vertical" CanUserResizeColumns="False" CanUserReorderColumns="False" AutoGenerateColumns="False" 
+                            VerticalAlignment="Top" AlternationCount="2" AlternatingRowBackground="{Binding Source={x:Static settings:Settings.Default}, Path=AlternatingBGColor, Mode=TwoWay }" 
+                            CanUserSortColumns="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" RowHeight="45">
+                        <DataGrid.Resources>
+                            <Style x:Key="DoubleLeftBorderCell" TargetType="DataGridCell">
+                                <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Style>
+
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                                <Setter Property="Height" Value="45" />
+                                <Setter Property="FontSize" Value="18" />
+                                <Setter Property="Foreground" Value="WhiteSmoke" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="FontWeight" Value="ExtraBold" />
+                            </Style>
+
+                            <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Height" Value="45"/>
+                                <Setter Property="FontSize" Value="20" />
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontFamily" Value="Roboto" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontSize" Value="20" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                <Setter Property="Height" Value="45" />
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn FontSize="20" ElementStyle="{StaticResource Centering}" Header="#" Binding="{Binding Path=RNo}" Width="60" >
+                            </DataGridTextColumn>
+                            <DataGridTextColumn FontSize="20" Header="Student" ElementStyle="{StaticResource Centering}" Binding="{Binding Path=Name}" Width="250" >
+                            </DataGridTextColumn>
+                            <DataGridTextColumn FontSize="20" Header="Grade" ElementStyle="{StaticResource Centering}" Binding="{Binding Path=Grade}" Width="180" >
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Mental" Width="110" SortMemberPath="MentalSorting">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Visibility="{Binding Path=MentalVisibility}" Background="Transparent" 
+                                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                                    Style="{StaticResource MaterialDesignIconButton}"
+                                                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Meditation" Foreground="#247BC0" Width="25" Height="25"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Guardian" Width="120" SortMemberPath="GuardianSorting">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Visibility="{Binding Path=GuardianVisibility}" Background="Transparent"
+                                                    Style="{StaticResource MaterialDesignIconButton}"
+                                                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Guardian" Foreground="#247BC0" Width="25" Height="25"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Medical" Width="100" SortMemberPath="MedicalSorting">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Visibility="{Binding Path=MedicalVisibility}" Background="Transparent"
+                                                    Style="{StaticResource MaterialDesignIconButton}"
+                                                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Medicine" Foreground="#247BC0" Width="25" Height="25"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Over 18" Width="100" SortMemberPath="Over18Sorting">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Visibility="{Binding Path=Over18Visibility}" Background="Transparent"
+                                                    Style="{StaticResource MaterialDesignIconButton}"
+                                                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="HumanHandsup" Foreground="#247BC0" Width="25" Height="25"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Other" Width="100" SortMemberPath="OtherSorting">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Visibility="{Binding Path=OtherVisibility}" Background="Transparent"
+                                                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Alert" Foreground="#247BC0" Width="25" Height="25"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Sped" Width="100" SortMemberPath="SpecialSorting">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Visibility="{Binding Path=SpecialVisibility}" Background="Transparent"
+                                                    Style="{StaticResource MaterialDesignIconButton}"
+                                                    BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="Star" Foreground="#247BC0" Width="25" Height="25"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Viewbox>
+        </StackPanel>
+    </Grid>
+</Page>

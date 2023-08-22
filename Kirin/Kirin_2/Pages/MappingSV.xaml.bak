@@ -1,0 +1,301 @@
+﻿<Page x:Class="Kirin_2.Pages.MappingSV"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"
+      xmlns:vm="clr-namespace:Kirin_2.ViewModel"
+      xmlns:converters="clr-namespace:Kirin_2.ViewModel.Command"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      xmlns:settings="clr-namespace:Kirin_2.Properties" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Mapping Short View">
+
+    <Page.DataContext>
+        <vm:FlowChartVM />
+    </Page.DataContext>
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ContentTemplateforNode">
+            </DataTemplate>
+
+            <Style TargetType="Syncfusion:Node">
+                <Setter Property="ContentTemplate" >
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Margin="5" TextWrapping="Wrap" FontSize="12" 
+                               Foreground="#ffffff" Text="{Binding Path=Name}" 
+                               FontFamily="Roboto" VerticalAlignment="Center" 
+                               FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ShapeStyle">
+                    <Setter.Value>
+                        <Style TargetType="Path">
+                            <Setter Property="Stretch" Value="Fill"  />
+                            <Setter Property="Fill" Value="{Binding Content._Color}" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Syncfusion:Connector">
+                <Setter Property="TargetDecoratorStyle">
+                    <Setter.Value>
+                        <Style TargetType="Path">
+                            <Setter Property="Fill" Value="Black"></Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Syncfusion:AnnotationEditor">
+                <!--<Setter Property="Foreground" Value="Red"/>-->
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Padding" Value="3,3,3,3"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+
+            <Style x:Key="ExpandCollapseToggleStyle" TargetType="Expander">
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Expander">
+                            <Grid Width="15" Height="13" Background="Transparent" >
+                                <materialDesign:PackIcon Kind="ChevronUp" x:Name="ExpandPath" HorizontalAlignment="Right" 
+                            VerticalAlignment="Center" Margin="1,1,1,1" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsExpanded" Value="True">
+                                    <Setter Property="Kind" TargetName="ExpandPath" Value="ChevronDown"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+
+    </Page.Resources>
+    <!--<Border BorderThickness="1" Grid.Row="1" Grid.Column="0" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Border_color, Mode=TwoWay }"
+                Background="Transparent" Margin="10" >-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="350"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <ComboBox x:Name="cbFinancial" Visibility="Hidden">
+            </ComboBox>
+            <TextBlock Text="{Binding FinancialYear,UpdateSourceTrigger=PropertyChanged}" FontSize="24" FontWeight="Bold" Margin="10 10 10 0" Width="330" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Text="London District Catholic Schoolboard" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Margin="10 10 10 0"></TextBlock>
+            <Button x:Name="btnPre" Visibility="Visible" FontSize="15" Margin="10 0 60 0" FontWeight="Bold" HorizontalAlignment="Center" 
+                    VerticalAlignment="Top" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Back"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="btnPre_Click" >
+                <materialDesign:PackIcon Kind="NavigateBefore" Width="50" Height="30" Foreground="#247BC0"/>
+            </Button>
+            <Button x:Name="btnNext" Visibility="Visible" FontSize="15" Margin="30 0 10 0" FontWeight="Bold" HorizontalAlignment="Center" 
+                    VerticalAlignment="Top" Style="{StaticResource MaterialDesignIconButton}" ToolTip="Forth"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="btnNext_Click" >
+                <materialDesign:PackIcon Kind="NavigateNext" Width="50" Height="30" Foreground="#247BC0"/>
+            </Button>
+            <!--<Button Name="btnView" DockPanel.Dock="Right" Style="{x:Null}" Background="Transparent" FontSize="15" VerticalContentAlignment="Bottom" BorderThickness="0" HorizontalAlignment="Right" Margin="0,0,0,0" Width="100" Click="Detail_Click" Foreground="Blue" FontWeight="Bold" VerticalAlignment="Top" Content="Detail View">
+                </Button>-->
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Button x:Name="btnExcel" Visibility="Visible" FontSize="15" Margin="10 5 40 0" FontWeight="Bold" HorizontalAlignment="Right" 
+                    Height="60" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Excel View"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="btnExcel_Click" >
+                <materialDesign:PackIcon Kind="FileExcelOutline" Width="50" Height="50" Foreground="#247BC0"/>
+            </Button>
+            <Button x:Name="btnPdf" Visibility="Visible" FontSize="15" Margin="10 5 100 0" FontWeight="Bold" HorizontalAlignment="Right" 
+                    Height="60" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Pdf View"
+                    Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="btnPdf_Click" >
+                <materialDesign:PackIcon Kind="FilePdfOutline" Width="50" Height="50" Foreground="#247BC0"/>
+            </Button>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <StackPanel Margin="10" Orientation="Vertical">
+                <TextBlock Text="Zoom and Pan" FontSize="20" FontWeight="Bold"></TextBlock>
+                <Syncfusion:Overview Source="{Binding ElementName=sfdiagram}" 
+                    MaxHeight="200" MaxWidth="200" Margin="10,25,10,10" Background="Transparent">
+                </Syncfusion:Overview>
+
+                <DataGrid Width="310" x:Name="DGBudgetView" Height="340" Background="Transparent" HeadersVisibility="Column"
+                          SelectionUnit="FullRow" CanUserResizeColumns="True" Focusable="False" RowDetailsVisibilityMode="Visible"
+                          RowDetailsVisibilityChanged="DGBudgetView_RowDetailsVisibilityChanged"
+                          ItemsSource="{Binding ChildViewLegend}" AutoGenerateColumns="False" Margin="10,60,10,10"  
+                          CanUserAddRows="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Focusable" Value="False"/>
+                            <Setter Property="Height" Value="40" />
+                            <Setter Property="Foreground" Value="#034d6d" />
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="280" Binding="{Binding Path=label, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                  FontSize="18" FontWeight="Bold" ElementStyle="{StaticResource Centering}" >
+                            <!--DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                    <Setter Property="Height" Value="40" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>-->
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <DataGrid x:Name="DGChildView" HeadersVisibility="Column" IsReadOnly="True" Width="Auto" Background="Transparent"
+                                    AutoGenerateColumns="False" Focusable="False" Height="Auto" CanUserAddRows="False" VerticalScrollBarVisibility="Auto"
+                                    RowDetailsVisibilityChanged="DGChildView_RowDetailsVisibilityChanged"
+                                    ItemsSource="{Binding childView}">
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Height" Value="30"/>
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="Focusable" Value="False"/>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.HeaderStyle>
+                                            <Style TargetType="DataGridColumnHeader">
+                                                <Setter Property="Height" Value="30" />
+                                                <Setter Property="Width" Value="180" />
+                                                <Setter Property="FontSize" Value="16" />
+                                                <Setter Property="FontWeight" Value="DemiBold" />
+                                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Style>
+                                        </DataGridTemplateColumn.HeaderStyle>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" Focusable="False" VerticalAlignment="Center" Width="Auto">
+                                                    <Expander Width="30" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
+                                                                                  Expanded="ChildExpander_Expanded" Collapsed="ChildExpander_Collapsed"
+                                                                                  Style="{StaticResource ExpandCollapseToggleStyle}" 
+                                                                                  Focusable="False">
+                                                    </Expander>
+                                                    <TextBlock Text="{Binding Path=label}" FontSize="16" FontWeight="Bold" Focusable="False"></TextBlock>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                                <DataGrid.RowDetailsTemplate>
+                                    <DataTemplate>
+                                        <DataGrid x:Name="DGSubChildView" HeadersVisibility="Column" IsReadOnly="True" Width="Auto" Background="Transparent"
+                                            AutoGenerateColumns="False" Focusable="False" Height="Auto" CanUserAddRows="False" VerticalScrollBarVisibility="Auto"
+                                            SelectionChanged="DGChildView_SelectionChanged" ItemsSource="{Binding subChildView}">
+                                            <DataGrid.CellStyle>
+                                                <Style TargetType="DataGridCell">
+                                                    <Setter Property="Height" Value="30"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                                    <Setter Property="Focusable" Value="False"/>
+                                                </Style>
+                                            </DataGrid.CellStyle>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Width="180" Binding="{Binding Path=label, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                    Header="LABEL" FontSize="16" FontWeight="Medium">
+                                                    <DataGridTextColumn.HeaderStyle>
+                                                        <Style TargetType="DataGridColumnHeader">
+                                                            <Setter Property="Height" Value="30" />
+                                                            <Setter Property="Width" Value="180" />
+                                                            <Setter Property="FontSize" Value="16" />
+                                                            <Setter Property="FontWeight" Value="DemiBold" />
+                                                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                        </Style>
+                                                    </DataGridTextColumn.HeaderStyle>
+                                                    <DataGridTextColumn.ElementStyle>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="HorizontalAlignment" Value="Left" />
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="TextAlignment" Value="Center" />
+                                                        </Style>
+                                                    </DataGridTextColumn.ElementStyle>
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Width="100" Binding="{Binding Path=budget, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                                    Header="BUDGET" FontSize="16" FontWeight="Medium">
+                                                    <DataGridTextColumn.HeaderStyle>
+                                                        <Style TargetType="DataGridColumnHeader">
+                                                            <Setter Property="Height" Value="30" />
+                                                            <Setter Property="Width" Value="100" />
+                                                            <Setter Property="FontSize" Value="16" />
+                                                            <Setter Property="FontWeight" Value="DemiBold" />
+                                                            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                                                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                        </Style>
+                                                    </DataGridTextColumn.HeaderStyle>
+                                                    <DataGridTextColumn.ElementStyle>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="HorizontalAlignment" Value="Right" />
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="Focusable" Value="False" />
+                                                        </Style>
+                                                    </DataGridTextColumn.ElementStyle>
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+
+        <Border BorderThickness="1" Grid.Row="1" Grid.Column="0" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                Background="Transparent" Margin="10" >
+            <!--Initialize Diagram-->
+            <Syncfusion:SfDiagram x:Name="sfdiagram"  
+                              Tool="ZoomPan"
+                              DefaultConnectorType= "{Binding DefaultConnectorType}"
+                              ItemAddedCommand="{Binding ItemAddedCommand}"
+                              SnapSettings="{Binding SnapSettings}"
+                              Nodes="{Binding Nodes}"                                
+                              Constraints="{Binding Constraints}"                                 
+                              DataSourceSettings="{Binding DataSourceSettings}"                                 
+                              LayoutManager="{Binding LayoutManager}"
+                              Grid.Column="0" Grid.Row="1"
+                              Margin="10">
+                <Syncfusion:SfDiagram.Connectors>
+                    <!--Initialize the Connector Collection-->
+                    <Syncfusion:ConnectorCollection>
+                        <!--Initialize the Connector view model-->
+                        <Syncfusion:ConnectorViewModel>
+                            <Syncfusion:ConnectorViewModel.Annotations>
+                                <!--Initialize the AnnotationCollection-->
+                                <Syncfusion:AnnotationCollection>
+                                    <!--Initialize the Annotation editor view model-->
+                                    <Syncfusion:AnnotationEditorViewModel Length="0.6"/>
+                                </Syncfusion:AnnotationCollection>
+                            </Syncfusion:ConnectorViewModel.Annotations>
+                        </Syncfusion:ConnectorViewModel>
+                    </Syncfusion:ConnectorCollection>
+                </Syncfusion:SfDiagram.Connectors>
+            </Syncfusion:SfDiagram>
+        </Border>
+
+    </Grid>
+    <!--</Border>-->
+</Page>

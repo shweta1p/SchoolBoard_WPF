@@ -1,0 +1,2197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KIRINModel1StoreContainer" CdmEntityContainer="KIRINEntities">
+    <FunctionImportMapping FunctionImportName="getStudentScoreSheet" FunctionName="KIRINModel1.Store.getStudentScoreSheet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.getStudentScoreSheet_Result">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="SCORE_ON_TYPE_OF_EXAM" ColumnName="SCORE_ON_TYPE_OF_EXAM" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="Absent" ColumnName="Absent" />
+          <ScalarProperty Name="Late" ColumnName="Late" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EthnicityVSLanguageDS" FunctionName="KIRINModel1.Store.EthnicityVSLanguageDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.EthnicityVSLanguageDS_Result">
+          <ScalarProperty Name="LANGUAGES" ColumnName="LANGUAGES" />
+          <ScalarProperty Name="ETHNICITY_DIVERSITY" ColumnName="ETHNICITY_DIVERSITY" />
+          <ScalarProperty Name="LanguageCount" ColumnName="LanguageCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getLanguageCountAllStudents" FunctionName="KIRINModel1.Store.getLanguageCountAllStudents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.getLanguageCountAllStudents_Result">
+          <ScalarProperty Name="LanguageCount" ColumnName="LanguageCount" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SplitString" FunctionName="KIRINModel1.Store.SplitString" />
+    <FunctionImportMapping FunctionImportName="usp_ImportImage" FunctionName="KIRINModel1.Store.usp_ImportImage" />
+    <FunctionImportMapping FunctionImportName="GetSchoolDBData" FunctionName="KIRINModel1.Store.GetSchoolDBData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSchoolDBData_Result">
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="RELATIONSHIP" ColumnName="RELATIONSHIP" />
+          <ScalarProperty Name="PRIMARY_CONTACT" ColumnName="PRIMARY_CONTACT" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="mRole" ColumnName="mRole" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStaffData" FunctionName="KIRINModel1.Store.GetStaffData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStaffData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentProfileData" FunctionName="KIRINModel1.Store.GetStudentProfileData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentProfileData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="ORIGIN_OF_BIRTH" ColumnName="ORIGIN_OF_BIRTH" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="HOMEROOM" ColumnName="HOMEROOM" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="STUDENT_NUMBER" ColumnName="STUDENT_NUMBER" />
+          <ScalarProperty Name="LEARNING_TYPE" ColumnName="LEARNING_TYPE" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="HEALTH_ALERT" ColumnName="HEALTH_ALERT" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStaffDatabyId" FunctionName="KIRINModel1.Store.GetStaffDatabyId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStaffDatabyId_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="JURISDICTION" ColumnName="JURISDICTION" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="SUPERVISOR" ColumnName="SUPERVISOR" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTeacherProfileData" FunctionName="KIRINModel1.Store.GetTeacherProfileData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetTeacherProfileData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="BIRTH_ORIGIN" ColumnName="BIRTH_ORIGIN" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="ETHNICITY_DIVERSITY" ColumnName="ETHNICITY_DIVERSITY" />
+          <ScalarProperty Name="YEARS_OF_EXPERIENCE" ColumnName="YEARS_OF_EXPERIENCE" />
+          <ScalarProperty Name="SCORE_HAPPINESS" ColumnName="SCORE_HAPPINESS" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="SPECIAL_NEEDS_TEACHER" ColumnName="SPECIAL_NEEDS_TEACHER" />
+          <ScalarProperty Name="TEACHER_QUALIFICATION" ColumnName="TEACHER_QUALIFICATION" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DISABILITY" ColumnName="DISABILITY" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="DISCIPLINARY_ACTIONS" ColumnName="DISCIPLINARY_ACTIONS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="TEACHING_STATUS" ColumnName="TEACHING_STATUS" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="LANGUAGES" ColumnName="LANGUAGES" />
+          <ScalarProperty Name="HOMEROOM" ColumnName="HOMEROOM" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAssignmentList" FunctionName="KIRINModel1.Store.GetAssignmentList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAssignmentList_Result">
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="REPORTING_TERM" ColumnName="REPORTING_TERM" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ABRV" ColumnName="ABRV" />
+          <ScalarProperty Name="ASSIGNMENT_CATEGORY_ID" ColumnName="ASSIGNMENT_CATEGORY_ID" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="SCORE_TYPE" ColumnName="SCORE_TYPE" />
+          <ScalarProperty Name="ISLOADED" ColumnName="ISLOADED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSchoolList" FunctionName="KIRINModel1.Store.GetSchoolList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSchoolList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="SCHOOLBOARD_ID" ColumnName="SCHOOLBOARD_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSemesterList" FunctionName="KIRINModel1.Store.GetSemesterList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSemesterList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentListbySubject" FunctionName="KIRINModel1.Store.GetStudentListbySubject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentListbySubject_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="HOMEROOM" ColumnName="HOMEROOM" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ORIGIN_OF_BIRTH" ColumnName="ORIGIN_OF_BIRTH" />
+          <ScalarProperty Name="sumAbsent" ColumnName="sumAbsent" />
+          <ScalarProperty Name="sumLate" ColumnName="sumLate" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSubjectList" FunctionName="KIRINModel1.Store.GetSubjectList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSubjectList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="SEMESTER_ID" ColumnName="SEMESTER_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetBudgetData" FunctionName="KIRINModel1.Store.GetBudgetData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetBudgetData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getClassListing" FunctionName="KIRINModel1.Store.getClassListing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.getClassListing_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SEMESTER_ID" ColumnName="SEMESTER_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetShortBudgetData" FunctionName="KIRINModel1.Store.GetShortBudgetData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetShortBudgetData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getBirthOriginCountbySubjectID" FunctionName="KIRINModel1.Store.getBirthOriginCountbySubjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.getBirthOriginCountbySubjectID_Result">
+          <ScalarProperty Name="BirthCount" ColumnName="BirthCount" />
+          <ScalarProperty Name="ORIGIN_OF_BIRTH" ColumnName="ORIGIN_OF_BIRTH" />
+          <ScalarProperty Name="TotalStudent" ColumnName="TotalStudent" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getLanguageCountofStudentsbySubject" FunctionName="KIRINModel1.Store.getLanguageCountofStudentsbySubject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.getLanguageCountofStudentsbySubject_Result">
+          <ScalarProperty Name="LanguageCount" ColumnName="LanguageCount" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetChildNodeofBudgetData" FunctionName="KIRINModel1.Store.GetChildNodeofBudgetData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetChildNodeofBudgetData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetChildNodeDataforMindTree" FunctionName="KIRINModel1.Store.GetChildNodeDataforMindTree">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetChildNodeDataforMindTree_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDailyBulletinData" FunctionName="KIRINModel1.Store.GetDailyBulletinData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetDailyBulletinData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SCHOOLID" ColumnName="SCHOOLID" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="UPLOADED_DATE" ColumnName="UPLOADED_DATE" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="SCHOOLBOARD_ID" ColumnName="SCHOOLBOARD_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDailyBulletinDatabyDate" FunctionName="KIRINModel1.Store.GetDailyBulletinDatabyDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetDailyBulletinDatabyDate_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SCHOOLID" ColumnName="SCHOOLID" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="UPLOADED_DATE" ColumnName="UPLOADED_DATE" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="SCHOOLBOARD_ID" ColumnName="SCHOOLBOARD_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentListbySubjectId" FunctionName="KIRINModel1.Store.GetStudentListbySubjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentListbySubjectId_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesbySubjectId" FunctionName="KIRINModel1.Store.GetGradesbySubjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentGradebySubjectId_Result">
+          <ScalarProperty Name="STUDENT_SCORE_ID" ColumnName="STUDENT_SCORE_ID" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="Average" ColumnName="Average" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="PointSum" ColumnName="PointSum" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="LabelDate" ColumnName="LabelDate" />
+          <ScalarProperty Name="ClassAvg" ColumnName="ClassAvg" />
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="AssignPercentage" ColumnName="AssignPercentage" />
+          <ScalarProperty Name="Variation" ColumnName="Variation" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetOrganizationalData" FunctionName="KIRINModel1.Store.GetOrganizationalData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetOrganizationalData_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="ReportingPerson" ColumnName="ReportingPerson" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="RatingColor" ColumnName="RatingColor" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="HomeRoom" ColumnName="HomeRoom" />
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="parentId" ColumnName="parentId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatafromTeacherID" FunctionName="KIRINModel1.Store.GetStudentDatafromTeacherID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatafromTeacherID_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="ReportingPerson" ColumnName="ReportingPerson" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="RatingColor" ColumnName="RatingColor" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="HomeRoom" ColumnName="HomeRoom" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetHierarchicalData" FunctionName="KIRINModel1.Store.GetHierarchicalData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetHierarchicalData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="ReportingPerson" ColumnName="ReportingPerson" />
+          <ScalarProperty Name="RatingColor" ColumnName="RatingColor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSubjectIdforStudent" FunctionName="KIRINModel1.Store.GetSubjectIdforStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSubjectIdforStudent_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="SEMESTER_ID" ColumnName="SEMESTER_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="LabelDate" ColumnName="LabelDate" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStackedBarAttandanceData" FunctionName="KIRINModel1.Store.GetStackedBarAttandanceData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStackedBarAttandanceData_Result">
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="AU" ColumnName="AU" />
+          <ScalarProperty Name="BC" ColumnName="BC" />
+          <ScalarProperty Name="BD" ColumnName="BD" />
+          <ScalarProperty Name="DC" ColumnName="DC" />
+          <ScalarProperty Name="FT" ColumnName="FT" />
+          <ScalarProperty Name="LI" ColumnName="LI" />
+          <ScalarProperty Name="LU" ColumnName="LU" />
+          <ScalarProperty Name="PL" ColumnName="PL" />
+          <ScalarProperty Name="TS" ColumnName="TS" />
+          <ScalarProperty Name="AI" ColumnName="AI" />
+          <ScalarProperty Name="P" ColumnName="P" />
+          <ScalarProperty Name="OriginalDate" ColumnName="OriginalDate" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentCitizenshipCountbySubjectID" FunctionName="KIRINModel1.Store.GetStudentCitizenshipCountbySubjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentCitizenshipCountbySubjectID_Result">
+          <ScalarProperty Name="CitizenshipCount" ColumnName="CitizenshipCount" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="MaxCount" ColumnName="MaxCount" />
+          <ScalarProperty Name="Opecity" ColumnName="Opecity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDateofBirthCountbySubjectID" FunctionName="KIRINModel1.Store.GetStudentDateofBirthCountbySubjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDateofBirthCountbySubjectID_Result">
+          <ScalarProperty Name="BirthCount" ColumnName="BirthCount" />
+          <ScalarProperty Name="BirthMonth" ColumnName="BirthMonth" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentScatterPlotData" FunctionName="KIRINModel1.Store.GetStudentScatterPlotData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentScatterPlotData_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDiversityData" FunctionName="KIRINModel1.Store.GetDiversityData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetDiversityData_Result">
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="DiversityCount" ColumnName="DiversityCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStackedDiversityEthnicityData" FunctionName="KIRINModel1.Store.GetStackedDiversityEthnicityData" />
+    <FunctionImportMapping FunctionImportName="GetStudentExtraCo" FunctionName="KIRINModel1.Store.GetStudentExtraCo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentExtraCo_Result">
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="ExtraCoCount" ColumnName="ExtraCoCount" />
+          <ScalarProperty Name="ABBREVIATION" ColumnName="ABBREVIATION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentTransfferedCount" FunctionName="KIRINModel1.Store.GetStudentTransfferedCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentTransfferedCount_Result">
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTransferredStudentDataforBarGraph" FunctionName="KIRINModel1.Store.GetTransferredStudentDataforBarGraph">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetTransferredStudentDataforBarGraph_Result">
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentClubData" FunctionName="KIRINModel1.Store.GetStudentClubData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentClubData_Result">
+          <ScalarProperty Name="StdCount" ColumnName="StdCount" />
+          <ScalarProperty Name="ClubName" ColumnName="ClubName" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentLanguageDataforHeatmap" FunctionName="KIRINModel1.Store.GetStudentLanguageDataforHeatmap">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentLanguageDataforHeatmap_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="LangID" ColumnName="LangID" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDateofBirthData" FunctionName="KIRINModel1.Store.GetStudentDateofBirthData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDateofBirthData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="BirthMonth" ColumnName="BirthMonth" />
+          <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="LastDay" ColumnName="LastDay" />
+          <ScalarProperty Name="DayofWeek" ColumnName="DayofWeek" />
+          <ScalarProperty Name="IsHoliday" ColumnName="IsHoliday" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserData" FunctionName="KIRINModel1.Store.GetUserData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetUserData_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSchoolNameforUser" FunctionName="KIRINModel1.Store.GetSchoolNameforUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSchoolNameforUser_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetClassDataforTeacher" FunctionName="KIRINModel1.Store.GetClassDataforTeacher">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetClassDataforTeacher_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetExtraCoDataforTeacher" FunctionName="KIRINModel1.Store.GetExtraCoDataforTeacher">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetExtraCoDataforTeacher_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="ExtraCoId" ColumnName="ExtraCoId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPieTransfferedStudentData" FunctionName="KIRINModel1.Store.GetPieTransfferedStudentData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetPieTransfferedStudentData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDataforScatterPoint" FunctionName="KIRINModel1.Store.GetStudentDataforScatterPoint">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDataforScatterPoint_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyCitizenship" FunctionName="KIRINModel1.Store.GetStudentDatabyCitizenship">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyCitizenship_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAttendanceCode" FunctionName="KIRINModel1.Store.GetAttendanceCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAttendanceCode_Result">
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentAttendance" FunctionName="KIRINModel1.Store.GetStudentAttendance">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentAttendance_Result">
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentAttendancebyCode" FunctionName="KIRINModel1.Store.GetStudentAttendancebyCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentAttendancebyCode_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentCitizenshipData" FunctionName="KIRINModel1.Store.GetStudentCitizenshipData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentCitizenshipData_Result">
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Image1" ColumnName="Image1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="Image2" ColumnName="Image2" />
+          <ScalarProperty Name="Count1" ColumnName="Count1" />
+          <ScalarProperty Name="Count2" ColumnName="Count2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAssignmentCategory" FunctionName="KIRINModel1.Store.GetAssignmentCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAssignmentCategory_Result">
+          <ScalarProperty Name="ASSIGNMENT_CATEGORY_ID" ColumnName="ASSIGNMENT_CATEGORY_ID" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyEthnicity" FunctionName="KIRINModel1.Store.GetStudentDatabyEthnicity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyEthnicity_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAlertType" FunctionName="KIRINModel1.Store.GetAlertType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAlertType_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STUDENT_ALERT_TYPE" ColumnName="STUDENT_ALERT_TYPE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SaveStudentAlerts" FunctionName="KIRINModel1.Store.SaveStudentAlerts" />
+    <FunctionImportMapping FunctionImportName="GetClassAttendanceData" FunctionName="KIRINModel1.Store.GetClassAttendanceData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetClassAttendanceData_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="AttendanceCodeId" ColumnName="AttendanceCodeId" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="HEALTH_ALERT" ColumnName="HEALTH_ALERT" />
+          <ScalarProperty Name="OTHER_ALERT" ColumnName="OTHER_ALERT" />
+          <ScalarProperty Name="SHSM_ALERT" ColumnName="SHSM_ALERT" />
+          <ScalarProperty Name="PLUS18_ALERT" ColumnName="PLUS18_ALERT" />
+          <ScalarProperty Name="ClassAttendanceId" ColumnName="ClassAttendanceId" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="SECRETARY_COMMENT" ColumnName="SECRETARY_COMMENT" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddComments" FunctionName="KIRINModel1.Store.AddComments" />
+    <FunctionImportMapping FunctionImportName="GetTransferStudentDatabyMonth" FunctionName="KIRINModel1.Store.GetTransferStudentDatabyMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetTransferStudentDatabyMonth_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDOBDatabyMonth" FunctionName="KIRINModel1.Store.GetDOBDatabyMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetDOBDatabyMonth_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BirthMonth" ColumnName="BirthMonth" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabySports" FunctionName="KIRINModel1.Store.GetStudentDatabySports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabySports_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentAttendanceData" FunctionName="KIRINModel1.Store.GetStudentAttendanceData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentAttendanceData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyClub" FunctionName="KIRINModel1.Store.GetStudentDatabyClub">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyClub_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CLUB_ID" ColumnName="CLUB_ID" />
+          <ScalarProperty Name="Club" ColumnName="Club" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyDiversity" FunctionName="KIRINModel1.Store.GetStudentDatabyDiversity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyDiversity_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyLanguage" FunctionName="KIRINModel1.Store.GetStudentDatabyLanguage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyLanguage_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentEthnicityLegendData" FunctionName="KIRINModel1.Store.GetStudentEthnicityLegendData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentEthnicityLegendData_Result">
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Color1" ColumnName="Color1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="Color2" ColumnName="Color2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEthnicityData" FunctionName="KIRINModel1.Store.GetEthnicityData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetEthnicityData_Result">
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="EthnicityCount" ColumnName="EthnicityCount" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="MaxCount" ColumnName="MaxCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTransferredStudentDataforStackedBar" FunctionName="KIRINModel1.Store.GetTransferredStudentDataforStackedBar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetTransferredStudentDataforStackedBar_Result">
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Behavioral" ColumnName="Behavioral" />
+          <ScalarProperty Name="Classroom" ColumnName="Classroom" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="School" ColumnName="School" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTransferType" FunctionName="KIRINModel1.Store.GetTransferType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetTransferType_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TRANSFER_TYPE" ColumnName="TRANSFER_TYPE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDOBdataforLegend" FunctionName="KIRINModel1.Store.GetStudentDOBdataforLegend">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDOBdataforLegend_Result">
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Count1" ColumnName="Count1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="Count2" ColumnName="Count2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTransferStudentDatabyType" FunctionName="KIRINModel1.Store.GetTransferStudentDatabyType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetTransferStudentDatabyType_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TRANSFER_TYPE" ColumnName="TRANSFER_TYPE" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="TRANSFERRED_DATE" ColumnName="TRANSFERRED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDistinctCitizenshipCount" FunctionName="KIRINModel1.Store.GetDistinctCitizenshipCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetDistinctCitizenshipCount_Result">
+          <ScalarProperty Name="CitizenshipCount" ColumnName="CitizenshipCount" />
+          <ScalarProperty Name="MaxCount" ColumnName="MaxCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEthnicityfromDiversity" FunctionName="KIRINModel1.Store.GetEthnicityfromDiversity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetEthnicityfromDiversity_Result">
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="EthnicityCount" ColumnName="EthnicityCount" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetMultiClassAttendanceData" FunctionName="KIRINModel1.Store.GetMultiClassAttendanceData" />
+    <FunctionImportMapping FunctionImportName="GetStackedDiversityData" FunctionName="KIRINModel1.Store.GetStackedDiversityData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStackedDiversityData_Result">
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="dCount" ColumnName="dCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentGenderCount" FunctionName="KIRINModel1.Store.GetStudentGenderCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentGenderCount_Result">
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="GenderCount" ColumnName="GenderCount" />
+          <ScalarProperty Name="CountInPercentage" ColumnName="CountInPercentage" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentTransfferedStackBarLegend" FunctionName="KIRINModel1.Store.GetStudentTransfferedStackBarLegend">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentTransfferedStackBarLegend_Result">
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentMapData" FunctionName="KIRINModel1.Store.GetStudentMapData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentMapData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="Transportation" ColumnName="Transportation" />
+          <ScalarProperty Name="TransportationAbvr" ColumnName="TransportationAbvr" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDataforMapPoint" FunctionName="KIRINModel1.Store.GetStudentDataforMapPoint">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDataforMapPoint_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="HouseholdIncome" ColumnName="HouseholdIncome" />
+          <ScalarProperty Name="ParentCount" ColumnName="ParentCount" />
+          <ScalarProperty Name="SiblingCount" ColumnName="SiblingCount" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="Transportation" ColumnName="Transportation" />
+          <ScalarProperty Name="TransportationAbvr" ColumnName="TransportationAbvr" />
+          <ScalarProperty Name="Parantal_Involvement" ColumnName="Parantal_Involvement" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentModeofTransportation" FunctionName="KIRINModel1.Store.GetStudentModeofTransportation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentModeofTransportation_Result">
+          <ScalarProperty Name="Transportation" ColumnName="Transportation" />
+          <ScalarProperty Name="TransportationAbvr" ColumnName="TransportationAbvr" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentsList" FunctionName="KIRINModel1.Store.GetStudentsList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentsList_Result">
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="ID1" ColumnName="ID1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="ID2" ColumnName="ID2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentScoreandAverage" FunctionName="KIRINModel1.Store.GetStudentScoreandAverage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentScoreandAverage_Result">
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentScorebyClass" FunctionName="KIRINModel1.Store.GetStudentScorebyClass">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentScorebyClass_Result">
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="AverageScore" ColumnName="AverageScore" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyEthnicityandDivesity" FunctionName="KIRINModel1.Store.GetStudentDatabyEthnicityandDivesity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyEthnicityandDivesity_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAverageGradesbySubject" FunctionName="KIRINModel1.Store.GetAverageGradesbySubject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAverageGradesbySubject_Result">
+          <ScalarProperty Name="STUDENT_SCORE_ID" ColumnName="STUDENT_SCORE_ID" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="LabelDate" ColumnName="LabelDate" />
+          <ScalarProperty Name="Average" ColumnName="Average" />
+          <ScalarProperty Name="PointSum" ColumnName="PointSum" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetClassInfo" FunctionName="KIRINModel1.Store.GetClassInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetClassInfo_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+          <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+          <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesbySubjectforRadar" FunctionName="KIRINModel1.Store.GetGradesbySubjectforRadar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesbySubjectforRadar_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+          <ScalarProperty Name="AverageScore" ColumnName="AverageScore" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsDiversityBubbleChartData" FunctionName="KIRINModel1.Store.GetGradesVsDiversityBubbleChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsDiversityBubbleChartData_Result">
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="APPROVED_BUDGET">
+      <EntityTypeMapping TypeName="KIRINModel1.APPROVED_BUDGET">
+        <MappingFragment StoreEntitySet="APPROVED_BUDGET">
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSIGNMENTs">
+      <EntityTypeMapping TypeName="KIRINModel1.ASSIGNMENT">
+        <MappingFragment StoreEntitySet="ASSIGNMENT">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ISLOADED" ColumnName="ISLOADED" />
+          <ScalarProperty Name="SCORE_TYPE" ColumnName="SCORE_TYPE" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="ABRV" ColumnName="ABRV" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="REPORTING_TERM" ColumnName="REPORTING_TERM" />
+          <ScalarProperty Name="UNIQUE_ID" ColumnName="UNIQUE_ID" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSIGNMENT_CATEGORY">
+      <EntityTypeMapping TypeName="KIRINModel1.ASSIGNMENT_CATEGORY">
+        <MappingFragment StoreEntitySet="ASSIGNMENT_CATEGORY">
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="ASSIGNMENT_CATEGORY_ID" ColumnName="ASSIGNMENT_CATEGORY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATTENDANCE_CODES">
+      <EntityTypeMapping TypeName="KIRINModel1.ATTENDANCE_CODES">
+        <MappingFragment StoreEntitySet="ATTENDANCE_CODES">
+          <ScalarProperty Name="COLOR2" ColumnName="COLOR2" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASS_ATTENDANCE">
+      <EntityTypeMapping TypeName="KIRINModel1.CLASS_ATTENDANCE">
+        <MappingFragment StoreEntitySet="CLASS_ATTENDANCE">
+          <ScalarProperty Name="SECRETARY_COMMENT" ColumnName="SECRETARY_COMMENT" />
+          <ScalarProperty Name="ATTENDANCE_CODE" ColumnName="ATTENDANCE_CODE" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Class_DayofWeek">
+      <EntityTypeMapping TypeName="KIRINModel1.Class_DayofWeek">
+        <MappingFragment StoreEntitySet="Class_DayofWeek">
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="DayOfWeekID" ColumnName="DayOfWeekID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASS_STUDENT">
+      <EntityTypeMapping TypeName="KIRINModel1.CLASS_STUDENT">
+        <MappingFragment StoreEntitySet="CLASS_STUDENT">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLUBS">
+      <EntityTypeMapping TypeName="KIRINModel1.CLUB">
+        <MappingFragment StoreEntitySet="CLUBS">
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COUNTRIES">
+      <EntityTypeMapping TypeName="KIRINModel1.COUNTRy">
+        <MappingFragment StoreEntitySet="COUNTRIES">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Country1" ColumnName="Country" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DAILYBULLETINs">
+      <EntityTypeMapping TypeName="KIRINModel1.DAILYBULLETIN">
+        <MappingFragment StoreEntitySet="DAILYBULLETIN">
+          <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+          <ScalarProperty Name="UPLOADED_DATE" ColumnName="UPLOADED_DATE" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="SCHOOLID" ColumnName="SCHOOLID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTMENTS">
+      <EntityTypeMapping TypeName="KIRINModel1.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENTS">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DEPARTMENT1" ColumnName="DEPARTMENT" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOMAINs">
+      <EntityTypeMapping TypeName="KIRINModel1.DOMAIN">
+        <MappingFragment StoreEntitySet="DOMAIN">
+          <ScalarProperty Name="MD5" ColumnName="MD5" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GRADE_MASTER">
+      <EntityTypeMapping TypeName="KIRINModel1.GRADE_MASTER">
+        <MappingFragment StoreEntitySet="GRADE_MASTER">
+          <ScalarProperty Name="Percent" ColumnName="Percent" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Letter" ColumnName="Letter" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GRADES">
+      <EntityTypeMapping TypeName="KIRINModel1.GRADE">
+        <MappingFragment StoreEntitySet="GRADES">
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="GRADE1" ColumnName="GRADE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOLIDAY_LIST">
+      <EntityTypeMapping TypeName="KIRINModel1.HOLIDAY_LIST">
+        <MappingFragment StoreEntitySet="HOLIDAY_LIST">
+          <ScalarProperty Name="HOLIDAY" ColumnName="HOLIDAY" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMG_TBL">
+      <EntityTypeMapping TypeName="KIRINModel1.IMG_TBL">
+        <MappingFragment StoreEntitySet="IMG_TBL">
+          <ScalarProperty Name="CLASSFICATION_TYPE" ColumnName="CLASSFICATION_TYPE" />
+          <ScalarProperty Name="REFRENCE_ID" ColumnName="REFRENCE_ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="IMAGE_PATH" ColumnName="IMAGE_PATH" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMG_TYPE_CLASSIFICATION">
+      <EntityTypeMapping TypeName="KIRINModel1.IMG_TYPE_CLASSIFICATION">
+        <MappingFragment StoreEntitySet="IMG_TYPE_CLASSIFICATION">
+          <ScalarProperty Name="CLASSIFICATION_TYPE" ColumnName="CLASSIFICATION_TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LANGUAGE_PRIORITY">
+      <EntityTypeMapping TypeName="KIRINModel1.LANGUAGE_PRIORITY">
+        <MappingFragment StoreEntitySet="LANGUAGE_PRIORITY">
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LANGUAGES">
+      <EntityTypeMapping TypeName="KIRINModel1.LANGUAGE">
+        <MappingFragment StoreEntitySet="LANGUAGES">
+          <ScalarProperty Name="LANGUAGE1" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLEs">
+      <EntityTypeMapping TypeName="KIRINModel1.ROLE">
+        <MappingFragment StoreEntitySet="ROLE">
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHOOLs">
+      <EntityTypeMapping TypeName="KIRINModel1.SCHOOL">
+        <MappingFragment StoreEntitySet="SCHOOL">
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="SCHOOL_TYPE" ColumnName="SCHOOL_TYPE" />
+          <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="SCHOOLBOARD_ID" ColumnName="SCHOOLBOARD_ID" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHOOLBOARDs">
+      <EntityTypeMapping TypeName="KIRINModel1.SCHOOLBOARD">
+        <MappingFragment StoreEntitySet="SCHOOLBOARD">
+          <ScalarProperty Name="JURISDICTION" ColumnName="JURISDICTION" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SCHOOLBOARD_ID" ColumnName="SCHOOLBOARD_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHOOLBOARD_ADMINS">
+      <EntityTypeMapping TypeName="KIRINModel1.SCHOOLBOARD_ADMINS">
+        <MappingFragment StoreEntitySet="SCHOOLBOARD_ADMINS">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="SCOOLBOARD_ID" ColumnName="SCOOLBOARD_ID" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SEMESTERs">
+      <EntityTypeMapping TypeName="KIRINModel1.SEMESTER">
+        <MappingFragment StoreEntitySet="SEMESTER">
+          <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
+          <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
+          <ScalarProperty Name="QUARTERHALF" ColumnName="QUARTERHALF" />
+          <ScalarProperty Name="QUARTER" ColumnName="QUARTER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="ABBREVIATION" ColumnName="ABBREVIATION" />
+          <ScalarProperty Name="SEMESTER1" ColumnName="SEMESTER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STAFF_DIRECTORY">
+      <EntityTypeMapping TypeName="KIRINModel1.STAFF_DIRECTORY">
+        <MappingFragment StoreEntitySet="STAFF_DIRECTORY">
+          <ScalarProperty Name="SUPERVISOR" ColumnName="SUPERVISOR" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TEACHER_QUALIFICATION" ColumnName="TEACHER_QUALIFICATION" />
+          <ScalarProperty Name="SPECIAL_NEEDS_TEACHER" ColumnName="SPECIAL_NEEDS_TEACHER" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="SCORE_HAPPINESS" ColumnName="SCORE_HAPPINESS" />
+          <ScalarProperty Name="YEARS_OF_EXPERIENCE" ColumnName="YEARS_OF_EXPERIENCE" />
+          <ScalarProperty Name="ETHNICITY_DIVERSITY" ColumnName="ETHNICITY_DIVERSITY" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="BIRTH_ORIGIN" ColumnName="BIRTH_ORIGIN" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STAFF_PHONE_NO">
+      <EntityTypeMapping TypeName="KIRINModel1.STAFF_PHONE_NO">
+        <MappingFragment StoreEntitySet="STAFF_PHONE_NO">
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="STAFF_ID" ColumnName="STAFF_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTs">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT">
+        <MappingFragment StoreEntitySet="STUDENT">
+          <ScalarProperty Name="Distance1" ColumnName="Distance1" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="Parantal_Involvement" ColumnName="Parantal_Involvement" />
+          <ScalarProperty Name="TransportationAbvr" ColumnName="TransportationAbvr" />
+          <ScalarProperty Name="Transportation" ColumnName="Transportation" />
+          <ScalarProperty Name="HouseholdIncome" ColumnName="HouseholdIncome" />
+          <ScalarProperty Name="SiblingCount" ColumnName="SiblingCount" />
+          <ScalarProperty Name="IsTransferred" ColumnName="IsTransferred" />
+          <ScalarProperty Name="ParentCount" ColumnName="ParentCount" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="HOMEROOM" ColumnName="HOMEROOM" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="ORIGIN_OF_BIRTH" ColumnName="ORIGIN_OF_BIRTH" />
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_ALERT_MAPPING">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_ALERT_MAPPING">
+        <MappingFragment StoreEntitySet="STUDENT_ALERT_MAPPING">
+          <ScalarProperty Name="ALERT" ColumnName="ALERT" />
+          <ScalarProperty Name="ALERT_ID" ColumnName="ALERT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_ALERTS">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_ALERTS">
+        <MappingFragment StoreEntitySet="STUDENT_ALERTS">
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="STUDENT_ALERT_TYPE" ColumnName="STUDENT_ALERT_TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_AVG_GRADE">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_AVG_GRADE">
+        <MappingFragment StoreEntitySet="STUDENT_AVG_GRADE">
+          <ScalarProperty Name="GRADE12" ColumnName="GRADE12" />
+          <ScalarProperty Name="GRADE11" ColumnName="GRADE11" />
+          <ScalarProperty Name="GRADE10" ColumnName="GRADE10" />
+          <ScalarProperty Name="GRADE9" ColumnName="GRADE9" />
+          <ScalarProperty Name="GRADE8" ColumnName="GRADE8" />
+          <ScalarProperty Name="GRADE7" ColumnName="GRADE7" />
+          <ScalarProperty Name="GRADE6" ColumnName="GRADE6" />
+          <ScalarProperty Name="GRADE5" ColumnName="GRADE5" />
+          <ScalarProperty Name="GRADE4" ColumnName="GRADE4" />
+          <ScalarProperty Name="GRADE3" ColumnName="GRADE3" />
+          <ScalarProperty Name="GRADE2" ColumnName="GRADE2" />
+          <ScalarProperty Name="GRADE1" ColumnName="GRADE1" />
+          <ScalarProperty Name="SUBJECTID" ColumnName="SUBJECTID" />
+          <ScalarProperty Name="STUDENTID" ColumnName="STUDENTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_COCURRICULAR">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_COCURRICULAR">
+        <MappingFragment StoreEntitySet="STUDENT_COCURRICULAR">
+          <ScalarProperty Name="CLUB_ID" ColumnName="CLUB_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="STUDENTS_COCURRICULAR_ID" ColumnName="STUDENTS_COCURRICULAR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_EXTRA_CO">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_EXTRA_CO">
+        <MappingFragment StoreEntitySet="STUDENT_EXTRA_CO">
+          <ScalarProperty Name="ABBREVIATION" ColumnName="ABBREVIATION" />
+          <ScalarProperty Name="CLUB_ID" ColumnName="CLUB_ID" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_GRADE">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_GRADE">
+        <MappingFragment StoreEntitySet="STUDENT_GRADE">
+          <ScalarProperty Name="TRANSFER_STATUS" ColumnName="TRANSFER_STATUS" />
+          <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="SEMESTER_ID" ColumnName="SEMESTER_ID" />
+          <ScalarProperty Name="STUDENT_GRADE_ID" ColumnName="STUDENT_GRADE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_LANGUAGE_MAPPING">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_LANGUAGE_MAPPING">
+        <MappingFragment StoreEntitySet="STUDENT_LANGUAGE_MAPPING">
+          <ScalarProperty Name="ISHOUSEHOLD_LANGUAGE" ColumnName="ISHOUSEHOLD_LANGUAGE" />
+          <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
+          <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_PHONE_NO">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_PHONE_NO">
+        <MappingFragment StoreEntitySet="STUDENT_PHONE_NO">
+          <ScalarProperty Name="PRIMARY_EMAIL" ColumnName="PRIMARY_EMAIL" />
+          <ScalarProperty Name="RELATION" ColumnName="RELATION" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="PRIMARY_CONTACT" ColumnName="PRIMARY_CONTACT" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_SCORE">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_SCORE">
+        <MappingFragment StoreEntitySet="STUDENT_SCORE">
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="ENGAGEMENT_SCORE" ColumnName="ENGAGEMENT_SCORE" />
+          <ScalarProperty Name="SCORE_ON_TYPE_OF_EXAM" ColumnName="SCORE_ON_TYPE_OF_EXAM" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="STUDENT_SCORE_ID" ColumnName="STUDENT_SCORE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_SPECIAL_NEEDS">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_SPECIAL_NEEDS">
+        <MappingFragment StoreEntitySet="STUDENT_SPECIAL_NEEDS">
+          <ScalarProperty Name="SPECIAL_NEEDS" ColumnName="SPECIAL_NEEDS" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_TRANSFERRED">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_TRANSFERRED">
+        <MappingFragment StoreEntitySet="STUDENT_TRANSFERRED">
+          <ScalarProperty Name="TRANSFERRED_DATE" ColumnName="TRANSFERRED_DATE" />
+          <ScalarProperty Name="TRANSFERRED_FROM" ColumnName="TRANSFERRED_FROM" />
+          <ScalarProperty Name="TRANSFER_TYPE" ColumnName="TRANSFER_TYPE" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECT_TEACHER_MAPPING">
+      <EntityTypeMapping TypeName="KIRINModel1.SUBJECT_TEACHER_MAPPING">
+        <MappingFragment StoreEntitySet="SUBJECT_TEACHER_MAPPING">
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="SEMESTER_ID" ColumnName="SEMESTER_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECT_TYPE">
+      <EntityTypeMapping TypeName="KIRINModel1.SUBJECT_TYPE">
+        <MappingFragment StoreEntitySet="SUBJECT_TYPE">
+          <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECTS">
+      <EntityTypeMapping TypeName="KIRINModel1.SUBJECT">
+        <MappingFragment StoreEntitySet="SUBJECTS">
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="CREDIT" ColumnName="CREDIT" />
+          <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_DISABILITY">
+      <EntityTypeMapping TypeName="KIRINModel1.TEACHER_DISABILITY">
+        <MappingFragment StoreEntitySet="TEACHER_DISABILITY">
+          <ScalarProperty Name="DISABILITY" ColumnName="DISABILITY" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_DISCIPLINARY_ACTIONS">
+      <EntityTypeMapping TypeName="KIRINModel1.TEACHER_DISCIPLINARY_ACTIONS">
+        <MappingFragment StoreEntitySet="TEACHER_DISCIPLINARY_ACTIONS">
+          <ScalarProperty Name="DISCIPLINARY_ACTIONS" ColumnName="DISCIPLINARY_ACTIONS" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_EXTRA_CO">
+      <EntityTypeMapping TypeName="KIRINModel1.TEACHER_EXTRA_CO">
+        <MappingFragment StoreEntitySet="TEACHER_EXTRA_CO">
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_LANGUAGE_MAPPING">
+      <EntityTypeMapping TypeName="KIRINModel1.TEACHER_LANGUAGE_MAPPING">
+        <MappingFragment StoreEntitySet="TEACHER_LANGUAGE_MAPPING">
+          <ScalarProperty Name="LANGUAGE_ID" ColumnName="LANGUAGE_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHING_STATUS">
+      <EntityTypeMapping TypeName="KIRINModel1.TEACHING_STATUS">
+        <MappingFragment StoreEntitySet="TEACHING_STATUS">
+          <ScalarProperty Name="TEACHING_STATUS1" ColumnName="TEACHING_STATUS" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSFER_TYPE">
+      <EntityTypeMapping TypeName="KIRINModel1.TRANSFER_TYPE">
+        <MappingFragment StoreEntitySet="TRANSFER_TYPE">
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="TRANSFER_TYPE1" ColumnName="TRANSFER_TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERs">
+      <EntityTypeMapping TypeName="KIRINModel1.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsDiversityBoxPlotChartData" FunctionName="KIRINModel1.Store.GetGradesVsDiversityBoxPlotChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsDiversityBoxPlotChartData_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsDiversityAreaChartData" FunctionName="KIRINModel1.Store.GetGradesVsDiversityAreaChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsDiversityAreaChartData_Result">
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsDiversityRadarChartData" FunctionName="KIRINModel1.Store.GetGradesVsDiversityRadarChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsDiversityRadarChartData_Result">
+          <ScalarProperty Name="DIVERSITY" ColumnName="DIVERSITY" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsCitizenshipAreaChartData" FunctionName="KIRINModel1.Store.GetGradesVsCitizenshipAreaChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsCitizenshipAreaChartData_Result">
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsCitizenshipBubbleChartData" FunctionName="KIRINModel1.Store.GetGradesVsCitizenshipBubbleChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsCitizenshipBubbleChartData_Result">
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsCitizenshipRadarChartData" FunctionName="KIRINModel1.Store.GetGradesVsCitizenshipRadarChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsCitizenshipRadarChartData_Result">
+          <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsLanguagesChartData" FunctionName="KIRINModel1.Store.GetGradesVsLanguagesChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsLanguagesChartData_Result">
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsAttendanceData" FunctionName="KIRINModel1.Store.GetGradesVsAttendanceData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsAttendanceData_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesVsAttendanceHistogramData" FunctionName="KIRINModel1.Store.GetGradesVsAttendanceHistogramData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesVsAttendanceHistogramData_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEthnicityVsCocurricularBubbleChartData" FunctionName="KIRINModel1.Store.GetEthnicityVsCocurricularBubbleChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetEthnicityVsCocurricularBubbleChartData_Result">
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="ExtraCoID" ColumnName="ExtraCoID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStackedEthnicityVsSportsData" FunctionName="KIRINModel1.Store.GetStackedEthnicityVsSportsData" />
+    <FunctionImportMapping FunctionImportName="GetEthnicityVsLanguagesBubbleChartData" FunctionName="KIRINModel1.Store.GetEthnicityVsLanguagesBubbleChartData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetEthnicityVsLanguagesBubbleChartData_Result">
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="StudentCount" ColumnName="StudentCount" />
+          <ScalarProperty Name="langID" ColumnName="langID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStackedEthnicityVsLanguagesData" FunctionName="KIRINModel1.Store.GetStackedEthnicityVsLanguagesData" />
+    <FunctionImportMapping FunctionImportName="GetStudentAlertsData" FunctionName="KIRINModel1.Store.GetStudentAlertsData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentAlertsData_Result">
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="HEALTH_ALERT" ColumnName="HEALTH_ALERT" />
+          <ScalarProperty Name="OTHER_ALERT" ColumnName="OTHER_ALERT" />
+          <ScalarProperty Name="GUARDIAN_ALERT" ColumnName="GUARDIAN_ALERT" />
+          <ScalarProperty Name="SPECIAL_ALERT" ColumnName="SPECIAL_ALERT" />
+          <ScalarProperty Name="OVER18_ALERT" ColumnName="OVER18_ALERT" />
+          <ScalarProperty Name="MENTAL_ALERT" ColumnName="MENTAL_ALERT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSportsfromEthnicity" FunctionName="KIRINModel1.Store.GetSportsfromEthnicity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSportsfromEthnicity_Result">
+          <ScalarProperty Name="EXTRA_CO" ColumnName="EXTRA_CO" />
+          <ScalarProperty Name="SportsCount" ColumnName="SportsCount" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStackedEthnicityData" FunctionName="KIRINModel1.Store.GetStackedEthnicityData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStackedEthnicityData_Result">
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="eCount" ColumnName="eCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetLanguagefromEthnicity" FunctionName="KIRINModel1.Store.GetLanguagefromEthnicity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetLanguagefromEthnicity_Result">
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="LangCount" ColumnName="LangCount" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyEthnicityandLanguage" FunctionName="KIRINModel1.Store.GetStudentDatabyEthnicityandLanguage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyEthnicityandLanguage_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentDatabyEthnicityandSports" FunctionName="KIRINModel1.Store.GetStudentDatabyEthnicityandSports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentDatabyEthnicityandSports_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ETHNICITY" ColumnName="ETHNICITY" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetFinancialYearforBudget" FunctionName="KIRINModel1.Store.GetFinancialYearforBudget" />
+    <FunctionImportMapping FunctionImportName="GetBudgetLegendData" FunctionName="KIRINModel1.Store.GetBudgetLegendData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetBudgetLegendData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetBudgetLegendChildData" FunctionName="KIRINModel1.Store.GetBudgetLegendChildData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetBudgetLegendChildData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentProfileDetails" FunctionName="KIRINModel1.Store.GetStudentProfileDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentProfileDetails_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ROOM_NUMBER" ColumnName="ROOM_NUMBER" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="REPORTING_TERM" ColumnName="REPORTING_TERM" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="C2022_04_25" ColumnName="2022-04-25" />
+          <ScalarProperty Name="C2022_04_26" ColumnName="2022-04-26" />
+          <ScalarProperty Name="C2022_04_27" ColumnName="2022-04-27" />
+          <ScalarProperty Name="C2022_04_28" ColumnName="2022-04-28" />
+          <ScalarProperty Name="C2022_04_29" ColumnName="2022-04-29" />
+          <ScalarProperty Name="C2022_05_02" ColumnName="2022-05-02" />
+          <ScalarProperty Name="C2022_05_03" ColumnName="2022-05-03" />
+          <ScalarProperty Name="C2022_05_04" ColumnName="2022-05-04" />
+          <ScalarProperty Name="C2022_05_05" ColumnName="2022-05-05" />
+          <ScalarProperty Name="C2022_05_06" ColumnName="2022-05-06" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetParentBudgetData" FunctionName="KIRINModel1.Store.GetParentBudgetData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetParentBudgetData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetParentID" FunctionName="KIRINModel1.Store.GetParentID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetParentID_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BUDGET_LABEL" ColumnName="BUDGET_LABEL" />
+          <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+          <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="ISHEADER" ColumnName="ISHEADER" />
+          <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+          <ScalarProperty Name="LEVEL_NUMBER" ColumnName="LEVEL_NUMBER" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAssignmentDatabyCourseID" FunctionName="KIRINModel1.Store.GetAssignmentDatabyCourseID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAssignmentDatabyCourseID_Result">
+          <ScalarProperty Name="RNo" ColumnName="RNo" />
+          <ScalarProperty Name="STUDENT_SCORE_ID" ColumnName="STUDENT_SCORE_ID" />
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="POINTS" ColumnName="POINTS" />
+          <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCourseInstructorData" FunctionName="KIRINModel1.Store.GetCourseInstructorData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetCourseInstructorData_Result">
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesbyCitizenship" FunctionName="KIRINModel1.Store.GetGradesbyCitizenship">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesbyCitizenship_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesbyDiversity" FunctionName="KIRINModel1.Store.GetGradesbyDiversity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesbyDiversity_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetGradesbyLanguage" FunctionName="KIRINModel1.Store.GetGradesbyLanguage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetGradesbyLanguage_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="NOTIFICATIONS">
+      <EntityTypeMapping TypeName="KIRINModel1.NOTIFICATION">
+        <MappingFragment StoreEntitySet="NOTIFICATIONS">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="STUDENTID" ColumnName="STUDENTID" />
+          <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <ScalarProperty Name="DOCUMENT" ColumnName="DOCUMENT" />
+          <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+          <ScalarProperty Name="STUDENT" ColumnName="STUDENT" />
+          <ScalarProperty Name="NOTIFICATION_TYPE" ColumnName="NOTIFICATION_TYPE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="SCHOOLID" ColumnName="SCHOOLID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetAssignmentScoreSheet" FunctionName="KIRINModel1.Store.GetAssignmentScoreSheet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAssignmentScoreSheet_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="AssignmentTitle" ColumnName="AssignmentTitle" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAttendanceReport" FunctionName="KIRINModel1.Store.GetAttendanceReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAttendanceReport_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDateRange" FunctionName="KIRINModel1.Store.GetDateRange" />
+    <FunctionImportMapping FunctionImportName="GetDateRangeforAttendance" FunctionName="KIRINModel1.Store.GetDateRangeforAttendance" />
+    <FunctionImportMapping FunctionImportName="GetEarlierNotification" FunctionName="KIRINModel1.Store.GetEarlierNotification">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetEarlierNotification_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="NOTIFICATION_TYPE" ColumnName="NOTIFICATION_TYPE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="TEMPLATE" ColumnName="TEMPLATE" />
+          <ScalarProperty Name="STUDENT" ColumnName="STUDENT" />
+          <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+          <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <ScalarProperty Name="DOCUMENT" ColumnName="DOCUMENT" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="PAGE_LINK" ColumnName="PAGE_LINK" />
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetNewNotifications" FunctionName="KIRINModel1.Store.GetNewNotifications">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetNewNotifications_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="NOTIFICATION_TYPE" ColumnName="NOTIFICATION_TYPE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="TEMPLATE" ColumnName="TEMPLATE" />
+          <ScalarProperty Name="STUDENT" ColumnName="STUDENT" />
+          <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+          <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <ScalarProperty Name="DOCUMENT" ColumnName="DOCUMENT" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="PAGE_LINK" ColumnName="PAGE_LINK" />
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetScoresheetbySubject" FunctionName="KIRINModel1.Store.GetScoresheetbySubject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetScoresheetbySubject_Result">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentsbyCourse" FunctionName="KIRINModel1.Store.GetStudentsbyCourse">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentsbyCourse_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StdName" ColumnName="StdName" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="COURSE_NAME" ColumnName="COURSE_NAME" />
+          <ScalarProperty Name="COURSE_CODE" ColumnName="COURSE_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSchoolAlerts" FunctionName="KIRINModel1.Store.GetSchoolAlerts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetSchoolAlerts_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOTIFICATION_TYPE" ColumnName="NOTIFICATION_TYPE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="TEMPLATE" ColumnName="TEMPLATE" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="STUDENT" ColumnName="STUDENT" />
+          <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+          <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <ScalarProperty Name="DOCUMENT" ColumnName="DOCUMENT" />
+          <ScalarProperty Name="PAGE_LINK" ColumnName="PAGE_LINK" />
+          <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="NOTIFICATION_TYPE">
+      <EntityTypeMapping TypeName="KIRINModel1.NOTIFICATION_TYPE">
+        <MappingFragment StoreEntitySet="NOTIFICATION_TYPE">
+          <ScalarProperty Name="PAGE_LINK" ColumnName="PAGE_LINK" />
+          <ScalarProperty Name="TEMPLATE" ColumnName="TEMPLATE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_COMMENT">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_COMMENT">
+        <MappingFragment StoreEntitySet="STUDENT_COMMENT">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="STUDENTID" ColumnName="STUDENTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_SUBJECT_MAPPING">
+      <EntityTypeMapping TypeName="KIRINModel1.STUDENT_SUBJECT_MAPPING">
+        <MappingFragment StoreEntitySet="STUDENT_SUBJECT_MAPPING">
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentComments" FunctionName="KIRINModel1.Store.GetStudentComments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentComments_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STUDENTID" ColumnName="STUDENTID" />
+          <ScalarProperty Name="UpdatedComment" ColumnName="UpdatedComment" />
+          <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddStudentComments" FunctionName="KIRINModel1.Store.AddStudentComments" />
+    <EntitySetMapping Name="FEEDBACKs">
+      <EntityTypeMapping TypeName="KIRINModel1.FEEDBACK">
+        <MappingFragment StoreEntitySet="FEEDBACK">
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Screenshot" ColumnName="Screenshot" />
+          <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SaveFeedback" FunctionName="KIRINModel1.Store.SaveFeedback" />
+    <FunctionImportMapping FunctionImportName="GetStudentsforSearch" FunctionName="KIRINModel1.Store.GetStudentsforSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStudentsforSearch_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAssignmentsforSearch" FunctionName="KIRINModel1.Store.GetAssignmentsforSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAssignmentsforSearch_Result">
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="REPORTING_TERM" ColumnName="REPORTING_TERM" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ABRV" ColumnName="ABRV" />
+          <ScalarProperty Name="ASSIGNMENT_CATEGORY_ID" ColumnName="ASSIGNMENT_CATEGORY_ID" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="POINTS_POSSIBLE" ColumnName="POINTS_POSSIBLE" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="SCORE_TYPE" ColumnName="SCORE_TYPE" />
+          <ScalarProperty Name="ISLOADED" ColumnName="ISLOADED" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStaffforSearch" FunctionName="KIRINModel1.Store.GetStaffforSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetStaffforSearch_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAssignmentforSchedule" FunctionName="KIRINModel1.Store.GetAssignmentforSchedule">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KIRINModel1.GetAssignmentforSchedule_Result">
+          <ScalarProperty Name="ASSIGNMENT_ID" ColumnName="ASSIGNMENT_ID" />
+          <ScalarProperty Name="DATE_DUE" ColumnName="DATE_DUE" />
+          <ScalarProperty Name="UNIQUE_ID" ColumnName="UNIQUE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ABRV" ColumnName="ABRV" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

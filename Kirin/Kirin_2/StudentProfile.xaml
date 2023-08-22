@@ -1,0 +1,77 @@
+﻿<Window x:Class="Kirin_2.StudentProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kirin_2"
+        mc:Ignorable="d"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="WhiteSmoke"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        BorderThickness="1"
+        BorderBrush="LightGray"
+         Height="450" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="20" Width="150"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="#d3e7f5" >
+            <Rectangle.Fill>
+                <ImageBrush x:Name="ProfPic"   />
+            </Rectangle.Fill>
+        </Rectangle>
+        
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Label>Name :  </Label>
+                <Label x:Name="FullName"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Grade Level :</Label>
+                <Label x:Name="GradeLevel"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Address :</Label>
+                <Label x:Name="Address"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Gender :</Label>
+                <Label x:Name="Gender"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Ethnicity :</Label>
+                <Label x:Name="Ethnicity"></Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Language/s :</Label>
+                <Label x:Name="Language">:</Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Citizenship:</Label>
+                <Label x:Name="Citizenship"></Label>
+            </StackPanel>
+
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label>Birthdate:</Label>
+                <Label x:Name="Birthdate"></Label>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

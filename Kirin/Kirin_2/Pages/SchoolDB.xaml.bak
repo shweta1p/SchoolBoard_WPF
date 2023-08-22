@@ -1,0 +1,283 @@
+﻿<Page x:Class="Kirin_2.Pages.SchoolDB"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Kirin_2.ViewModel.Command"
+      xmlns:settings="clr-namespace:Kirin_2.Properties" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="1020"
+      Width="Auto"      
+      SizeChanged="Window_SizeChanged"
+      Title="School Database">
+    
+    <Page.Resources>
+        <Style x:Key="Centering" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="0,0,0,0" />
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+    </Page.Resources>
+
+    <!--<xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="True" Background="WhiteSmoke"  >
+        <xctk:BusyIndicator.BusyContentTemplate>
+            <DataTemplate>
+                <StackPanel Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Background="Transparent" Height="100" Width="500" HorizontalAlignment="Center" VerticalAlignment="Top">
+                         <TextBlock FontSize="18" FontWeight="Bold" Text="Loading School Board Database..." HorizontalAlignment="Center" VerticalAlignment="Top"/> 
+                        <Image Name="imgCircle" Visibility="Visible" Width="225" Height="125" gif:ImageBehavior.AnimatedSource="/Images/loading-dots.gif" />
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+        </xctk:BusyIndicator.BusyContentTemplate>
+        <xctk:BusyIndicator.OverlayStyle>
+            <Style TargetType="Rectangle">
+                <Setter Property="Fill" Value="Transparent"/>
+            </Style>
+        </xctk:BusyIndicator.OverlayStyle>
+        <xctk:BusyIndicator.ProgressBarStyle>
+            <Style TargetType="ProgressBar">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+        </xctk:BusyIndicator.ProgressBarStyle>-->
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <Viewbox Stretch="None" HorizontalAlignment="Left">
+                    <TextBlock FontSize="24" FontWeight="SemiBold" Margin="15 10 0 20"> SCHOOL BOARD DATABASE</TextBlock>
+                </Viewbox>
+                <Border BorderThickness="1" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                        BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }" 
+                        Background="Transparent" Margin="10 10 20 20" >
+                    <Viewbox x:Name="vbdashboard" Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" >
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="80 5 80 -5">
+                                <TextBlock Text="Listing Options: " FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                                <RadioButton Content="All" IsTabStop="False" FontWeight="DemiBold" FontSize="16" IsChecked="True" VerticalAlignment="Center" Foreground="#004890" Margin="0 0 15 0" Style="{x:Null}" Command="{Binding Path=DataContext.cGridDataShowAll,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}}" CommandParameter="Radio1" />
+
+                                <RadioButton Content="Students" IsTabStop="False" FontWeight="DemiBold" FontSize="16" VerticalAlignment="Center" Foreground="#004890" Margin="0 0 15 0" Style="{x:Null}" Command="{Binding Path=DataContext.cGridDataShowStudent,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}}" CommandParameter="Radio2" />
+                                <RadioButton Content="Teachers" IsTabStop="False" FontWeight="DemiBold" FontSize="16" VerticalAlignment="Center" Foreground="#004890" Margin="0 0 15 0" Style="{x:Null}" Command="{Binding Path=DataContext.cGridDataShowTeacher,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}}" CommandParameter="Radio3" />
+                                <RadioButton Content="Support Staff" IsTabStop="False"  FontWeight="DemiBold" FontSize="16" VerticalAlignment="Center" Foreground="#004890" Margin="0 0 15 0" Style="{x:Null}" Command="{Binding Path=DataContext.cGridDataShowSupportStaff,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}}" CommandParameter="Radio4" />
+                                <RadioButton Content="School Board Administrator" IsTabStop="False"  FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16" Foreground="#004890" Margin="0 0 15 0" Style="{x:Null}" Command="{Binding Path=DataContext.cGridDataShowAdmin,  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StackPanel}}" CommandParameter="Radio5" />
+                                <materialDesign:ColorZone CornerRadius="20" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                    Mode="Light" materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="35" Background="WhiteSmoke" Margin="40 0 0 0 " >
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <Button Style="{DynamicResource MaterialDesignToolButton}" VerticalContentAlignment="Top">
+                                            <materialDesign:PackIcon Kind="Search" Width="20" Height="30" Opacity=".56"  />
+                                        </Button>
+                                        <TextBox FontSize="16" FontWeight="Bold" Margin="8 0 0 0" materialDesign:HintAssist.Hint="" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                            BorderThickness="0" MinWidth="100" Name="SearchBox" TextChanged="SearchBox_TextChanged" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </materialDesign:ColorZone>
+
+                            </StackPanel>
+
+                            <DataGrid x:Name="DGStaff" VerticalAlignment="Top" ItemsSource="{Binding SCHOOLDB_ALL}"  SelectionUnit="FullRow"
+                                  AlternationCount="2" AlternatingRowBackground="{Binding Source={x:Static settings:Settings.Default}, Path=AlternatingBGColor, Mode=TwoWay }"
+                                  CanUserAddRows="false" IsReadOnly="True" Height="400" GridLinesVisibility="None" CanUserReorderColumns="False" FontSize="16"
+                                  AutoGenerateColumns="False" Margin="10" RowHeight="35" FontWeight="Bold" HorizontalScrollBarVisibility="Auto"
+                                  CanUserResizeColumns="False" VerticalScrollBarVisibility="Auto">
+                                <DataGrid.Resources>
+                                    <local:BindingProxy x:Key="IsRoleVisible" Data="{Binding IsRoleVisible}"   />
+                                    <local:BindingProxy x:Key="IsContactVisible" Data="{Binding IsContactVisible}"   />
+                                    <local:BindingProxy x:Key="IsRelationVisible" Data="{Binding IsRelationVisible}"   />
+                                    <local:BindingProxy x:Key="IsStatusVisible" Data="{Binding IsStatusVisible}"   />
+                                    <local:BindingProxy x:Key="PNumLabel" Data="{Binding PhoneNumberLabel}"   />
+
+                                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                                        <Setter Property="Height" Value="35"/>
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="FontWeight" Value="ExtraBold" />
+                                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="Padding" Value="10 0" />
+                                    </Style>
+                                    <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="Height" Value="30"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="FontSize" Value="16" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="FontFamily" Value="Roboto" />
+                                        <Setter Property="Tag" Value="{Binding Path=ID}" />
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Focusable" Value="False"/>
+                                    </Style>
+
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Height" Value="30"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="FontSize" Value="16" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="FontFamily" Value="Roboto" />
+                                        <Setter Property="Tag" Value="{Binding Path=ID}" />
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Focusable" Value="False"/>
+                                    </Style>
+
+                                </DataGrid.Resources>
+
+                                <DataGrid.CellStyle>
+
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Focusable" Value="False"/>
+                                        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+
+                                        <!--<Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>-->
+                                    </Style>
+                                </DataGrid.CellStyle>
+
+                                <DataGrid.Columns>
+
+                                    <DataGridTextColumn Header="#" Binding="{Binding Path=RowNo}" Width="50" >
+
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTemplateColumn Width="200">
+                                        <DataGridTemplateColumn.HeaderStyle>
+                                            <Style TargetType="DataGridColumnHeader">
+                                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                                                <Setter Property="Height" Value="25" />
+                                            </Style>
+                                        </DataGridTemplateColumn.HeaderStyle>
+                                        <DataGridTemplateColumn.Header>
+                                            <TextBlock Text="Name" FontSize="18" HorizontalAlignment="Left" FontWeight="ExtraBold" Height="35" Foreground="WhiteSmoke"/>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate >
+                                                <StackPanel Orientation="Horizontal"  >
+                                                    <Button Command="{Binding Path=DataContext.cViewStaffProfile, RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" >
+                                                        <!--Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}"-->
+                                                        <Button.Template>
+                                                            <ControlTemplate>
+                                                                <TextBlock Text="{Binding Path=NAME}" Foreground="Black" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                            </ControlTemplate>
+                                                        </Button.Template>
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!--   <DataGridTextColumn Header="Name" Binding="{Binding Path=NAME}" ElementStyle="{StaticResource Centering}" Width="230"   />-->
+                                    <DataGridTextColumn Header="Email" Binding="{Binding Path=EMAIL}" Width="200" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Foreground" Value="#004890"/>
+                                                <Setter Property="FontWeight" Value="bold" />
+                                                <Setter Property="Height" Value="20"/>
+                                            </Style>
+
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Primary Contact" Binding="{Binding Path=PRIMARY_CONTACT}" Width="200"
+                                                 Visibility="{Binding Path=Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource IsContactVisible}}" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Relation" Binding="{Binding Path=RELATIONSHIP}" Width="170"
+                                                 Visibility="{Binding Path=Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource IsRelationVisible}}" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <DataGridTemplateColumn  Width="220">
+                                        <DataGridTemplateColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding  Path=Data, Source={StaticResource PNumLabel}}" TextAlignment="Center" VerticalAlignment="Center"  HorizontalAlignment="Center"  />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.HeaderTemplate>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding  Path=PHONE_NUMBER}"  HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center"  />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+
+                                    <DataGridTextColumn Header="Role" Binding="{Binding Path=ROLE}"  Width="270"
+                                            Visibility="{Binding Path=Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource IsRoleVisible}}"
+                                            >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Status" Binding="{Binding Path=STATUS}"  Width="150"
+                                            Visibility="{Binding Path=Data, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource IsStatusVisible}}"
+                                            >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Viewbox>
+                </Border>
+            </StackPanel>
+        </Grid>
+    <!--</xctk:BusyIndicator>-->
+</Page>

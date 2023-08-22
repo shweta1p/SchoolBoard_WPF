@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="Kirin_2.UserControls.UC_StudentViewforScatterPoint"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kirin_2.UserControls"
+             xmlns:settings="clr-namespace:Kirin_2.Properties"
+             mc:Ignorable="d" 
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="StudentModel"
+             Loaded="StudentView_Loaded"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Height="Auto" Width="Auto">
+
+    <UserControl.Resources>
+        <Style x:Key="FBButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="15 2 10 0" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Rectangle Fill="{Binding Source={x:Static settings:Settings.Default}, Path=Modal_bg, Mode=TwoWay }" MouseDown="Rectangle_MouseDown"/>
+
+        <Border Height="390" BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="LightGray" Background="White" Margin="5" Width="550" MouseLeave="Rectangle_MouseLeave">
+            <DockPanel>
+                <Label DockPanel.Dock="Top" Content="{Binding StudentName,UpdateSourceTrigger=PropertyChanged}" Margin="10" FontWeight="Bold" FontSize="20" Visibility="Visible"
+                       Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="210*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Name="lblGrade" Grid.Column="0" Margin="5" FontWeight="Bold" FontSize="16" Visibility="Visible"
+                       Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center"></Label>
+
+                    <DataGrid Grid.Column="0" SelectionUnit="FullRow" Height="245" Width="275" Visibility="Visible" Margin="10,10,10,10"
+                              FontSize="14" IsReadOnly="True" Background="Transparent" FontWeight="Bold" Foreground="Black"
+                              CanUserResizeColumns="True" AutoGenerateColumns="False" x:Name="DGStudentData"
+                              Focusable="False" ItemsSource="{Binding StudentList}" HeadersVisibility="Column" 
+                              GridLinesVisibility="Horizontal"
+                              BorderBrush="#4B87B2" BorderThickness="1">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Margin" Value="0 8 0 0"/>
+                                <Setter Property="Height" Value="30"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="170" Binding="{Binding Path=Assignment, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                            Header="Assignment">
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Path=Percentage, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" Header="Score(%)">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Label Name="lblAttendance" Grid.Column="1" Margin="5" FontWeight="Bold" FontSize="16" Visibility="Visible"
+                       Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center"></Label>
+
+                    <Button Grid.Column="1" x:Name="btnEye" Visibility="Visible" FontSize="15" Margin="25 55 30 10" FontWeight="Bold" 
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource FBButtonStyle}" 
+                            Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
+                        <!--<Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames 
+                                                             Storyboard.TargetName="InfoPopup" 
+                                                             Storyboard.TargetProperty="IsOpen">
+                                                <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Button.Triggers>-->
+                        <Rectangle Height="25" Width="25" Stroke="Transparent" >
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Images/Info.JPG"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                    <Popup x:Name="InfoPopup" PlacementTarget="{Binding ElementName=btnEye}" StaysOpen="False" >
+                        <Border Height="300" BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="LightGray" 
+                                        Background="White" Width="290" x:Name="MenuClass">
+                            <DockPanel Margin="1" >
+                                <StackPanel Orientation="Vertical">
+                                    <Label DockPanel.Dock="Top" Content="Code Weight" Margin="5" FontWeight="Bold" 
+                                           FontSize="20" Width="200" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                           HorizontalContentAlignment="Center"/>
+
+                                    <DataGrid SelectionUnit="FullRow" Height="185" Width="170" Visibility="Visible" Margin="10,10,10,10"
+                                                FontSize="12" IsReadOnly="True" Background="Transparent"
+                                                CanUserResizeColumns="True" AutoGenerateColumns="False" x:Name="DGAttendanceWeight"
+                                                Focusable="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                                BorderBrush="#4B87B2" BorderThickness="1"
+                                                ItemsSource="{Binding AttendanceCodeList}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Width="*" Header="Code" Binding="{Binding Path=CODE, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True">
+                                                <DataGridTextColumn.CellStyle>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                                        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                                        <Setter Property="FontSize" Value="12"/>
+                                                        <Setter Property="Foreground" Value="Black"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="Focusable" Value="False"/>
+                                                        <Setter Property="Margin" Value="5"/>
+                                                    </Style>
+                                                </DataGridTextColumn.CellStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn Width="*" Header="Weight" Binding="{Binding Path=WEIGHT, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True">
+                                                <DataGridTextColumn.CellStyle>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                                        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                                        <Setter Property="FontSize" Value="12"/>
+                                                        <Setter Property="Foreground" Value="Black"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="Focusable" Value="False"/>
+                                                        <Setter Property="Margin" Value="5"/>
+                                                    </Style>
+                                                </DataGridTextColumn.CellStyle>
+                                            </DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
+                    </Popup>
+
+                    <DataGrid Grid.Column="1" SelectionUnit="FullRow" Height="245" Width="210" Visibility="Visible" Margin="0,10,10,10"
+                                                FontSize="14" IsReadOnly="True" Background="Transparent" FontWeight="Bold" Foreground="Black"
+                                                CanUserResizeColumns="True" AutoGenerateColumns="False" x:Name="DGStudentAttendance"
+                                                Focusable="False" ItemsSource="{Binding StudentAttendance}" HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                                BorderBrush="#4B87B2" BorderThickness="1">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Margin" Value="8 8 8 0"/>
+                                <Setter Property="Height" Value="30"/>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="90" Binding="{Binding Path=DATE, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                            Header="Date">
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="*" Binding="{Binding Path=CODE, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" Header="Attendance">
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

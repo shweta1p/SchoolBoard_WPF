@@ -1,0 +1,237 @@
+﻿using Kirin_2.Model;
+using Kirin_2.Models;
+using Kirin_2.Pages;
+using MaterialDesignThemes.Wpf;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
+using System.Data.Entity.Core.Objects;
+using System.Data.Linq;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using static Kirin_2.Model.Menu;
+
+namespace Kirin_2.ViewModel
+{
+    public class MainWindowVM : INotifyPropertyChanged
+    {
+        private SubMenuItemData subMenuItem;
+        public List<ItemMenu> MenuList;
+        public App app = (App)Application.Current;
+        public ICommand cGetClassList { get; set; }
+
+
+        public KIRINEntities1 KirinEntities1;
+
+
+        private ObservableCollection<GetSubjectList_Result> _ClassListing;
+        public ObservableCollection<GetSubjectList_Result> ClassListing
+        {
+            get { return this._ClassListing; }
+            set
+            {
+                this._ClassListing = value;
+                OnPropertyChanged("ClassListing");
+            }
+        }
+
+
+        public void GetClassListing(string param)
+        {
+            //var schoolID = Convert.ToInt32(param);
+            var schoolID = param;
+            var clisting = KirinEntities1.getClassListing(schoolID).ToList();
+
+            ClassListing = new ObservableCollection<GetSubjectList_Result>(from list in clisting
+                                                                           select new GetSubjectList_Result
+                                                                           {
+                                                                               SUBJECT_NAME = list.SUBJECT_NAME,
+                                                                               SCHOOL_ID = list.SCHOOL_ID,
+                                                                               SEMESTER_ID = Convert.ToInt32(list.SEMESTER_ID),
+                                                                               SUBJECT_CODE = list.SUBJECT_CODE,
+                                                                               TEACHER_ID = Convert.ToInt32(list.TEACHER_ID),
+                                                                               ID = list.ID
+                                                                           }
+                                                              );
+
+
+        }
+
+
+        private void Execute()
+        {
+            // //our logic comes here
+
+
+            //// string SMT = subMenuItem.SubMenuText.Replace(" ", string.Empty);
+            // if (!string.IsNullOrEmpty(menutext))
+            //     navigateToPage(menutext);
+        }
+
+        private void navigateToPage(string Menu)
+        {
+            //We will search for our Main Window in open windows and then will access the frame inside it to set the navigation to desired page..
+            //lets see how... ;)
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(MainWindow))
+                {
+                    (window as MainWindow).MainWindowFrame.Navigate(new Uri(string.Format("{0}{1}{2}", "Pages/", Menu, ".xaml"), UriKind.RelativeOrAbsolute));
+                }
+            }
+        }
+
+        public bool canExecuteMethod(object param)
+        {
+            return true;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        //to call resource dictionary in our code behind
+        public ICommand SubMenuCommand { get; private set; }
+
+        public string userNameRole { get; set; }
+        public string subjectCode { get; set; }
+        public MainWindowVM(string userName)
+        {
+            KirinEntities1 = new KIRINEntities1();
+
+            var userData = KirinEntities1.GetUserData(userName).ToList();
+
+            var userInfo = (from obj in userData
+                            select new GetUserData_Result
+                            {
+                                Name = obj.Name,
+                                Role = obj.Role,
+                                SUBJECT_CODE = obj.SUBJECT_CODE,
+                                SubjectId = obj.SubjectId,
+                                SCHOOL_ID = obj.SCHOOL_ID
+                            }).FirstOrDefault();
+
+            if (userData.Count > 0)
+            {
+                userNameRole = userInfo.Name + " > " + userInfo.Role;
+                subjectCode = !string.IsNullOrWhiteSpace(userInfo.SUBJECT_CODE) ? "[" + userInfo.SUBJECT_CODE + "]" : "";
+                app.Properties["SubjectId"] = userInfo.SubjectId;
+                app.Properties["SchoolId"] = userInfo.SCHOOL_ID;
+            }
+
+            ResourceDictionary dict = Application.LoadComponent(new Uri("/Kirin_2;component/Assets/IconDictionary.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
+            subMenuItem = new SubMenuItemData();
+            //SubMenuCommand = new CommandVM(Execute);
+
+            MenuList = new List<ItemMenu>();
+
+            var menuAnalytics = new List<SubItem>();
+            menuAnalytics.Add(new SubItem("Dashboard", "Dashboard")); ;
+            //menuAnalytics.Add(new SubItem("Data Sandbox",  "DataSandBox"));
+            //menuAnalytics.Add(new SubItem("Users",  "Users", subItemUsers));
+            var itemAnalytics = new ItemMenu("Analytics", menuAnalytics, PackIconKind.ChartLine, "Analytics");
+
+            var menuPlanner = new List<SubItem>();
+            menuPlanner.Add(new SubItem("Grade Book", "GradeBook"));
+            menuPlanner.Add(new SubItem("Attendance", "Attendance"));
+            menuPlanner.Add(new SubItem("Class Calendar", "Classcalendar"));
+            var itemPlanner = new ItemMenu("Planner", menuPlanner, PackIconKind.Diary, "Planner");
+
+            var menuMachineLearning = new List<SubItem>();
+            menuMachineLearning.Add(new SubItem("Predictive Analysis", "Machinelearning"));
+            menuMachineLearning.Add(new SubItem("Sandbox", "Machinelearning"));
+            var itemMachineLearning = new ItemMenu("Machine Learning", menuMachineLearning, PackIconKind.BulbOn, "Machinelearning");
+
+            var menuResourceManagement = new List<SubItem>();
+            menuResourceManagement.Add(new SubItem("Finical mapping", "ResourceManagement"));
+            menuResourceManagement.Add(new SubItem("Assessments", "ResourceManagement"));
+            var itemResourceManagement = new ItemMenu("Resource Management", menuResourceManagement, PackIconKind.KeyChainVariant, "ResourceManagement");
+
+            MenuList.Add(itemAnalytics);
+            MenuList.Add(itemPlanner);
+            MenuList.Add(itemMachineLearning);
+            MenuList.Add(itemResourceManagement);
+        }
+
+        public class SubMenuItemsData
+        {
+            private SubMenuItemData subMenuItem;
+
+            public SubMenuItemsData()
+            {
+                //SubMenuCommand = new CommandVM(Execute);
+                subMenuItem = new SubMenuItemData();
+            }
+
+            public ICommand SubMenuCommand { get; }
+
+            private void Execute()
+            {
+                //our logic comes here
+                string SMT = subMenuItem.SubMenuText.Replace(" ", string.Empty);
+                if (!string.IsNullOrEmpty(SMT))
+                    navigateToPage(SMT);
+            }
+
+            private void navigateToPage(string Menu)
+            {
+                //We will search for our Main Window in open windows and then will access the frame inside it to set the navigation to desired page..
+                //lets see how... ;)
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(MainWindow))
+                    {
+                        (window as MainWindow).MainWindowFrame.Navigate(new Uri(string.Format("{0}{1}{2}", "Pages/", Menu, ".xaml"), UriKind.RelativeOrAbsolute));
+                    }
+                }
+            }
+        }
+
+        public class SelectorClassInfo : INotifyPropertyChanged
+        {
+
+
+            public string ClassName
+            {
+                get; set;
+            }
+
+
+
+            public string ClassCode
+            {
+                get;
+                set;
+            }
+
+
+            public string SchoolID
+            {
+                get;
+                set;
+            }
+
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+        }
+    }
+}

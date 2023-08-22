@@ -1,0 +1,455 @@
+﻿<Page x:Class="Kirin_2.Pages.SchoolDB_TeacherView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="SchoolDB_TeacherView"
+      Background="White">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="HeaderTemplate_HeaderDay">
+            <Grid Width="Auto" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Width="30" FontSize="11" FontWeight="Bold" Foreground="White" >Day</Label>
+            </Grid>
+            </DataTemplate>
+            <Style x:Key="HighlightBorder" TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="REd" />
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Trigger>                    
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.8*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Rectangle Width="100" Height="110" VerticalAlignment="Center" >
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="Transparent"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="{Binding TEACHER_PHOTO}"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel>
+                <Label Content="Teacher Info" FontSize="24" FontWeight="Bold" Margin="10 0 0 20" ></Label>
+                <StackPanel Orientation="Horizontal" Width="Auto" Margin="10 0 0 0" >
+                    <Label FontSize="16" Content="Name: " FontWeight="Bold"/>
+                    <Label FontSize="16" Content="{Binding Path=TEACHERPROF.FULLNAME}"/>
+                    <Label FontSize="16" Content="Employeee ID : " FontWeight="Bold"/>
+                    <Label FontSize="16" Content="{Binding Path=TEACHERPROF.TEACHER_ID}"/>
+                    <Label FontSize="16" Content="Primary Email: " FontWeight="Bold"/>
+                    <Label FontSize="16" Content="{Binding Path=TEACHERPROF.EMAIL}"/>
+                   </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="Auto" Margin="10 10 0 0" >
+                    <Label FontSize="16" Content="Gen: " FontWeight="Bold"/>
+                    <Label FontSize="16" Content="{Binding Path=TEACHERPROF.GENDER}"/>
+                    <Label FontSize="16" Content="School: " FontWeight="Bold"/>
+                    <Label FontSize="16" Content="{Binding Path=TEACHERPROF.SCHOOL_NAME}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <!--<DataGrid Grid.Row="1" Grid.Column="0"  GridLinesVisibility="Vertical" Width="Auto">
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#247BC0" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Height" Value="20" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="Padding" Value="-10 0" />
+                    <Setter Property="FontSize" Value="8" />
+
+                </Style>
+                <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="FontWeight" Value="DemiBold" />
+                    <Setter Property="FontFamily" Value="Arial" />
+                </Style>
+              
+              
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn FontSize="14" Header="Day" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="Terms" Width="*" />
+                <DataGridTextColumn FontSize="14" Header="P1" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="P2" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="P3" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="P4" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="P5" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="P6" Width="*"/>
+                <DataGridTextColumn FontSize="14" Header="TM" Width="*"/>
+                
+
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="12" Background="#247BC0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Day" FontSize="14" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="Terms" FontSize="14" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" BorderBrush="LightGray" Foreground="White"/>
+                <Label Content="P1" FontSize="14" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="P2" FontSize="14" Grid.Row="0" Grid.Column="6"  HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="P3" FontSize="14" Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="P4" FontSize="14" Grid.Row="0" Grid.Column="8" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="P5" FontSize="14" Grid.Row="0" Grid.Column="9" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="P6" FontSize="14" Grid.Row="0" Grid.Column="10" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+                <Label Content="TM" FontSize="14" Grid.Row="0" Grid.Column="11" HorizontalAlignment="Center" Foreground="White" BorderBrush="LightGray"/>
+            </Grid>
+
+
+            <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="8" Background="#A7A8A3">
+                <Label Content="A" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="8" Background="#B5B6B0">
+                <Label Content="21-22" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+
+
+            <!--semester-->
+            <Border Grid.Row="1" Grid.Column="2" Grid.RowSpan="4" Background="#C6C7C0">
+                <Label Content="S1" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+            <Border Grid.Row="5" Grid.Column="2" Grid.RowSpan="4" Background="#C6C7C0">
+                <Label Content="S2" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+
+            
+            <!--Quarters-->
+            <Border Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Background="#E1E2E4">
+                <Label Content="Q1" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" Background="#E1E2E4">
+                <Label Content="Q2" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+            <Border Grid.Row="5" Grid.Column="3" Grid.RowSpan="2" Background="#E1E2E4">
+                <Label Content="Q3" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+            <Border Grid.Row="7" Grid.Column="3" Grid.RowSpan="2" Background="#E1E2E4">
+                <Label Content="Q4" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            </Border>
+            
+            <!--QuarterHalf-->
+            <Border Grid.Row="1" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q1H1" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q1H2" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="3" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q2H1" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="4" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q2H2" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="5" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q3H1" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="6" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q3H2" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="7" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q4H1" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+            <Border Grid.Row="8" Grid.Column="4" Background="#F7F7F7">
+                <Label Content="Q4H2" VerticalAlignment="Center" FontSize="14" Foreground="Gray"/>
+            </Border>
+
+
+            <Border Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#bef7e9" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDV4C" Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" Text="BDV4C - Entrepreneurship" FontSize="14" FontWeight="Bold" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BDV4C - Entrepreneurship &#x0a;" />
+                        <Run Text="BDV4C.1 &#x0a;" FontSize="11" />
+                        <Run Text="Room 206 &#x0a;" FontSize="11" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="11"/>
+                        <Run Text="24/27" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#dfc7f2" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="Prep"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="Black" Text="Prep" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="Prep &#x0a;" />
+                        <Run Text="PREP 5 &#x0a;" FontSize="11" />
+                        <Run Text="Room: P/L &#x0a;" FontSize="11" />
+                        <Run Text="P1 -P2(A) Q2 &#x0a;"  FontSize="11"/>
+                        <Run Text="0/1" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#bfcbf5" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI3C.1"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="BDI3C - Entrpreneurial Studies" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BDI3C - Entrpreneurial Studies &#x0a;" />
+                        <Run Text="BDI3C 2 &#x0a;" FontSize="11" />
+                        <Run Text="Room: 119 &#x0a;" FontSize="11" />
+                        <Run Text="P1 -P2(A) Q3 &#x0a;"  FontSize="11"/>
+                        <Run Text="14/27" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="1" Background="#f2bef7" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown"  Tag="BBI1O" Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BBI10 - Intro to Business" FontWeight="Bold" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Height="Auto" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BBI10 - Intro to Business &#x0a;" />
+                        <Run Text="BDI3C 2 &#x0a;" FontSize="4" />
+                        <Run Text="Room: 119 &#x0a;" FontSize="4" />
+                        <Run Text="P1 -P2(A) Q3 &#x0a;" FontSize="4"/>
+                        <Run Text="14/27" FontSize="6"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="1" Background="#36bdc7" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BBI20"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BBI20 - Intro to Business" FontWeight="Bold" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" Height="Auto" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BBI20 - Intro to Business &#x0a;" />
+                        <Run Text="BBI2O 4 &#x0a;" FontSize="4" />
+                        <Run Text="Room: 226 &#x0a;" FontSize="4" />
+                        <Run Text="P1 -P2(A) Q4 &#x0a;"  FontSize="4"/>
+                        <Run Text="14/15" FontSize="6"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+
+            <Border Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#edcc80" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BBI1O"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="Black" Text="BBI1O - Introduction to Bznz" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BBI1O - Introduction to Bznz&#x0a;" />
+                        <Run Text="BBI1O.2 &#x0a;" FontSize="11" />
+                        <Run Text="Room 206 &#x0a;" FontSize="11" />
+                        <Run Text="P3(A) P5-P6(A) Q2 &#x0a;"  FontSize="11"/>
+                        <Run Text="13/13" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#2c7a38" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI2O.2"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BBI2O - Finance" FontWeight="Bold" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="10" Text="BBI2O - Intro to bznz &#x0a;" />
+                        <Run Text="BBI2O.2 &#x0a;" FontSize="6" />
+                        <Run Text="Room 209 &#x0a;" FontSize="6" />
+                        <Run Text="P3(A) P5-P6(A) Q2 &#x0a;"  FontSize="6"/>
+                        <Run Text="15/15" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="4" Grid.Column="7" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#f7fcc0" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI1O"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Text="BDI3C - Mathematics" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="7" Text="BDI3C - Intro to bznz &#x0a;" />
+                        <Run Text="BDV4C.1 &#x0a;" FontSize="5" />
+                        <Run Text="Room 206 &#x0a;" FontSize="5" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="5"/>
+                        <Run Text="24/27" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="1" Grid.RowSpan="2" Background="#ccccc8" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="Lunch"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Text="Lunch" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="Lunch &#x0a;" />
+                        <Run Text="lunch 5 &#x0a;" FontSize="11" />
+                        <Run Text="Room 206 &#x0a;" FontSize="11" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="11"/>
+                        <Run Text="24/27" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+
+            <Border Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#de1b55" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI1O.2"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BBI1O Introduction to Business" FontWeight="Bold" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BBI1O Introduction to Business &#x0a;" />
+                        <Run Text="BBI11O.3 &#x0a;" FontSize="11" />
+                        <Run Text="Room 119 &#x0a;" FontSize="11" />
+                        <Run Text="P3 -P4(A) P6(A) Q3 &#x0a;"  FontSize="11"/>
+                        <Run Text="15/15" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="7" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#f5a11b" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="Prep"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="Prep .15" Foreground="Black" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="Prep .15 &#x0a;" />
+                        <Run Text="PREP .15 &#x0a;" FontSize="11" />
+                        <Run Text="Room P/L &#x0a;" FontSize="11" />
+                        <Run Text="P3 -P4(A) P6(A) Q4 &#x0a;"  FontSize="11"/>
+                        <Run Text="0/1" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#f5a11b" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="Lunch"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="Lunch" Foreground="Black" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="9" Text="Lunch &#x0a;" />
+                        <Run Text="lunch 5 &#x0a;" FontSize="5" />
+                        <Run Text="Room 206 &#x0a;" FontSize="5" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="5"/>
+                        <Run Text="24/27" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#f0e5d3" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI3C"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="black" Text="English" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="9" Text="BDI3C-Entrepreneurial Studies &#x0a;" />
+                        <Run Text="BDI3C.1;" FontSize="5" />
+                        <Run Text="Room 207 &#x0a;" FontSize="5" />
+                        <Run Text="P3 -P4(A) P6(A)Q1 &#x0a;"  FontSize="5"/>
+                        <Run Text="20/27" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="10" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#156e2b" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI3C"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BDI3C-Entrepreneurial Studies" FontWeight="Bold" Foreground="black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="5" Text="BDI3C-Entrepreneurial Studies &#x0a;" />
+                        <Run Text="lunch 5 &#x0a;" FontSize="5" />
+                        <Run Text="Room 206 &#x0a;" FontSize="5" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="5"/>
+                        <Run Text="24/27" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="10" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#d6d651" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI3C"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Foreground="black" Text="BDI3C-Entrepreneurial Studies" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="5" Text="BDI3C-Entrepreneurial Studies &#x0a;" />
+                        <Run Text="lunch 5 &#x0a;" FontSize="5" />
+                        <Run Text="Room 206 &#x0a;" FontSize="5" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="5"/>
+                        <Run Text="24/27" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="9" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#18998c" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI1O.2"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BBI10-Introduction to Business" FontWeight="Bold" Foreground="black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BBI10-Introduction to Business &#x0a;" />
+                        <Run Text="BBI1O.2 &#x0a;" FontSize="11" />
+                        <Run Text="Room 209 &#x0a;" FontSize="11" />
+                        <Run Text="P3(A) P5-P6(A) Q2 &#x0a;"  FontSize="11"/>
+                        <Run Text="13/13" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+
+            <Border Grid.Row="4" Grid.Column="9" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#d6d651" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BBI20"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BBI2O-Introduction to Business" FontWeight="Bold" Foreground="black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="BBI2O-Introduction to Business&#x0a;" />
+                        <Run Text="BBI2O.2 &#x0a;" FontSize="11" />
+                        <Run Text="Room 209 &#x0a;" FontSize="11" />
+                        <Run Text="P3(A) P5-P6(A) Q2 &#x0a;"  FontSize="11"/>
+                        <Run Text="15/15" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+            <Border Grid.Row="6" Grid.Column="10" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="#d11972" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="BDI3O"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="BDI3C" Foreground="Black" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="9" Text="BDI3C-Entrepreneurial Studies &#x0a;" />
+                        <Run Text="lunch 5 &#x0a;" FontSize="6" />
+                        <Run Text="Room 206 &#x0a;" FontSize="5" />
+                        <Run Text="P1 -P2(A) Q1 &#x0a;"  FontSize="5"/>
+                        <Run Text="24/27" FontSize="5"/>
+                    </TextBlock.Inlines>-->
+                </TextBlock>
+            </Border>
+            <Border Grid.Row="7" Grid.Column="10" Grid.ColumnSpan="1" Grid.RowSpan="2" Background="#b4c953" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" Tag="Prep"  Style="{StaticResource HighlightBorder}">
+                <TextBlock VerticalAlignment="Center" FontSize="14" Text="Prep" FontWeight="Bold" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap" >
+                    <!--<TextBlock.Inlines>
+                        <Run FontWeight="DemiBold" FontSize="14" Text="Prep &#x0a;" />
+                        <Run Text="PREP .15 &#x0a;" FontSize="11" />
+                        <Run Text="Room P/L &#x0a;" FontSize="11" />
+                        <Run Text="P3 -P4(A) P6(A) Q4 &#x0a;"  FontSize="11"/>
+                        <Run Text="0/1" FontSize="11"/>
+                    </TextBlock.Inlines>-->
+
+                </TextBlock>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

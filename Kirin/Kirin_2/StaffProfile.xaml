@@ -1,0 +1,56 @@
+﻿<Window x:Class="Kirin_2.StaffProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kirin_2"
+        mc:Ignorable="d"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Staff Profile" FontWeight="Bold" Height="250" Width="400" 
+        WindowStartupLocation="CenterScreen">
+    
+        <Border BorderThickness="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="6"  Panel.ZIndex="-100" CornerRadius="5,5,5,5" BorderBrush="LightGray" Background="Transparent" Margin="5" >
+            <StackPanel >
+            <Grid Height="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="113*"/>
+                    <ColumnDefinition Width="131*"/>
+                    <ColumnDefinition Width="120*"/>
+                    <ColumnDefinition Width="37*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,-0.4,0.4">
+                <Label Content="Details"></Label>
+                <Border BorderThickness="1" BorderBrush="LightGray"  Margin="10 0" Height="1" />
+            </StackPanel>
+
+            <Rectangle Grid.Row="1" Grid.Column="0"  Grid.RowSpan="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="#d3e7f5" Margin="10,9.6,9.8,10.2" >
+                <Rectangle.Fill>
+                    <ImageBrush x:Name="ProfPic"   />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Label Content="Username: " Grid.Column="1" Grid.Row="1" FontSize="10" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+            <Label Content="Name: " Grid.Row="2" Grid.Column="1" FontSize="10" FontWeight="DemiBold" HorizontalContentAlignment="Right" />
+            <Label Content="Employee ID: " Grid.Row="3" Grid.Column="1" FontSize="10" FontWeight="DemiBold" HorizontalContentAlignment="Right"  />
+            <TextBlock TextWrapping="Wrap" Width="110"  Grid.Row="4" Grid.Column="1" FontSize="10" FontWeight="DemiBold" Text=" Primary Email Addreess:" VerticalAlignment="Center" TextAlignment="Right" Margin="5 0 10 0" />
+
+
+            <Label Grid.Column="2" FontSize="12" FontWeight="DemiBold" HorizontalContentAlignment="Left" x:Name="Username" Grid.Row="1"/>
+            <Label Grid.Row="2" Grid.Column="2" FontSize="12" FontWeight="DemiBold" HorizontalContentAlignment="Left" x:Name="Name"></Label>
+            <Label Grid.Row="3" Grid.Column="2" FontSize="12" FontWeight="DemiBold" HorizontalContentAlignment="Left" x:Name="EmpID" ></Label>
+                <TextBlock TextWrapping="Wrap" Grid.Row="4" Grid.Column="2" FontSize="12" FontWeight="DemiBold"  x:Name="EmailAddress"  />
+            <!--<Label Grid.Row="4" Grid.Column="2" FontSize="12" FontWeight="DemiBold" HorizontalContentAlignment="Left" x:Name="EmailAddress"></Label>-->
+            </Grid>
+        </StackPanel>
+        </Border>
+    
+</Window>

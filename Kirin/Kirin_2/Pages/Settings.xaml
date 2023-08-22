@@ -1,0 +1,1506 @@
+﻿<Page x:Class="Kirin_2.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:settings="clr-namespace:Kirin_2.Properties"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      xmlns:local1="clr-namespace:Kirin_2.ViewModel"
+      xmlns:editor="clr-namespace:Syncfusion.UI.Xaml.ImageEditor;assembly=Syncfusion.SfImageEditor.WPF"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="850"
+      Title="Settings">
+    <Page.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="ButtonStyle">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#247BC0"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="ButtonPanel">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="-10 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="0" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="WhiteSmoke"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="Expander">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Expander">
+                        <Grid Width="15" Height="13" Background="Transparent" >
+                            <materialDesign:PackIcon Kind="MenuDown" x:Name="ExpandPath" HorizontalAlignment="Right" 
+                            VerticalAlignment="Center" Margin="1,1,1,1" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="True">
+                                <Setter Property="Kind" TargetName="ExpandPath" Value="MenuDown"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Label}" x:Key="lblDatagrid">
+            <Setter Property="Foreground" Value="Black" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Crimson" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="VerticalSeparatorStyle" TargetType="Separator">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Separator">
+                        <Border Background="{TemplateBinding Panel.Background}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Border BorderThickness="2" Grid.Row="0" Grid.Column="0" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                Background="Transparent" Margin="10" >
+            <DockPanel>
+                <StackPanel Orientation="Vertical" Margin="-18 15 0 0" Width="70" Grid.Row="0" Grid.RowSpan="2">
+                    <Button x:Name="btnUser" Visibility="Visible" Margin="20 0 0 0" Width="75" Height="40"
+                                               HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Click="btnUser_Click">
+                        <Button.LayoutTransform>
+                            <RotateTransform Angle="-90"></RotateTransform>
+                        </Button.LayoutTransform>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="50">
+                            <TextBlock Text=" User" FontSize="18" FontWeight="Medium" Width="50"></TextBlock>
+                            <ProgressBar Value="1" Width="50" Maximum="1" Height="4" Name="Puser"
+                            Foreground="{Binding Source={x:Static settings:Settings.Default}, Path=ProgressBar_color, Mode=TwoWay }" BorderBrush="Transparent" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btnAdmin" Visibility="Visible" Margin="20 0 0 0" Width="100" Height="40" 
+                                                HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Click="btnAdmin_Click" >
+                        <Button.LayoutTransform>
+                            <RotateTransform Angle="-90"></RotateTransform>
+                        </Button.LayoutTransform>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="80">
+                            <TextBlock Text="Admin" FontSize="18" FontWeight="Medium" Width="60"></TextBlock>
+                            <ProgressBar Value="1" Width="80" Maximum="1" Height="4" Name="Padmin" Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <Grid>
+                    <Border BorderThickness="1" Grid.Row="0" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                            Background="Transparent" Margin="-18 10 10 30" >
+                        <Grid>
+                            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                                <StackPanel x:Name="SpUser">
+                                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="24" FontWeight="SemiBold" Margin="40 20 0 10">Edit User Settings</TextBlock>
+
+                                    <Grid x:Name="GUser1">
+                                        <Rectangle x:Name="RcUser" Height="270" Width="1300" Margin="30,0,40,0" Stroke="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"  
+                                           StrokeThickness="1" Fill="White" RadiusY="10" RadiusX="10" Visibility="Visible" HorizontalAlignment="Center">
+                                        </Rectangle>
+                                        <WrapPanel>
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50*"></RowDefinition>
+                                                    <RowDefinition Height="50*"></RowDefinition>
+                                                    <RowDefinition Height="50*"></RowDefinition>
+                                                    <RowDefinition Height="50*"></RowDefinition>
+                                                    <RowDefinition Height="50*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" VerticalAlignment="Top" Margin="60 20 10 10" FontSize="20">Edit My Account Information</TextBlock>
+
+                                                <Label Grid.Row="1" Grid.Column="0" Content="Email address : " Margin="60 10 10 10" FontSize="16" FontWeight="DemiBold"></Label>
+                                                <Label Grid.Row="1" Grid.Column="1" Content="dduke@sabc.on.ca" Margin="60 10 10 10" HorizontalAlignment="Right" FontSize="16" ></Label>
+                                                <Label Grid.Row="2" Grid.Column="0" Content="Language : " Margin="60 10 10 10" FontSize="16" FontWeight="DemiBold"></Label>
+                                                <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Width="170" FontSize="16" >
+                                                    <ComboBoxItem IsSelected="True">English(United States)</ComboBoxItem>
+                                                    <ComboBoxItem>English(United Kingdom)</ComboBoxItem>
+                                                    <ComboBoxItem>Dansk</ComboBoxItem>
+                                                    <ComboBoxItem>English(India)</ComboBoxItem>
+                                                    <ComboBoxItem>English(Ireland)</ComboBoxItem>
+                                                    <ComboBoxItem>Hindi</ComboBoxItem>
+                                                    <ComboBoxItem>Spenish</ComboBoxItem>
+                                                    <ComboBoxItem>Dutch</ComboBoxItem>
+                                                    <ComboBoxItem>French</ComboBoxItem>
+                                                </ComboBox>
+                                                <Label Grid.Row="3" Grid.Column="0" Content="Default date range : " Margin="60 10 10 10" FontSize="16" FontWeight="DemiBold"></Label>
+
+                                                <ComboBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Width="100" FontSize="16" >
+                                                    <ComboBoxItem IsSelected="True">7 Days</ComboBoxItem>
+                                                    <ComboBoxItem>14 Days</ComboBoxItem>
+                                                    <ComboBoxItem>28 Days</ComboBoxItem>
+                                                    <ComboBoxItem>30 Days</ComboBoxItem>
+                                                </ComboBox>
+                                            </Grid>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="-305 210 0 0">
+                                                <materialDesign:PackIcon Kind="LightbulbOutline" Margin="40 10 10 10" Background="Transparent" Foreground="Gray" Height="25" Width="25" />
+                                                <Label FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Visit your</Label>
+                                                <TextBlock VerticalAlignment="Center" Margin="0 0 5 0">           
+                                                        <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold" NavigateUri="pack://application:,,,/Pages/Settings.xaml">
+                                                            Account settings 
+                                                        </Hyperlink>
+                                                </TextBlock>
+                                                <Label FontSize="16" VerticalAlignment="Center">to edit your email address, reset password, or learn about access to other services.</Label>
+                                            </StackPanel>
+                                        </WrapPanel>
+                                    </Grid>
+
+                                    <Grid x:Name="GUser2">
+                                        <Rectangle x:Name="RcUser2" Height="410" Width="1300" Margin="30,25,40,0" Stroke="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"  
+                                           StrokeThickness="1" Fill="White" RadiusY="10" RadiusX="10" Visibility="Visible" HorizontalAlignment="Right">
+                                        </Rectangle>
+                                        <WrapPanel>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50*"></RowDefinition>
+                                                    <RowDefinition Height="100*"></RowDefinition>
+                                                    <RowDefinition Height="100*"></RowDefinition>
+                                                    <RowDefinition Height="60*"></RowDefinition>
+                                                    <RowDefinition Height="60*"></RowDefinition>
+                                                    <RowDefinition Height="60*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" VerticalAlignment="Top" Margin="60 50 10 10" FontSize="20">Email Communication</TextBlock>
+                                                <TextBlock TextWrapping="Wrap" FontSize="16" Grid.Row="1" Margin="60 15 10 10" Width="1100">We occasionally send emails to update you on what's new with KIRIN. However, we want you to always be able to choose which communications you receive from us, so please let us know your preferences below.</TextBlock>
+                                                <TextBlock TextWrapping="Wrap" FontSize="16" Grid.Row="2" Margin="60 15 10 10" Width="1100">Regardless of your selection, we may still have to send you important product updates that imapact your account, but that's all you'll receive from us. We respect your privacy and will not share your personal information with third parties or partners.</TextBlock>
+                                                <CheckBox Grid.Row="3" Margin="60 0 10 10">
+                                                    <StackPanel>
+                                                        <Label FontSize="18">Performance Suggestions and Updates</Label>
+                                                        <Label FontSize="16">Receive updates and tips that help you get the most out of your account.</Label>
+                                                    </StackPanel>
+                                                </CheckBox>
+                                                <CheckBox Grid.Row="4" Margin="60 0 10 10">
+                                                    <StackPanel>
+                                                        <Label FontSize="18">Feature Anouncements</Label>
+                                                        <Label FontSize="16">Learn about the latest changes, enhancements, and new features in KIRIN.</Label>
+                                                    </StackPanel>
+                                                </CheckBox>
+                                                <CheckBox Grid.Row="5" Margin="60 0 10 10">
+                                                    <StackPanel>
+                                                        <Label FontSize="18">Feedback and Testing</Label>
+                                                        <Label FontSize="16">Participate in surveys and pilots to help improve KIRIN.</Label>
+                                                    </StackPanel>
+                                                </CheckBox>
+                                            </Grid>
+                                        </WrapPanel>
+                                    </Grid>
+
+                                    <StackPanel Orientation="Horizontal" Margin="60,25,40,20">
+                                        <Button Content="Save changes" Background="#247BC0" BorderThickness="0" Foreground="White" Height="30" FontSize="20" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="10 0" Margin="5 0 5 0" />
+                                        <Button Content="Cancel" BorderThickness="0" FontSize="20" HorizontalAlignment="left" Foreground="#247BC0" Height="30" Background="Transparent" HorizontalContentAlignment="Left" Padding="10 0" Margin="5 0 5 0" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="bAdmin" BorderThickness="1" Grid.Row="0" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                            Background="White" Margin="-18 10 10 30" Visibility="Collapsed">
+                        <Grid>
+                            <StackPanel x:Name="SVAdmin" Orientation="Horizontal">
+                                <Separator Name="SepAdmin" Visibility="Collapsed" Width="1" Background="LightGray" Style="{StaticResource VerticalSeparatorStyle}" Margin="40 100 0 0" />
+                                <Button Height="40" Name="IconAdmin" Visibility="Collapsed" Width="60" BorderBrush="Transparent" BorderThickness="0" Margin="-40 120 -40 0" 
+                                        Click="btnLeftArrow_Click" VerticalAlignment="Top" Background="Transparent">
+                                    <materialDesign:PackIcon VerticalAlignment="Top" Foreground="Gray" Kind="ArrowLeftBoldBoxOutline" Background="Transparent" Height="30" Width="30" />
+                                </Button>
+                                <Grid x:Name="RcAdmin1">
+                                    <WrapPanel>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60*"/>
+                                                <RowDefinition Height="60*" />
+                                                <RowDefinition Height="260*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Content="Account" FontSize="16" Margin="60 60 60 0" Grid.Row="0" Grid.Column="0"></Label>
+                                            <Button Content="+ Create Account" Background="#247BC0" BorderThickness="0" Grid.Row="0" VerticalAlignment="Center"
+                                                   Grid.Column="1" Foreground="White" Height="30" FontSize="16" HorizontalAlignment="Left" Padding="10 0" Margin="160 60 30 0" />
+
+                                            <Label Content="Demo Account" VerticalAlignment="Center" FontSize="16" Margin="60 15 60 15" Grid.Row="1" Grid.Column="0"></Label>
+                                            <Expander Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" HorizontalContentAlignment="Stretch" 
+                                                                                 VerticalAlignment="Center" Style="{StaticResource ExpandCollapseToggleStyle}" 
+                                                                                  IsExpanded="True" >
+                                            </Expander>
+                                            <Separator Grid.Row="1" VerticalAlignment="Bottom" Width="360" Margin="40 0 0 0" Background="LightGray"/>
+
+                                            <DataGrid Grid.Row="2" x:Name="DGLeftMenu" Height="Auto" Background="Transparent" HeadersVisibility="None"
+                                                      ItemsSource="{Binding LeftMenuAdminList}" AutoGenerateColumns="False" Margin="60 10 0 10" Focusable="False"
+                                                      CanUserAddRows="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                                      SelectionChanged="DGLeftMenu_SelectionChanged" SelectionUnit="FullRow">
+                                                <DataGrid.RowStyle>
+                                                    <Style TargetType="DataGridRow">
+                                                        <Setter Property="Height" Value="60"/>
+                                                        <Setter Property="Focusable" Value="False"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Foreground" Value="Crimson" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.RowStyle>
+                                                <DataGrid.Columns>
+                                                    <DataGridTemplateColumn>
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Focusable="False">
+                                                                    <Button BorderThickness="0" Background="Transparent" Height="60" Focusable="False">
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <materialDesign:PackIcon Kind="{Binding Path=Icon}" Background="Transparent" Foreground="Gray" Height="30" Width="30" Margin="0 0 60 0" />
+                                                                            <Label Name="lblLeft" FontSize="16" FontWeight="Normal" Content="{Binding Path=Label}" HorizontalAlignment="Left" Margin="-40 0 0 0" Style="{StaticResource lblDatagrid}"></Label>
+                                                                        </StackPanel>
+                                                                    </Button>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Grid>
+                                    </WrapPanel>
+                                </Grid>
+
+                                <ScrollViewer Name="scRMenu" ><!--VerticalScrollBarVisibility="Visible"-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Separator Name="SepAdmin2" Visibility="Visible" Width="1" Background="LightGray" Style="{StaticResource VerticalSeparatorStyle}" Margin="40 120 0 0" />
+                                        <materialDesign:PackIcon Name="IconAdmin2" Visibility="Visible" VerticalAlignment="Top" Foreground="Gray" Kind="ArrowRightBoldCircleOutline" Background="Transparent" 
+                                                                 Height="30" Width="30" Margin="-15 165 20 0" />
+
+                                        <Grid x:Name="RcAdmin2" Visibility="Visible">
+                                            <WrapPanel>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="360*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Content="Property" FontSize="16" Margin="30 60 60 0" Grid.Row="0" Grid.Column="0"></Label>
+                                                    <Button Content="+ Create Property" Background="LightGray" BorderThickness="0" Grid.Row="0" VerticalAlignment="Center"
+                                                   Grid.Column="1" Foreground="Gray" Height="30" FontSize="16" HorizontalAlignment="Left" Padding="20 0" Margin="140 60 60 0" />
+                                                    <Label Content="GA4-Flood-it!" VerticalAlignment="Center" FontSize="16" Margin="30 15 60 15" Grid.Row="1" Grid.Column="0"></Label>
+                                                    <Expander Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" HorizontalContentAlignment="Stretch" 
+                                                                                 VerticalAlignment="Center" Style="{StaticResource ExpandCollapseToggleStyle}" 
+                                                                                  IsExpanded="True" >
+                                                    </Expander>
+                                                    <Separator Grid.Row="1" VerticalAlignment="Bottom" Width="500" Margin="30 0 0 0" Background="LightGray"/>
+
+                                                    <DataGrid Grid.Row="2" Width="500" x:Name="DGRightMenu" Height="Auto" Background="Transparent" HeadersVisibility="None"
+                                                      ItemsSource="{Binding RightMenuAdminList}" AutoGenerateColumns="False" Margin="30 10 10 10" Focusable="False"
+                                                      CanUserAddRows="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                                      SelectionChanged="DGRightMenu_SelectionChanged" RowDetailsVisibilityChanged="DGRightMenu_RowDetailsVisibilityChanged">
+                                                        <DataGrid.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Height" Value="60"/>
+                                                                <Setter Property="Focusable" Value="False"/>
+                                                            </Style>
+                                                        </DataGrid.CellStyle>
+                                                        <DataGrid.Columns>
+                                                            <DataGridTemplateColumn>
+                                                                <DataGridTemplateColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Focusable="False" HorizontalAlignment="Left">
+                                                                            <!--<Button Height="40" Name="btnLeftArw" Width="60" BorderBrush="Transparent" BorderThickness="0" Click="btnLeftArrow_Click" VerticalAlignment="Center" Background="Transparent">
+                                                                                <materialDesign:PackIcon VerticalAlignment="Top" Foreground="Gray" Kind="ArrowLeftBoldBoxOutline" Background="Transparent" Height="30" Width="30" />
+                                                                            </Button>-->
+                                                                            <Button BorderThickness="0" Background="Transparent" Height="60" Focusable="False">
+                                                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Focusable="False">
+                                                                                    <materialDesign:PackIcon Kind="{Binding Path=Icon}" Background="Transparent" Foreground="Gray" Height="30" Width="30" Margin="0 0 60 0" />
+                                                                                    <Label FontWeight="Normal" FontSize="16" Content="{Binding Path=Label}" HorizontalAlignment="Left" Margin="-40 0 0 0"  Style="{StaticResource lblDatagrid}"></Label>
+                                                                                </StackPanel>
+                                                                            </Button>
+                                                                        </StackPanel>
+                                                                    </DataTemplate>
+                                                                </DataGridTemplateColumn.CellTemplate>
+                                                            </DataGridTemplateColumn>
+                                                        </DataGrid.Columns>
+                                                        <DataGrid.RowDetailsTemplate>
+                                                            <DataTemplate>
+                                                                <DataGrid x:Name="DGRightSubMenu" Height="Auto" Background="Transparent" HeadersVisibility="None" 
+                                                                      ItemsSource="{Binding subMenuList}" AutoGenerateColumns="False" Margin="60 0 0 0" Focusable="False"
+                                                                      CanUserAddRows="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" 
+                                                                      SelectionChanged="DGRightSubMenu_SelectionChanged">
+                                                                    <DataGrid.CellStyle>
+                                                                        <Style TargetType="DataGridCell">
+                                                                            <Setter Property="Height" Value="50"/>
+                                                                            <Setter Property="Focusable" Value="False"/>
+                                                                        </Style>
+                                                                    </DataGrid.CellStyle>
+                                                                    <DataGrid.Columns>
+                                                                        <DataGridTemplateColumn>
+                                                                            <DataGridTemplateColumn.CellTemplate>
+                                                                                <DataTemplate>
+                                                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Focusable="False" HorizontalAlignment="Left">
+                                                                                        <Button BorderThickness="0" Background="Transparent" Height="50" Focusable="False">
+                                                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Focusable="False">
+                                                                                                <Label FontWeight="Normal" FontSize="16" Content="{Binding Path=Label}" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource lblDatagrid}"></Label>
+                                                                                            </StackPanel>
+                                                                                        </Button>
+                                                                                    </StackPanel>
+                                                                                </DataTemplate>
+                                                                            </DataGridTemplateColumn.CellTemplate>
+                                                                        </DataGridTemplateColumn>
+                                                                    </DataGrid.Columns>
+                                                                </DataGrid>
+                                                            </DataTemplate>
+                                                        </DataGrid.RowDetailsTemplate>
+                                                    </DataGrid>
+                                                </Grid>
+                                            </WrapPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <ScrollViewer Name="scAdmin1" VerticalScrollBarVisibility="Visible">
+                                    <StackPanel Orientation="Horizontal">
+                                        
+                                        <Grid x:Name="Account" Visibility="Collapsed">
+                                            <!--<Rectangle Margin="10,0,0,0" Stroke="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"  
+                                           StrokeThickness="1" Fill="White" RadiusY="10" RadiusX="10" HorizontalAlignment="Right">
+                                        </Rectangle>-->
+                                            <WrapPanel>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="80*"/>
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="30*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="60*" />
+                                                        <RowDefinition Height="160*" />
+                                                        <RowDefinition Height="160*" />
+                                                        <RowDefinition Height="160*" />
+                                                        <RowDefinition Height="160*" />
+                                                        <RowDefinition Height="140*" />
+                                                        <RowDefinition Height="80*" />
+                                                        <RowDefinition Height="180*" />
+                                                        <RowDefinition Height="70*" />
+                                                        <RowDefinition Height="60*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Content="Account Settings" Margin="30 30 30 30" FontSize="26" Grid.Row="0" Grid.Column="0"></Label>
+                                                    <Label Content="Basic Settings" VerticalAlignment="Center" FontSize="18" Margin="30 15 60 15" Grid.Row="1" Grid.Column="0"></Label>
+                                                    <Separator Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="600" Margin="150 0 0 0" Background="LightGray"/>
+
+                                                    <Label Content="Account Id" FontWeight="Bold" VerticalAlignment="Center" FontSize="16" Margin="30 15 60 0" Grid.Row="2"></Label>
+                                                    <Label Content="54516992" VerticalAlignment="Top" FontSize="16" Margin="30 0 60 15" Grid.Row="3"></Label>
+
+                                                    <Label Content="Account Name" FontWeight="Bold" VerticalAlignment="Center" FontSize="16" Margin="30 10 60 10" Grid.Row="4"></Label>
+                                                    <TextBox Height="35" VerticalAlignment="Center" BorderThickness="1" BorderBrush="LightGray" FontWeight="Light" Text="Demo Account" Foreground="Gray" FontSize="16" Grid.Row="5" Padding="12 6" Margin="30 0 60 10" ></TextBox>
+
+                                                    <Label Content="Country of Business" FontWeight="Bold" VerticalAlignment="Center" FontSize="16" Margin="30 15 60 5" Grid.Row="6"></Label>
+                                                    <ComboBox Grid.Row="7" HorizontalAlignment="Left" Width="170" FontSize="16" Margin="40 5 60 10" Foreground="Gray">
+                                                        <ComboBoxItem IsSelected="True" >Select Country</ComboBoxItem>
+                                                        <ComboBoxItem>United Kingdom</ComboBoxItem>
+                                                        <ComboBoxItem>United States</ComboBoxItem>
+                                                        <ComboBoxItem>India</ComboBoxItem>
+                                                        <ComboBoxItem>Ireland</ComboBoxItem>
+                                                        <ComboBoxItem>Canada</ComboBoxItem>
+                                                        <ComboBoxItem>Germany</ComboBoxItem>
+                                                        <ComboBoxItem>Africa</ComboBoxItem>
+                                                        <ComboBoxItem>Frence</ComboBoxItem>
+                                                    </ComboBox>
+
+                                                    <Label Content="Data Sharing Settings" VerticalAlignment="Center" FontSize="18" Margin="30 15 60 10" Grid.Row="8"></Label>
+                                                    <materialDesign:PackIcon Kind="QuestionMarkCircleOutline" Margin="245 15 10 10" Background="Transparent" Foreground="Gray" Height="20" Width="20" Grid.Row="8" VerticalAlignment="Center"/>
+                                                    <TextBlock FontSize="16" TextWrapping="Wrap" Grid.Row="9" Margin="35 0 60 10" Width="700" HorizontalAlignment="Left">
+                    Data you collect, process and share using KIRIN is secure and kept confidential. This data is used to maintain and protect the Analytics service, and perform system critical operations.
+                                                    </TextBlock>
+
+                                                    <TextBlock FontSize="16" TextWrapping="Wrap" Grid.Row="10" Margin="35 0 60 10" Width="700" HorizontalAlignment="Left">
+                    The data sharing options give you more control over sharing your Analytics data.
+                    <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold">
+                        Learn more 
+                    </Hyperlink>
+                                                    </TextBlock>
+
+                                                    <CheckBox Grid.Row="11" Margin="30 10 10 10">
+                                                        <StackPanel>
+                                                            <Label FontSize="18" FontWeight="DemiBold">Products &amp; Services</Label>
+                                                            <TextBlock FontSize="16" TextWrapping="Wrap" Width="700" Padding="5 0 0 0"> Share your Analytics data with KIRIN to help improve products and services. Turning on this settings enables Analytics to provide best in class Intelligence and insights services, maintain critical Spam Detection services that benefit all linked products and users, and offer 
+                        <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold">
+                            Enhanced Demographic and Interests reporting
+                        </Hyperlink>
+                            when signals are enabled.
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </CheckBox>
+
+                                                    <CheckBox Grid.Row="12" Margin="30 10 10 10">
+                                                        <StackPanel>
+                                                            <Label FontSize="18" FontWeight="DemiBold">Benchmarking</Label>
+                                                            <TextBlock FontSize="16" TextWrapping="Wrap" Width="700" Padding="5 0 0 0"> 
+                            Contribute anonymous data to an aggregate data set to enable features like benchmarking and publications that can help you understand data trends. All identifiable information about your website is removed and combined with other anonymous data before it is shared with others
+                            <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold">
+                                Show Example
+                            </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </CheckBox>
+
+                                                    <CheckBox Grid.Row="13" Margin="30 10 10 10">
+                                                        <StackPanel>
+                                                            <Label FontSize="18" FontWeight="DemiBold">Technical Support</Label>
+                                                            <TextBlock FontSize="16" TextWrapping="Wrap" Width="700" Padding="5 0 0 0"> 
+                        Let KIRIN technical support representatives access your KIRIN Analytics data and account when necessary to provide service and find solutions to technical issues.
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </CheckBox>
+
+                                                    <CheckBox Grid.Row="14" Margin="30 10 10 10">
+                                                        <StackPanel>
+                                                            <Label FontSize="18" FontWeight="DemiBold">Account specialists</Label>
+                                                            <TextBlock FontSize="16" TextWrapping="Wrap" Width="700" Padding="5 0 0 0"> 
+                        Give KIRIN marketing specialists and your Kirin sales specialists access your Analytics data and account so they can find ways to improve your configuration and analysis, and share optimization tips with you. If you don't have dedicated sales specialists, give this access to authorized representatives.
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </CheckBox>
+
+                                                    <CheckBox Grid.Row="15" Margin="30 10 10 10">
+                                                        <StackPanel>
+                                                            <TextBlock FontSize="16" TextWrapping="Wrap" Width="700" Padding="5 0 0 0"> 
+                        Give all Kirin sales experts access your data and account so you can get more in depth analysis, insights, and recommendations across Kirin products.
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </CheckBox>
+
+                                                    <Label Content="Data Processing Terms" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="18" Margin="30 15 60 10" Grid.Row="16" Grid.Column="0"></Label>
+                                                    <Separator Grid.Row="16" Grid.Column="1" VerticalAlignment="Center" Width="600" Margin="260 10 0 0" Background="LightGray"/>
+
+                                                    <TextBlock FontSize="16" TextWrapping="Wrap" Grid.Row="17" Margin="35 0 60 10" Width="700" HorizontalAlignment="Left">
+                    If you have business established in the territory of a member state of the European Economic Area, Switzerland, or the United Kingdom or you are otherwise subject to the territorial scope of the General Data Protection regulation(GDPR) or if you are a business subject to the California Consumer Privacy Act, and if you have entered into a direct customer contact, then you are eligible to accept the Kirin Ads Data Processing Terms. Certain Analytics services users may have already agreed in their Kirin Analytics agreement, in which case accepting the Ads Data Processing Terms here will not affect the terms that have already been accepted.
+                     <LineBreak/><Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold">
+                        Learn more about Data Processing Terms
+                     </Hyperlink>
+                                                    </TextBlock>
+
+                                                    <TextBlock FontSize="18" TextWrapping="Wrap" Grid.Row="18" Margin="35 0 60 15" Width="700" HorizontalAlignment="Left">
+                    The Data Processing Terms for this account were accepted on July 7, 2021. <LineBreak/>
+                    <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold">
+                        Review Amendment
+                    </Hyperlink>
+                                                    </TextBlock>
+
+                                                    <Button Grid.Row="19" Content="Cancel" BorderThickness="0" FontSize="20" HorizontalAlignment="left" Foreground="#247BC0" Height="30" Background="Transparent"
+                        HorizontalContentAlignment="Left" Padding="10 0" Margin="30 20 5 15" />
+
+                                                </Grid>
+                                            </WrapPanel>
+                                        </Grid>
+
+                                        <Grid Name="Filters" Visibility="Collapsed">
+                                            <WrapPanel>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="200"/>
+                                                        <RowDefinition Height="350"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Margin="30 100 0 0" Height="60">
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" Padding="15 0 0 0">
+                                                            Displaying filters for Universal Analytics Properties only. Filters cannot be applied to Kirin Properties.
+                                                        </TextBlock>
+                                                    </Border>
+
+                                                    <Border Grid.Row="1" Background="#eeeeee" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Margin="30 20 0 20">
+                                                        <StackPanel Orientation="Vertical" Margin="20 10 10 20">
+                                                            <materialDesign:ColorZone Width="300" HorizontalAlignment="Right" HorizontalContentAlignment="Left" VerticalAlignment="Top"
+                                                                                  Mode="Light" materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="35" Background="WhiteSmoke" Margin="40 20 20 0 " >
+                                                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                                                                    <Button Style="{DynamicResource MaterialDesignToolButton}" VerticalContentAlignment="Top">
+                                                                        <materialDesign:PackIcon Kind="Search" Width="20" Height="30" Opacity=".56"  />
+                                                                    </Button>
+                                                                    <TextBox FontSize="16" FontWeight="Bold" Margin="8 0 0 0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                                         BorderThickness="0" MinWidth="100" Name="SearchBox" VerticalAlignment="Center" Tag="Search"/>
+                                                                </StackPanel>
+                                                            </materialDesign:ColorZone>
+
+                                                            <DataGrid Width="780" x:Name="DGFilters" Height="Auto" Background="Transparent" HeadersVisibility="Column" BorderBrush="LightGray" BorderThickness="1"
+                                                     GridLinesVisibility="All" ItemsSource="{Binding FilterList}" AutoGenerateColumns="False" Margin="5 20 5 10" Focusable="False"
+                                                      CanUserAddRows="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                                                                <DataGrid.Resources>
+                                                                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                                                        <Setter Property="Background" Value="LightGray" />
+                                                                        <Setter Property="Height" Value="45"/>
+                                                                        <Setter Property="FontSize" Value="18" />
+                                                                        <Setter Property="FontWeight" Value="Medium" />
+                                                                        <Setter Property="Foreground" Value="Black" />
+                                                                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                                        <Setter Property="Padding" Value="10" />
+                                                                        <Setter Property="Width" Value="260" />
+                                                                    </Style>
+                                                                </DataGrid.Resources>
+
+                                                                <DataGrid.Columns>
+                                                                    <DataGridTextColumn Header="Filter Name"  Binding="{Binding Path=Name}">
+                                                                        <DataGridTextColumn.ElementStyle>
+                                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                                                <Setter Property="Height" Value="45"/>
+                                                                                <Setter Property="FontSize" Value="16"/>
+                                                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                                                <Setter Property="Padding" Value="10"/>
+                                                                            </Style>
+                                                                        </DataGridTextColumn.ElementStyle>
+                                                                    </DataGridTextColumn>
+
+                                                                    <DataGridTextColumn Header="Filter Type"  Binding="{Binding Path=Type}">
+                                                                        <DataGridTextColumn.ElementStyle>
+                                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                                                <Setter Property="Height" Value="45"/>
+                                                                                <Setter Property="FontSize" Value="16"/>
+                                                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                                                <Setter Property="Padding" Value="10"/>
+                                                                            </Style>
+                                                                        </DataGridTextColumn.ElementStyle>
+                                                                    </DataGridTextColumn>
+
+                                                                    <DataGridTextColumn Header="Views"  Binding="{Binding Path=Views}">
+                                                                        <DataGridTextColumn.ElementStyle>
+                                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                                                                <Setter Property="Height" Value="45"/>
+                                                                                <Setter Property="FontSize" Value="16"/>
+                                                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                                                <Setter Property="Padding" Value="10"/>
+                                                                            </Style>
+                                                                        </DataGridTextColumn.ElementStyle>
+                                                                    </DataGridTextColumn>
+                                                                </DataGrid.Columns>
+                                                            </DataGrid>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </Grid>
+                                            </WrapPanel>
+                                        </Grid>
+
+                                        <Grid x:Name="gdSetUp" Margin="20" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60*"/>
+                                                <RowDefinition Height="60*"/>
+                                                <RowDefinition Height="60*"/>
+                                                <RowDefinition Height="100*"/>
+                                                <RowDefinition Height="200*"/>
+                                                <RowDefinition Height="100*"/>
+                                                <RowDefinition Height="60*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" Margin="0 0 0 20" FontSize="24" FontWeight ="Medium" Content="Setup Assistant"></Label>
+
+                                            <TextBlock Margin="0 0 0 15" Grid.Row="1" FontSize="16" TextWrapping="Wrap" Padding="5">
+                Set up these features to get the most out of your new property. Your smarter, more advanced data analysis awaits.
+                                            </TextBlock>
+
+                                            <TextBlock Margin="0 0 0 15" Padding="5" Grid.Row="2" FontSize="16" TextWrapping="Wrap" HorizontalAlignment="Left">
+               <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="DemiBold">
+                   Learn more about Anaytics 4 properties
+               </Hyperlink>
+                                            </TextBlock>
+
+                                            <Border Grid.Row="3" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                         CornerRadius="5" Background="White" Margin="0 10 10 20" >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Height="55" VerticalAlignment="Center">
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="Collection" Background="Transparent" Height="30" Width="30" Margin="10 0 60 0" />
+                                                        <Label FontSize="18" VerticalAlignment="Center" FontWeight="Normal" Content="Data Collection" HorizontalAlignment="Left" Margin="-40 0 0 0" ></Label>
+                                                    </StackPanel>
+
+                                                    <Separator Grid.Row="0" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Collect website and app data" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Collect event data by adding the global site tag to your web pages.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Gray" HorizontalAlignment="Right">DATA FLOWING</TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+                                            <Border Grid.Row="4" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                         CornerRadius="5" Background="White" Margin="0 10 10 20" >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Height="55" VerticalAlignment="Center">
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="Database" Background="Transparent" Height="30" Width="30" Margin="10 0 60 0" />
+                                                        <Label FontSize="18" VerticalAlignment="Center" FontWeight="Normal" Content="Property settings" HorizontalAlignment="Left" Margin="-40 0 0 0" ></Label>
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="0" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Turn on Kirin signals" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Access aggegated data from people with Kirin accounts who allow Ads Personalization.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Gray" HorizontalAlignment="Right" Background="AliceBlue">Not Started</TextBlock>
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="1" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Set up conversions" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Identify the key user interactions most important to your business.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Gray" HorizontalAlignment="Right">17 CONVERSIONS</TextBlock>
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="2" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Define audiences" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Find, group, and remarket to your most engaged visitors.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Gray" HorizontalAlignment="Right">8 AUDIENCES</TextBlock>
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="3" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="4">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Manage Users" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="600">
+                                Add users, user groups, and permissions.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Gray" HorizontalAlignment="Left" Background="AliceBlue">No administrator access</TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+                                            <Border Grid.Row="5" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                         CornerRadius="5" Background="White" Margin="0 10 10 20" >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                        <RowDefinition Height="60*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Height="55" VerticalAlignment="Center">
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="GoogleAds" Background="Transparent" Height="30" Width="30" Margin="10 0 60 0" />
+                                                        <Label FontSize="18" VerticalAlignment="Center" FontWeight="Normal" Content="Google Ads" HorizontalAlignment="Left" Margin="-40 0 0 0" ></Label>
+                                                    </StackPanel>
+
+                                                    <Separator Grid.Row="0" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Link to Google Ads" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Connect to your account, so events data are exported to Google Ads by default.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock FontSize="16" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Gray" HorizontalAlignment="Right" Background="AliceBlue">2 ADS Links</TextBlock>
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="1" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Bid on GA4 conversions" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Use Google Ads to bid on GA4 conversions.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="2" VerticalAlignment="Bottom" Background="LightGray"/>
+
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                                                        <StackPanel Orientation="Vertical" Height="55" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Target ads to GA4 audiences" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+                                                            <TextBlock FontSize="14" TextWrapping="Wrap" Margin="25 0 0 10" HorizontalAlignment="Left" Width="670">
+                                Go to Ads and bid using GA4 audiences.
+                                <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="DemiBold">
+                                    Learn more 
+                                </Hyperlink>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+                                            <Border Grid.Row="6" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                         CornerRadius="5" Background="White" Margin="0 10 10 20" >
+
+                                                <StackPanel Orientation="Horizontal" Grid.Row="0" Height="55" VerticalAlignment="Center">
+                                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="SettingsOutline" Background="Transparent" Height="30" Width="30" Margin="10 0 60 0" />
+                                                    <Label Width="740" FontSize="18" VerticalAlignment="Center" FontWeight="Normal" Content="Advanced setup (optional)" HorizontalAlignment="Left" Margin="-40 0 0 0" ></Label>
+                                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="MenuDown" HorizontalAlignment="Right" Background="Transparent" Height="30" Width="30" Margin="10 0 60 0" />
+                                                </StackPanel>
+
+                                            </Border>
+                                        </Grid>
+
+                                        <Grid x:Name="gdProperty" Margin="30" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="500"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" FontSize="24" FontWeight ="Medium" Content="Property Settings"></Label>
+
+                                            <Border Grid.Row="1" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="0 10 10 20" >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60"/>
+                                                        <RowDefinition Height="60*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Height="60" VerticalAlignment="Center">
+                                                        <Label FontSize="20" VerticalAlignment="Center" FontWeight="Normal" Content="Property details" HorizontalAlignment="Left" Margin="20 0 0 0" Width="620"></Label>
+                                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Normal" Content="PROPERTY ID" HorizontalAlignment="Right" ></Label>
+                                                            <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="153293282" HorizontalAlignment="Left" ></Label>
+                                                        </StackPanel>
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="CheckboxMultipleBlankOutline" Background="Transparent" Height="40" Width="30" Margin="10 0 10 0" />
+                                                    </StackPanel>
+
+                                                    <Separator Grid.Row="0" VerticalAlignment="Bottom" Background="LightGray"/>
+
+
+                                                    <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Property Name" HorizontalAlignment="Left" Margin="20 0 0 0" Padding="5"></Label>
+
+                                                        <TextBox FontSize="16" VerticalContentAlignment="Center" BorderBrush="LightGray" Text="GA4 - Flood-It!" Foreground="Gray" BorderThickness="1" Height="40" Width="400" Margin="25 10 0 10" Padding="5" IsReadOnly="True" HorizontalAlignment="Left"></TextBox>
+
+                                                        <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Industry category" HorizontalAlignment="Left" Margin="20 20 0 0" Padding="5"></Label>
+
+                                                        <ComboBox IsEnabled="False" HorizontalAlignment="Left" Width="170" FontSize="16" Margin="30 10 0 0">
+                                                            <ComboBoxItem IsSelected="True">Select one</ComboBoxItem>
+                                                        </ComboBox>
+
+                                                        <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Reporting time zone" HorizontalAlignment="Left" Margin="20 20 0 0" Padding="5"></Label>
+
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <ComboBox IsEnabled="False" HorizontalAlignment="Left" Width="170" FontSize="16" Margin="30 10 0 0">
+                                                                <ComboBoxItem IsSelected="True">United Kingdom</ComboBoxItem>
+                                                            </ComboBox>
+
+                                                            <ComboBox IsEnabled="False" HorizontalAlignment="Left" Width="170" FontSize="16" Margin="30 10 0 0">
+                                                                <ComboBoxItem IsSelected="True">(GMT-07:00) GMT-07:00</ComboBoxItem>
+                                                            </ComboBox>
+                                                        </StackPanel>
+
+                                                        <Label FontSize="16" VerticalAlignment="Center" FontWeight="Medium" Content="Currency displayed as" HorizontalAlignment="Left" Margin="20 20 0 0" Padding="5"></Label>
+                                                        <ComboBox IsEnabled="False" HorizontalAlignment="Left" Width="160" FontSize="16" Margin="30 10 0 30">
+                                                            <ComboBoxItem IsSelected="True">US Doller (USD $)</ComboBoxItem>
+                                                        </ComboBox>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+
+                                        <Grid Name="gdDataStream" Margin="30" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" FontSize="24" FontWeight="Medium" VerticalAlignment="Center" Content="Data Streams"></Label>
+
+                                            <Border Grid.Row="1" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="0 10 30 10" Width="880">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="5 10 5 0" Grid.Row="0">
+                                                        <Button x:Name="btnAll" Visibility="Visible" Margin="10 0 0 0" Width="70" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                            Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Click="btnAll_Click">
+                                                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="50">
+                                                                <TextBlock Text="All" Margin="15 0 0 0" FontSize="18" FontWeight="Medium" ></TextBlock>
+                                                                <ProgressBar Value="1" Maximum="1" Height="4" Name="Pall" Margin="0 10 0 0" Width="20"
+                                                                         Foreground="#247BC0" BorderBrush="Transparent" />
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button x:Name="btnIos" Visibility="Visible" Margin="10 0 0 0" Width="75" Height="60"
+                                                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                            Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Click="btnIos_Click" >
+                                                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="50">
+                                                                <TextBlock Text="iOS" FontSize="18" FontWeight="Medium"></TextBlock>
+                                                                <ProgressBar Value="1" Width="20" Maximum="1" Height="4" Margin="0 10 0 0" Name="Pios" HorizontalAlignment="Left" Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" />
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button x:Name="btnAndroid" Visibility="Visible" Margin="10 0 0 0" Width="95" Height="60" 
+                                                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                            Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Click="btnAndroid_Click" >
+                                                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="80">
+                                                                <TextBlock Text="Android" FontSize="18" FontWeight="Medium"></TextBlock>
+                                                                <ProgressBar Value="1" Width="20" Maximum="1" Height="4" Margin="-10 10 0 0" Name="Pandroid" HorizontalAlignment="Center" Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" />
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button x:Name="btnWeb" Visibility="Visible" Margin="10 0 0 0" Width="75" Height="60" 
+                                                            HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                            Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Click="btnWeb_Click" >
+                                                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="50">
+                                                                <TextBlock Text="Web" FontSize="18" FontWeight="Medium"></TextBlock>
+                                                                <ProgressBar Value="1" Width="20" Maximum="1" Height="4" Margin="5 10 0 0" Name="Pweb" HorizontalAlignment="Left" Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" />
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <ComboBox IsEnabled="False" HorizontalAlignment="Right" Width="170" Padding="5" BorderBrush="LightGray" BorderThickness="1" Background="WhiteSmoke" FontSize="16" Margin="310 0 0 0">
+                                                            <ComboBoxItem IsSelected="True">Add Stream</ComboBoxItem>
+                                                        </ComboBox>
+                                                    </StackPanel>
+
+                                                    <Separator Background="LightGray" Grid.Row="0" VerticalAlignment="Bottom" />
+
+                                                    <DataGrid Grid.Row="1" x:Name="DGDataStreams" Height="Auto" Background="Transparent" HeadersVisibility="None" 
+                                                          ItemsSource="{Binding DataStreamList}" AutoGenerateColumns="False" Focusable="False"
+                                                          CanUserAddRows="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                                          SelectionChanged="DGDataStreams_SelectionChanged">
+                                                        <DataGrid.CellStyle>
+                                                            <Style TargetType="DataGridCell">
+                                                                <Setter Property="Height" Value="60"/>
+                                                                <Setter Property="Focusable" Value="False"/>
+                                                            </Style>
+                                                        </DataGrid.CellStyle>
+                                                        <DataGrid.Columns>
+                                                            <DataGridTemplateColumn>
+                                                                <DataGridTemplateColumn.CellTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Focusable="False" HorizontalAlignment="Left">
+                                                                            <Button x:Name="feedbackBtn" DockPanel.Dock="Right" Visibility="Visible" Background="{Binding Source={x:Static settings:Settings.Default}, Path=MainPalette_Blue, Mode=TwoWay }" 
+                                                                                Foreground="White" Width="45" Height="45" Style="{StaticResource MaterialDesignFloatingActionButton}" BorderThickness="0" BorderBrush="Transparent" Margin="30 0 0 0">
+                                                                                <Viewbox Width="32" Height="32">
+                                                                                    <materialDesign:PackIcon Kind="{Binding Path=Icon}" Background="{Binding Source={x:Static settings:Settings.Default}, Path=ProgressBar_color, Mode=TwoWay }" 
+                                                                             Foreground="White" Height="30" Width="30"/>
+                                                                                </Viewbox>
+                                                                            </Button>
+
+                                                                            <StackPanel Orientation="Vertical" Margin="30 0 0 0" VerticalAlignment="Center" Width="260">
+                                                                                <Label FontWeight="Medium" FontSize="16" Content="{Binding Path=Name}" Margin="0 5 0 0" HorizontalAlignment="Left" ></Label>
+                                                                                <Label FontWeight="Normal" FontSize="14" Content="{Binding Path=Reference}" Margin="0 -10 0 0" HorizontalAlignment="Left"></Label>
+                                                                            </StackPanel>
+
+                                                                            <Label FontWeight="Normal" FontSize="16" Content="{Binding Path=Label}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="160"></Label>
+
+                                                                            <Label FontWeight="Normal" FontSize="16" Content="{Binding Path=Notes}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="280"></Label>
+
+                                                                            <materialDesign:PackIcon Kind="ChevronRight" Background="Transparent" Foreground="Gray" VerticalAlignment="Center" Margin="10 0 0 0" Height="30" Width="30" />
+                                                                        </StackPanel>
+                                                                    </DataTemplate>
+                                                                </DataGridTemplateColumn.CellTemplate>
+                                                            </DataGridTemplateColumn>
+                                                        </DataGrid.Columns>
+                                                    </DataGrid>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+
+                                        <Grid Name="gdDataCollection" Margin="20" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="0 10 30 10" >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="65"/>
+                                                        <RowDefinition Height="70"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Height="65" VerticalAlignment="Center">
+                                                        <Label FontSize="22" VerticalAlignment="Center" FontWeight="Medium" Content="Google signals data collection" HorizontalAlignment="Left" Margin="20 0 0 0" Width="780"></Label>
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="ChevronUp" Background="Transparent" Height="40" Width="30" Margin="10 0 10 0" />
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="0" VerticalAlignment="Bottom" Background="LightGray" Margin="0"/>
+
+                                                    <StackPanel Orientation="Horizontal" Height="70" Grid.Row="1" VerticalAlignment="Center" Background="AliceBlue">
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="InfoCircle" Background="Transparent" Height="30" Width="30" Foreground="#247BC0" Margin="10 0 10 0" />
+                                                        <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" MaxWidth="680">
+                            Advertising Features have been upgraded with the activation of Google signals: collect cross-device data, and remark to users across devices.
+                                                        </TextBlock>
+
+                                                        <Button Content="Get started" Background="LightGray" BorderThickness="0" Grid.Row="3" VerticalAlignment="Center"
+                                          Foreground="Gray" Height="40" FontSize="16" HorizontalAlignment="Left" Padding="20 10" Margin="25 10 20 10" />
+                                                    </StackPanel>
+                                                    <Separator Grid.Row="1" VerticalAlignment="Bottom" Background="LightGray" Margin="0"/>
+
+                                                    <StackPanel Orientation="Vertical" Grid.Row="2" VerticalAlignment="Center">
+                                                        <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Padding="20 15 10 5">
+                            Analytics features are being enhanced to help you better understand your customers across devices using Google data.
+                                                        </TextBlock>
+                                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Padding="20 15 10 20" MaxWidth="880">
+                            When you choose to activate Google signals, Google Analytics will associate the visitation information it collects from your site
+                            and/or apps with Google information from accounts of signed-in users who have consented to this association for the purpose of ads personalization.
+                            This Google information may include end user location, search history, Youtube history, and data from sites that partner with Google- and is used to provide
+                            aggregated and anonymized insights into your users' cross device behaviors. By enabling these features, you acknowledge you adhere to the 
+                            <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium">
+                                Google Advertising Feature Policy
+                            </Hyperlink>
+                           , including rules around sensitive categories, have the necessary privacy disclousers and rights from your end users for 
+                            such association, and that such data may be accessed and/or deleted by end users via 
+                             <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium" >
+                                My Activity
+                            </Hyperlink>.
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+
+                                            <Expander Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 20 30 10"
+                  Background="White" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }" BorderThickness="1" Width="910" IsExpanded="False">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock VerticalAlignment="Center" Text="Granular location and device data collection" FontSize="22" FontWeight="Medium" Width="750" />
+                                                        <ToggleButton></ToggleButton>
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <Grid>
+                                                    <Separator Grid.Row="0" VerticalAlignment="Top" Background="LightGray" Margin="0"/>
+
+                                                    <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                        <TextBlock Padding="15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap">
+                                                    When you activate granular location and device data collection, Analytics collects metadata about the city-level location 
+                                                    and granular device details of your site and app visitors so it can provide location and device-based capabilities.
+                                                        </TextBlock>
+                                                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Center" Background="AliceBlue" Margin="8">
+                                                            <TextBlock Foreground="#247BC0" Padding="20 15 15 15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Width="800">
+                                                        Granular location and device data collection is allowed in <Bold>306 of 306</Bold> regions.
+                                                            </TextBlock>
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Settings" Background="Transparent" Height="30" Width="30" Foreground="Gray" Margin="10 0 10 0" />
+                                                        </StackPanel>
+                                                        <TextBlock Padding="15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Margin="0 0 0 10">
+                                                    Region and country-level metadata is collected by default for all of your traffic in order to support regional privacy policies and region-based Analytics 
+                                                    settings. To learn more about device and location data collection settings, see 
+                                                     <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium" >
+                                                        Collect granular location and device data
+                                                     </Hyperlink>.
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Expander>
+
+                                            <Expander Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 20 30 10"
+                  Background="White" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }" BorderThickness="1" Width="910" IsExpanded="False">
+                                                <Expander.Header>
+                                                    <TextBlock VerticalAlignment="Center" Text="Advanced Settings to Allow for Ads Personalization" FontSize="22" FontWeight="Medium" />
+                                                </Expander.Header>
+                                                <Grid>
+                                                    <Separator Grid.Row="0" VerticalAlignment="Top" Background="LightGray" Margin="0"/>
+
+                                                    <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                        <TextBlock Padding="15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap">
+                        When ads personalization is allowed, you may export your Google Analytics audiences and conversions to your linked Ads accounts 
+                        for the purpose of delivering relevent, personalized experiences to your end users.
+                                                        </TextBlock>
+                                                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Center" Background="AliceBlue" Margin="8">
+                                                            <TextBlock Foreground="#247BC0" Padding="20 15 15 15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Width="800">
+                                                        Ads personalization is allowed in <Bold>306 of 306</Bold> regions.
+                                                            </TextBlock>
+                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Settings" Background="Transparent" Height="30" Width="30" Foreground="Gray" Margin="10 0 10 0" />
+                                                        </StackPanel>
+                                                        <TextBlock Padding="15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" >
+                        You may configure Google Analytics at the property level to collect data for ads personalization purpose, in addition to to measurement, in
+                        connection with your use of such features as Google signals, User ID, ads, integrations, and/or if you enable data sharing with Google. Disabling Ads 
+                        Personalization means that existing shared audience lists are marked as inactive, no new users will be shared via audience lists, and any exported 
+                        data, wheather audience exported via a linking integration or data shared under the Google products &amp; services sharing setting, will be designated 
+                        as not for use in ads personalization. 
+                         <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium" >
+                            Learn more
+                         </Hyperlink>
+                                                        </TextBlock>
+                                                        <TextBlock Padding="15" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Margin="0 0 0 10">
+                        To learn more about how to disable ads personalization users of Analytics data collected from your users going forward from our
+                        SDK or Global Site Tag, please refer to the following resources:
+                        <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium" >
+                            Using Google Analytics for Firebase
+                         </Hyperlink> and 
+                        <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium" >
+                            Using the Google Analytics Global Site Tag
+                         </Hyperlink>.
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Expander>
+
+                                            <Expander Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 20 30 10"
+                  Background="White" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }" BorderThickness="1" Width="910" IsExpanded="False">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock VerticalAlignment="Center"  Text="User Data Collection Acknowledgement" FontSize="22" FontWeight="Medium" Width="600" />
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="TickCircleOutline" Background="Transparent" Foreground="Green" Height="30" Width="30" Margin="10 0 10 0" />
+                                                        <TextBlock Text="Acknowledged" VerticalAlignment="Center" Foreground="Green" FontSize="16" FontWeight="Medium"/>
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                    <Separator VerticalAlignment="Top" Background="LightGray" Margin="0"/>
+
+                                                    <TextBlock Padding="20 15 0 10" VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap">
+                    I acknowledge that I have the necessary privacy disclosures and rights from my end users for the collection
+                    and processing of their data, including the association of such data with the visitation information Google 
+                    Analytics collects from my site and/or app property.
+                                                    </TextBlock>
+                                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="TickCircleOutline" Background="Transparent" Foreground="Green" Height="40" Width="30" Margin="20 0 10 0" />
+                                                        <TextBlock Text="Acknowledged" VerticalAlignment="Center" Foreground="Green" FontSize="16" FontWeight="Medium"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Expander>
+                                        </Grid>
+
+                                        <Grid Name="gdDataRetention" Margin="20" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="0 10 30 10" >
+                                                <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                    <Label FontSize="22" VerticalContentAlignment="Center" FontWeight="Medium" Content="User and event data retention" HorizontalAlignment="Left" Margin="20 0 0 0" Height="60"></Label>
+
+                                                    <Separator VerticalAlignment="Bottom" Background="LightGray" Margin="0"/>
+
+
+                                                    <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Padding="25 15 10 5">
+                    You can change the retention period for data you send that is associated with cookies, user identifiers, 
+                    or advertising identifiers. These controls don't affect most standard reporting, which is based on aggregated data.
+                    Changes to these settings take effect after 24 hours.
+                    <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium">
+                        Learn more
+                    </Hyperlink>
+                                                    </TextBlock>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="10 10 10 0">
+                                                        <Label FontSize="16" VerticalContentAlignment="Center" Content="Event data retention" FontWeight="Medium" HorizontalAlignment="Left" Margin="15 0 0 0" Height="60"></Label>
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="QuestionMarkCircleOutline" Background="Transparent" Height="25" Width="25" Foreground="Gray" />
+
+                                                        <ComboBox IsEnabled="False" HorizontalAlignment="Left" Width="170" Padding="5" FontSize="16" Margin="30 0 0 0" VerticalAlignment="Center" BorderBrush="LightGray" BorderThickness="1" Background="WhiteSmoke">
+                                                            <ComboBoxItem IsSelected="True">2 months</ComboBoxItem>
+                                                        </ComboBox>
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="10 0 0 10">
+                                                        <Label FontSize="16" VerticalContentAlignment="Center" Content="Reset user data on new activity" FontWeight="Medium" HorizontalAlignment="Left" Margin="15 0 0 0" Height="60"></Label>
+                                                        <materialDesign:PackIcon VerticalAlignment="Center" Kind="QuestionMarkCircleOutline" Background="Transparent" Height="25" Width="25" Foreground="Gray" />
+                                                        <ToggleButton Margin="20" IsChecked="False"></ToggleButton>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
+                                                <Button Content="Save" Background="LightGray" BorderThickness="0" Foreground="Gray" FontSize="20" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="20 5" Margin="5 0 5 0" />
+                                                <Button Content="Cancel" BorderThickness="0" FontSize="20" HorizontalAlignment="left" Foreground="#247BC0" Height="30" Background="Transparent" HorizontalContentAlignment="Left" Padding="10 0" Margin="5 0 5 0" />
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <Grid Name="gdDataFilters" Margin="20" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                <Label FontSize="22" VerticalContentAlignment="Center" FontWeight="Medium" Content="Data filters" HorizontalAlignment="Left" Margin="20 20 0 0" ></Label>
+
+                                                <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Padding="25 0 10 5">
+                   Filter event data in this property.
+                    <Hyperlink Foreground="Gray" FontSize="16" FontWeight="Medium">
+                        Learn more
+                    </Hyperlink>
+                                                </TextBlock>
+
+                                                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Margin="20">
+                                                    <Grid Width="850">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Row="0" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center" Content="Name" FontWeight="Medium" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                        <Label Grid.Row="0" Grid.Column="1" FontSize="16" VerticalContentAlignment="Center" Content="Filter type" FontWeight="Medium" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                        <Label Grid.Row="0" Grid.Column="2" FontSize="16" VerticalContentAlignment="Center" Content="Operation" FontWeight="Medium" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                        <Label Grid.Row="0" Grid.Column="3" FontSize="16" VerticalContentAlignment="Center" Content="Current state" FontWeight="Medium" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                        <Separator Margin="-25 0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Background="LightGray" VerticalAlignment="Bottom"></Separator>
+
+                                                        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center"
+                                                            HorizontalAlignment="Left" Height="50" Click="FilterView_Click" Style="{StaticResource ButtonPanel}" Width="920">
+                                                            <StackPanel Orientation="Vertical" Margin="0">
+                                                                <Grid Width="850">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                        <ColumnDefinition Width="*"/>
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Grid.Column="0" FontSize="16" VerticalContentAlignment="Center" Content="Internal Traffic" FontWeight="Normal" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                                    <Label Grid.Column="1" FontSize="16" VerticalContentAlignment="Center" Content="Internal Traffic" FontWeight="Normal" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                                    <Label Grid.Column="2" FontSize="16" VerticalContentAlignment="Center" Content="Exclude" FontWeight="Normal" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                                    <Label Grid.Column="3" FontSize="16" VerticalContentAlignment="Center" Content="Testing" FontWeight="Normal" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                                    <materialDesign:PackIcon Grid.Column="4" VerticalAlignment="Center" Kind="ChevronRight" Background="Transparent" Height="30" Width="30" Foreground="Black" HorizontalAlignment="Right" Margin="0 0 15 0" />
+                                                                </Grid>
+                                                            </StackPanel>
+                                                        </Button>
+                                                    </Grid>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <Grid Name="gdDataImport" Margin="20" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                <Label FontSize="22" VerticalContentAlignment="Center" FontWeight="Medium" Content="Data Import" HorizontalAlignment="Left" Margin="20 20 0 0" ></Label>
+
+                                                <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Padding="25 0 10 5">
+                   Data impoty lets you upload data from external sources and join it with your Analytics data. Click "Create data source"
+                   to export the types of data you can upload.
+                    <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium">
+                        Learn more
+                    </Hyperlink>
+                                                </TextBlock>
+
+                                                <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Margin="20">
+                                                    <Grid Width="850">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Row="0" Grid.Column="0" FontSize="16" VerticalContentAlignment="Bottom" Content="Data source name" FontWeight="Medium" HorizontalAlignment="Left" Height="70" Margin="10 -10 0 10"></Label>
+
+                                                        <Label Grid.Row="0" Grid.Column="1" FontSize="16" VerticalContentAlignment="Bottom" Content="Data type" FontWeight="Medium" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                        <Label Grid.Row="0" Grid.Column="2" FontSize="16" VerticalContentAlignment="Bottom" Content="Status" FontWeight="Medium" HorizontalAlignment="Left" Height="50"></Label>
+
+                                                        <Button Grid.Row="0" Grid.Column="3" BorderThickness="0" Content="Create data source" Background="LightGray" Foreground="Gray" Height="40" VerticalAlignment="Top" Focusable="False" Margin="10">
+                                                        </Button>
+                                                        <Separator Margin="-25 0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="LightGray" VerticalAlignment="Bottom"></Separator>
+
+                                                        <Label Grid.Row="1" Grid.Column="0" Padding="15" Grid.ColumnSpan="4" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                                            No sources yet. Click "Create data source" to create one.
+                                                        </Label>
+                                                    </Grid>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <Grid Name="gdReportingIdentity" Margin="20" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                <Label FontSize="22" VerticalContentAlignment="Center" FontWeight="Medium" Content="Reporting Identity" HorizontalAlignment="Left" Margin="20 20 0 0" ></Label>
+
+                                                <TextBlock VerticalAlignment="Center" FontSize="16" FontWeight="Normal" TextWrapping="Wrap" Padding="25 0 10 5">
+                                                    Determines which methods Analytics uses to associate events with users.
+                                                    <Hyperlink Foreground="#247BC0" FontSize="16" FontWeight="Medium">
+                                                        Learn more
+                                                    </Hyperlink>
+                                                </TextBlock>
+
+                                                <Label FontSize="16" VerticalContentAlignment="Center" FontWeight="Medium" Content="How would you like to identify your users?" HorizontalAlignment="Left" Margin="20 20 0 10" ></Label>
+
+                                                <Border BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                        CornerRadius="5" Background="White" Margin="20 0 25 10" >
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Expander VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 30 0"
+                                                                  Background="White" BorderBrush="Transparent" BorderThickness="0" IsExpanded="False">
+                                                            <Expander.Header>
+                                                                <RadioButton IsChecked="True" Style="{Binding null}" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="550" Margin="10 0 0 0">
+                                                                            <Label Content="Blended" FontSize="16" FontWeight="DemiBold" VerticalContentAlignment="Bottom"></Label>
+                                                                            <TextBlock Padding="5 0" FontSize="14" FontWeight="Normal" VerticalAlignment="Top">
+                                                                                This identity evaluates: user ID, Google signals, device ID, modeled data.
+                                                                            </TextBlock>
+                                                                        </StackPanel>
+                                                                        <materialDesign:PackIcon Kind="InfoCircleOutline" Background="Transparent" VerticalAlignment="Center" Foreground="Gray" Height="20" Width="20" Margin="10 0" />
+                                                                        <Label Content="2 inactive methods" FontSize="16" FontWeight="Normal" VerticalContentAlignment="Center"></Label>
+
+                                                                        <materialDesign:PackIcon Kind="ChevronDown" Background="Transparent" VerticalAlignment="Center" Height="25" Width="25" Margin="30 0"/>
+                                                                    </StackPanel>
+                                                                </RadioButton>
+                                                            </Expander.Header>
+                                                            <Grid Background="WhiteSmoke">
+                                                                <Border BorderBrush="LightGray" BorderThickness="1">
+                                                                    <StackPanel Orientation="Vertical" Margin="50 10 0 0" >
+                                                                        <Label FontSize="14">Uses the first available method, in this order:</Label>
+
+                                                                        <Label FontSize="14" Margin="30 10 0 0" FontWeight="DemiBold">User ID</Label>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -5 0 0">
+                                                                            Uses a customer-supplied ID to differentiate between users and unify events in reporting and exploration.
+                                                                        </TextBlock>
+
+                                                                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Center" Margin="-20 10 0 0">
+                                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="InfoCircleOutline" Background="Transparent" Height="30" Width="30" Foreground="Gray" />
+                                                                            <Label FontSize="14" Margin="20 0 0 0" FontWeight="DemiBold">Google signals</Label>
+                                                                        </StackPanel>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Top" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -10 0 0">
+                                                                            Uses information from users who are signed in to Google and who have consented to sharing this information.
+                                                                        </TextBlock>
+
+                                                                        <TextBlock Padding="20 5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 5 0 5" Background="White" Width="440" HorizontalAlignment="Left">
+                                                                            To turn on Google signals, go to 
+                                                                            <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="Medium" >
+                                                                                Data settings > Data collection.
+                                                                            </Hyperlink>
+                                                                        </TextBlock>
+
+                                                                        <Label FontSize="14" Margin="30 10 0 0" FontWeight="DemiBold">Device ID</Label>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -5 0 0">
+                                                                            Uses the client ID for websites or the app instance ID for apps.
+                                                                        </TextBlock>
+
+                                                                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Center" Margin="-20 10 0 0">
+                                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="InfoCircleOutline" Background="Transparent" Height="30" Width="30" Foreground="Gray" />
+                                                                            <Label FontSize="14" Margin="20 0 0 0" FontWeight="DemiBold">Modeling</Label>
+                                                                            <Button Content="BETA" FontSize="10" BorderBrush="LightGray" Style="{Binding Null}" BorderThickness="1" Background="Transparent" Height="20" Padding="5 0" Margin="5 0"></Button>
+                                                                        </StackPanel>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -5 0 0">
+                                                                            Estimates user activity when identifiers such as cookies or USER ID aren't fully available. Without modeling, your reports 
+                                                                            won't account for data that can't be directly observed.
+                                                                            <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="Normal">
+                                                                                Learn more
+                                                                            </Hyperlink>
+                                                                        </TextBlock>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 10 0 5">
+                                                                            Attributes and conversion modeling aren't affected by this setting.
+                                                                        </TextBlock>
+
+                                                                        <TextBlock Padding="20 5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 5 0 30" Background="White" Width="700" HorizontalAlignment="Left">
+                                                                            Modeling is unavailable for this property. Once it's available, it will be turned on by default in your reports.
+                                                                        </TextBlock>
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </Grid>
+                                                        </Expander>
+
+                                                        <Separator VerticalAlignment="Top" Background="LightGray" />
+
+                                                        <Expander VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 30 0"
+                                                                  Background="White" BorderBrush="Transparent" BorderThickness="0" IsExpanded="False">
+                                                            <Expander.Header>
+                                                                <RadioButton>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Width="550" Margin="10 0 0 0">
+                                                                            <Label Content="Observed" FontSize="16" FontWeight="DemiBold" VerticalContentAlignment="Bottom"></Label>
+                                                                            <TextBlock Padding="5 0" FontSize="14" FontWeight="Normal" VerticalAlignment="Top">
+                                                                                This identity evaluates: user ID, Google signals, device ID.
+                                                                            </TextBlock>
+                                                                        </StackPanel>
+                                                                        <materialDesign:PackIcon Kind="InfoCircleOutline" Background="Transparent" VerticalAlignment="Center" Foreground="Gray" Height="20" Width="20" Margin="10 0" />
+                                                                        <Label Content="1 inactive method " FontSize="16" FontWeight="Normal" VerticalContentAlignment="Center"></Label>
+                                                                        <materialDesign:PackIcon Kind="ChevronDown" Background="Transparent" VerticalAlignment="Center" Height="25" Width="25" Margin="30 0"/>
+                                                                    </StackPanel>
+                                                                </RadioButton>
+                                                            </Expander.Header>
+                                                            <Grid Background="WhiteSmoke">
+                                                                <Border BorderBrush="LightGray" BorderThickness="1">
+                                                                    <StackPanel Orientation="Vertical" Margin="50 10 0 0" >
+                                                                        <Label FontSize="14">Uses the first available method, in this order:</Label>
+
+                                                                        <Label FontSize="14" Margin="30 10 0 0" FontWeight="DemiBold">User ID</Label>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -5 0 0">
+                                                                            Uses a customer-supplied ID to differentiate between users and unify events in reporting and exploration.
+                                                                        </TextBlock>
+
+                                                                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Center" Margin="-20 10 0 0">
+                                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="InfoCircleOutline" Background="Transparent" Height="30" Width="30" Foreground="Gray" />
+                                                                            <Label FontSize="14" Margin="20 0 0 0" FontWeight="DemiBold">Google signals</Label>
+                                                                        </StackPanel>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Top" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -10 0 0">
+                                                                            Uses information from users who are signed in to Google and who have consented to sharing this information.
+                                                                        </TextBlock>
+
+                                                                        <TextBlock Padding="20 5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 5 0 5" Background="White" Width="440" HorizontalAlignment="Left">
+                                                                            To turn on Google signals, go to 
+                                                                            <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="Medium" >
+                                                                                Data settings > Data collection.
+                                                                            </Hyperlink>
+                                                                        </TextBlock>
+
+                                                                        <Label FontSize="14" Margin="30 10 0 0" FontWeight="DemiBold">Device ID</Label>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -5 0 0">
+                                                                            Uses the client ID for websites or the app instance ID for apps.
+                                                                        </TextBlock>
+
+                                                                        <StackPanel Orientation="Horizontal" Height="Auto" VerticalAlignment="Center" Margin="-20 10 0 0">
+                                                                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="InfoCircleOutline" Background="Transparent" Height="30" Width="30" Foreground="Gray" />
+                                                                            <Label FontSize="14" Margin="20 0 0 0" FontWeight="DemiBold">Modeling</Label>
+                                                                            <Button Content="BETA" FontSize="10" BorderBrush="LightGray" Style="{Binding null}" BorderThickness="1" Background="Transparent" Height="20" Padding="5 0" Margin="5 0"></Button>
+                                                                        </StackPanel>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 -5 0 0">
+                                                                            Estimates user activity when identifiers such as cookies or USER ID aren't fully available. Without modeling, your reports 
+                                                                            won't account for data that can't be directly observed.
+                                                                            <Hyperlink Foreground="#247BC0" FontSize="14" FontWeight="Normal" >
+                                                                                Learn more
+                                                                            </Hyperlink>
+                                                                        </TextBlock>
+
+                                                                        <TextBlock Padding="5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 10 0 5">
+                                                                            Attributes and conversion modeling aren't affected by this setting.
+                                                                        </TextBlock>
+
+                                                                        <TextBlock Padding="20 5" VerticalAlignment="Center" FontSize="14" FontWeight="Normal" TextWrapping="Wrap" Margin="30 5 0 30" Background="White" Width="700" HorizontalAlignment="Left">
+                                                                            Modeling is unavailable for this property. Once it's available, it will be turned on by default in your reports.
+                                                                        </TextBlock>
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </Grid>
+                                                        </Expander>
+                                                    </StackPanel>
+                                                </Border>
+                                                <Button Content="Show all" BorderThickness="0" FontSize="16" HorizontalAlignment="Right" Foreground="Gray" Background="Transparent" 
+                                                        Padding="10 0" Margin="5 0 25 0" />
+
+                                                <StackPanel Orientation="Horizontal" Margin="20 0">
+                                                    <Button Content="Save" Background="LightGray" BorderThickness="0" Foreground="Gray" FontSize="20" HorizontalAlignment="left" HorizontalContentAlignment="Left" Padding="20 5" Margin="5 0 5 0" />
+                                                    <Button Content="Cancel" BorderThickness="0" FontSize="20" HorizontalAlignment="left" Foreground="#247BC0" Height="30" Background="Transparent" HorizontalContentAlignment="Left" Padding="10 0" Margin="5 0 5 0" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 5">
+                        <Label Content="&#169; 2022 BBD |" FontWeight="DemiBold" FontSize="14"></Label>
+                        <TextBlock VerticalAlignment="Center" Margin="0 0 5 0">           
+                            <Hyperlink Foreground="#247BC0" FontSize="14" TextDecorations="None" FontWeight="DemiBold" NavigateUri="pack://application:,,,/Pages/Dashboard.xaml">
+                                 Dashboard Home |
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="0 0 5 0">
+                            <Hyperlink Foreground="#247BC0" FontSize="14" TextDecorations="None" FontWeight="DemiBold">
+                                Terms of Service | 
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="0 0 5 0">
+                            <Hyperlink Foreground="#247BC0" FontSize="14" TextDecorations="None" FontWeight="DemiBold">
+                                 Privacy Policy | 
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock VerticalAlignment="Center">
+                            <Hyperlink FontSize="14" TextDecorations="None" NavigateUri="pack://application:,,,/Pages/FeedbackWindow.xaml">
+                                <materialDesign:PackIcon Kind="CommentAlertOutline" Background="Transparent" Foreground="Black" Height="20" Width="20" />
+                                <Label Content="Send Feedback" FontWeight="DemiBold" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Page>
+

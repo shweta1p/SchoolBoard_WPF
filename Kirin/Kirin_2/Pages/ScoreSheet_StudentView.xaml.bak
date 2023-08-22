@@ -1,0 +1,813 @@
+﻿<Page x:Class="Kirin_2.Pages.ScoreSheet_StudentView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:settings="clr-namespace:Kirin_2.Properties"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      SizeChanged="Window_SizeChanged"
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Width="Auto"
+      Title="ScoreSheet_StudentView">
+
+    <Page.Resources>
+        <!-- Flat ComboBox -->
+        <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#e3e9ef" />
+        <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="White" />
+        <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
+
+        <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="2" Name="Border"
+              BorderBrush="{StaticResource ComboBoxNormalBorderBrush}" 
+              CornerRadius="0" BorderThickness="1, 1, 1, 1" 
+              Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
+                <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="#444" Name="ButtonBorder"
+              CornerRadius="0, 0, 0, 0" BorderThickness="0, 0, 0, 0" 
+              Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
+
+                <Path Name="Arrow" Grid.Column="1" 
+            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+            HorizontalAlignment="Center" Fill="#444"
+            VerticalAlignment="Center" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke"/>
+                    <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E"/>
+
+                </Trigger>
+                <Trigger Property="UIElement.IsEnabled" Value="False">
+                    <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
+                    <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}"/>
+                    <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+                    <Setter Property="TextElement.Foreground" Value="WhiteSmoke"/>
+
+                    <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ComboBoxFlatStyle"  TargetType="{x:Type ComboBox}">
+            <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+            <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+            <Setter Property="TextElement.Foreground" Value="Black"/>
+            <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton" Grid.Column="0" 
+                ClickMode="Press" Focusable="False"
+                IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                Template="{StaticResource ComboBoxToggleButtonTemplate}" Margin="2,0,-2,-0.4"/>
+
+                            <ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False"
+                              HorizontalAlignment="Left" VerticalAlignment="Center"                              
+                              Content="{TemplateBinding ComboBox.SelectionBoxItem}" 
+                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                            <TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3"                     
+                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                     Visibility="Hidden" Background="Transparent"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"
+                     Focusable="True" >
+                                <TextBox.Template>
+                                    <ControlTemplate TargetType="TextBox" >
+                                        <Border Name="PART_ContentHost" Focusable="False" />
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </TextBox>
+                            <!-- Popup showing items -->
+                            <Popup Name="Popup" Placement="Bottom"
+                   Focusable="False" AllowsTransparency="True"
+                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                   PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True"
+                    MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                    MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                                    <Border Name="DropDownBorder" Background="#7d868a" Margin="0, 1, 0, 0"
+                        CornerRadius="0" BorderThickness="1,1,1,1" 
+                        BorderBrush="{StaticResource ComboBoxNormalBorderBrush}"/>
+                                    <ScrollViewer Margin="4" SnapsToDevicePixels="True" Foreground="WhiteSmoke" FontWeight="DemiBold">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="ItemsControl.HasItems" Value="False">
+                                <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
+
+                            </Trigger>
+                            <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                            </Trigger>
+                            <Trigger Property="ComboBox.IsEditable" Value="True">
+                                <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+                                <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
+                                <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="WrappedColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor1, Mode=TwoWay}" Width="90" >
+                            <TextBlock TextWrapping="NoWrap"  >
+                                <TextBlock.Inlines >
+                                    <Run FontWeight="Bold" FontSize="12" Text="Responsibility &#x0a;" />
+                                    <!--<Run Foreground="DarkOliveGreen" Text="Fulfills responsibilties and commitments with the learning environment.&#x0a; " />
+                                    <Run Foreground="DarkOliveGreen" Text="Completes and submits class work, homework, and assignments according to agreed-upon timelines.&#x0a; " />
+                                    <Run Foreground="DarkOliveGreen" Text="Takes responsibility for and manages own behavior.&#x0a; " />-->
+                                </TextBlock.Inlines>
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="-90" />
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Border>
+
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HeaderTemplateMain" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
+
+        <DataTemplate x:Key="HeaderTemplateMain1">
+
+            <Border Background="WhiteSmoke" Height="35" VerticalAlignment="Bottom" Margin="0 80 0 0" HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding}" Margin="0" VerticalAlignment="Bottom"/>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplate_col1" >
+            <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor1, Mode=TwoWay}" Width="50" Height="180">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap">
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Responsibility&#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Fulfills responsibilties and commitments with the learning environment.&#x0a;" />
+                                <Run Foreground="White" Text="Completes and submits class work, homework, and assignments according to agreed-upon timelines.&#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Takes responsibility for and manages own behavior.&#x0a;" />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Button Style="{x:Null}" Background="Transparent" Cursor="Hand" Command="{Binding DataContext.c_UC_LearningSkills,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="Responsibility">
+                    <TextBlock TextWrapping="NoWrap"  >
+                        <TextBlock.Inlines >
+                            <Run FontWeight="ExtraBlack" FontSize="16" Text="Responsibility &#x0a;" />
+                            <!--<Run Foreground="DarkOliveGreen" Text="Fulfills responsibilties and commitments with the learning environment.&#x0a; " />
+                        <Run Foreground="DarkOliveGreen" Text="Completes and submits class work, homework, and assignments according to agreed-upon timelines.&#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Takes responsibility for and manages own behavior.&#x0a;" />-->
+                        </TextBlock.Inlines>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </Button>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplate_col2">
+            <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor2, Mode=TwoWay}" Width="50" Height="180">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="ExtraBlack" FontSize="12" Text="Organization &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Devises and follows a plan for completing work and tasks&#x0a; " />
+                                <Run Foreground="WhiteSmoke"  Text="Establishes priorities&#x0a; " />
+                                <Run Foreground="WhiteSmoke"  Text="Identifies , gathers, evaluates, and uses .. " />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Button Style="{x:Null}" Background="Transparent" Cursor="Hand" Command="{Binding DataContext.c_UC_LearningSkills, RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="Organization">
+                    <TextBlock TextWrapping="NoWrap"   >
+                        <TextBlock.Inlines >
+                            <Run FontWeight="ExtraBlack" FontSize="16" Text="Organization&#x0a;" />
+                            <!--<Run Foreground="DarkOliveGreen" Text="Devises and follows a plan for completing work and tasks &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Establishes priorities &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Identifies , gathers, evaluates, and uses .." />-->
+                        </TextBlock.Inlines>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </Button>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplate_col3" >
+            <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor1, Mode=TwoWay}" Width="50" Height="180">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Independent Work &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Independently monitors, assesses, and revises&#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Uses class time appropriately &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Follow instructions with minimal supervision." />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Button Style="{x:Null}" Background="Transparent" Cursor="Hand" Command="{Binding DataContext.c_UC_LearningSkills,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="Independent">
+                    <TextBlock TextWrapping="NoWrap"  >
+                        <TextBlock.Inlines >
+                            <Run FontWeight="ExtraBlack" FontSize="16" Text="Independent Work &#x0a;" />
+                            <!--<Run Foreground="DarkOliveGreen" Text="Independently monitors, assesses, and revises &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Uses class time appropriately &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Follow instructions with minimal supervision." />-->
+                        </TextBlock.Inlines>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </Button>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplate_col4"  >
+            <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor2, Mode=TwoWay}"  Width="50" Height="180" >
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="ExtraBlack" FontSize="16" Text="Collaboration &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Accepts various roles and an equitable share of work in a group &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Responds positively to the ideas, opinions,&#x0a; " />
+                                <Run Foreground="WhiteSmoke" Text="builds healthy peer-to-peer relationships in person." />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Button Style="{x:Null}" Background="Transparent" Cursor="Hand" Command="{Binding DataContext.c_UC_LearningSkills,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="Collaboration">
+                    <TextBlock TextWrapping="NoWrap" >
+                        <TextBlock.Inlines >
+                            <Run FontWeight="ExtraBlack" FontSize="16" Text="Collaboration &#x0a;" />
+                            <!--<Run Foreground="DarkOliveGreen" Text="Accepts various roles and an equitable share of work in a group &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Responds positively to the ideas, opinions,&#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="builds healthy peer-to-peer relationships in person. " />-->
+                        </TextBlock.Inlines>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </Button>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplate_col5"  >
+            <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor1, Mode=TwoWay}" Width="50" Height="180">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="ExtraBlack" FontSize="12" Text="Initiative &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Looks and acts on new ideas and opportunities for learning &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Demonstrates the capacity for innovation and &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Demonstrates curiousity and interest in learning" />
+                            </TextBlock.Inlines>
+
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Button Style="{x:Null}" Background="Transparent" Cursor="Hand" Command="{Binding DataContext.c_UC_LearningSkills,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="Initiative">
+                    <TextBlock TextWrapping="NoWrap"  >
+                        <TextBlock.Inlines >
+                            <Run FontWeight="ExtraBlack" FontSize="16" Text="Initiative &#x0a;" />
+                            <!--<Run Foreground="DarkOliveGreen" Text="Looks and acts on new ideas and opportunities for learning &#x0a; " />
+                        <Run Foreground="DarkOliveGreen" Text="Demonstrates the capacity for innovation and  &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Demonstrates curiousity and interest in learning" />-->
+                        </TextBlock.Inlines>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </Button>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplate_col6"  >
+            <Border Background="{Binding Source={x:Static settings:Settings.Default}, Path=LearningSkill_AlterColor2, Mode=TwoWay}"  Width="50" Height="180">
+                <Border.ToolTip>
+                    <ToolTip>
+                        <TextBlock TextWrapping="NoWrap"   >
+                            <TextBlock.Inlines >
+                                <Run FontWeight="Bold" FontSize="12" Text="Self-regulation  &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Sets own individual goals and monitors progress towards achieving them &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Seeks clarification and assistance when needed  &#x0a;" />
+                                <Run Foreground="WhiteSmoke" Text="Assess and reflects critically on own strengths." />
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </ToolTip>
+                </Border.ToolTip>
+                <Button Style="{x:Null}" Background="Transparent" Cursor="Hand" Command="{Binding DataContext.c_UC_LearningSkills,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="SelfRegulation">
+                    <TextBlock TextWrapping="NoWrap"  >
+                        <TextBlock.Inlines >
+                            <Run FontWeight="ExtraBlack" FontSize="16" Text="Self-regulation  &#x0a;" />
+                            <!--<Run Foreground="DarkOliveGreen" Text="Sets own individual goals and monitors progress towards achieving them &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Seeks clarification and assistance when needed  &#x0a;" />
+                        <Run Foreground="DarkOliveGreen" Text="Assess and reflects critically on own strengths." />-->
+                        </TextBlock.Inlines>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </Button>
+            </Border>
+        </DataTemplate>
+
+        <Style x:Key="Centering" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+
+        <Style x:Key="Null"></Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- the background for the button -->
+                            <Rectangle   RadiusX="5" RadiusY="5" Grid.RowSpan="2" Height="20">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#3d78a6" Offset="0"/>
+                                            <GradientStop Color="#3d78a6" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <!-- place for the content inside the button to be displayed -->
+                            <ContentPresenter Grid.RowSpan="2"  
+                              x:Name="PrimaryContent"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock FontSize="20" FontWeight="SemiBold" Height="40" TextAlignment="Left" Margin="20 0 0 0"> STUDENT SCORESHEET</TextBlock>
+        </DockPanel>
+        <!--<Viewbox Stretch="UniformToFill">
+                <WrapPanel>-->
+        <!--Height="Auto" Width="1200"-->
+        <Border BorderThickness="1" Grid.Row="1" Grid.Column="1" x:Name="MainGrid" 
+                            CornerRadius="5,5,5,5" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Border_color, Mode=TwoWay }" Background="Transparent"  Margin="20 0 10 0">
+            <StackPanel Margin="2">
+                <Border Background="AliceBlue">
+                    <StackPanel Orientation="Horizontal" Width="Auto">
+                        <Label Content="Reporting Term:" FontWeight="Bold" FontSize="18" />
+                        <Label Name="lblSem" FontWeight="Bold" FontSize="18" />
+                        <!--<ComboBox DisplayMemberPath="SEMESTER" Width="150" Height="25" 
+                                      VerticalAlignment="Center" FontSize="14" FontWeight="Black" Style="{DynamicResource ComboBoxFlatStyle}" 
+                                      HorizontalAlignment="Right" SelectedValue="{Binding ID}" 
+                                      SelectedValuePath="ID" Name="cmbSemesterList"
+                                      SelectionChanged="cmbSemester_SelectionChanged" IsReadOnly="True">
+                                    </ComboBox>-->
+                    </StackPanel>
+                </Border>
+                <DataGrid x:Name="studentScoregrid" ItemsSource="{Binding STUDENTSCORESHEETLIST}" AlternationCount="2" 
+                                  AlternatingRowBackground="{Binding Source={x:Static settings:Settings.Default}, Path=AlternatingBGColor, Mode=TwoWay }" 
+                                  FontSize="12" CanUserAddRows="false" IsReadOnly="True"  
+                                  GridLinesVisibility="None" CanUserReorderColumns="False" Height="370" 
+                                  VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" >
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="WhiteSmoke" />
+                                </Trigger>
+
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#E6E9ED" />
+                                    <Setter Property="Foreground" Value="WhiteSmoke" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                            <Setter Property="Height" Value="180" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="FontWeight" Value="DemiBold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="-10" />
+                        </Style>
+                        <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="FontWeight" Value="DemiBold" />
+                            <Setter Property="FontFamily" Value="Roboto" />
+                        </Style>
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+                            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            <Setter Property="Width" Value="10"/>
+                            <Setter Property="MinWidth" Value="10"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Height" Value="20" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                            <Setter Property="Focusable" Value="False"/>
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn x:Name="Col1">
+                            <DataGridTemplateColumn.Header>
+                                <StackPanel HorizontalAlignment="Left" Width="380">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Rectangle Width="100" Height="130" VerticalAlignment="Center" Margin="5 0 5 5" >
+                                            <Rectangle.Stroke>
+                                                <SolidColorBrush Color="White"/>
+                                            </Rectangle.Stroke>
+
+                                            <Rectangle.Fill>
+                                                <ImageBrush ImageSource="{Binding DataContext.PHOTO, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"></ImageBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        <StackPanel VerticalAlignment="Center" Height="120">
+                                            <TextBlock Text="{Binding DataContext.SELECTED_FULLNAME, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Foreground="WhiteSmoke" FontWeight="DemiBold" FontSize="25" VerticalAlignment="Center" TextAlignment="Center" Margin="0 10 0 20"/>
+                                            <Label Name="lblID" Content="{Binding DataContext.StudentId, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Visibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="2"/>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                                <Button Click="BackButton_Click">
+                                                    <materialDesign:PackIcon Kind="ArrowLeftDropCircleOutline" Foreground="White"  Width="30" Height="30"/>
+                                                </Button>
+                                                <Button Click="ForwardButton_Click">
+                                                    <materialDesign:PackIcon Kind="ArrowRightDropCircleOutline" Foreground="White" Width="30" Height="30"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Border Background="#D7E6F8" Height="40" VerticalAlignment="Bottom"  HorizontalAlignment="Stretch">
+                                        <TextBlock Text="Assignments" FontSize="20" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+                                    </Border>
+                                </StackPanel>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ASSIGNMENT_NAME}" FontSize="16" Foreground="Black" FontWeight="DemiBold" Height="20" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn x:Name="Col2">
+                            <DataGridTemplateColumn.Header>
+                                <StackPanel Width="490">
+                                    <TextBlock Text="{Binding DataContext.Absent, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right" Foreground="White" Margin="0 20 10 10" FontSize="16"/>
+                                    <TextBlock Text="{Binding DataContext.Late, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right" Foreground="White" FontSize="16" Margin="0 0 10 0" />
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 22 0 0" >
+                                        <Border Width="70" Height="30" Background="AliceBlue" CornerRadius="5" BorderThickness="1" BorderBrush="AliceBlue">
+                                            <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Asmts" Foreground="Black" FontSize="18"/>
+                                        </Border>
+                                        <Border Width="70" Height="31" Background="AliceBlue" CornerRadius="5" BorderThickness="1" BorderBrush="AliceBlue" Margin="3 0 0 0">
+                                            <Label HorizontalContentAlignment="Center" Content="Cmnts" Foreground="Black" FontSize="18"/>
+                                        </Border>
+                                        <Border Width="30"  Height="30" Background="LightGray" CornerRadius="5" BorderThickness="1" BorderBrush="AliceBlue" Margin="3 0 0 0">
+                                            <Label Content="S2" Foreground="Black" FontSize="18" HorizontalContentAlignment="Center"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <Border Background="#D7E6F8" Margin="0 10 0 0" Height="40" HorizontalAlignment="Stretch">
+                                        <TextBlock Text="Score" Margin="10 0" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+                                    </Border>
+                                </StackPanel>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="center">
+                                        <TextBlock Text="{Binding Path=ASSIGNMENT_SCORE}"  TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontWeight="DemiBold"/>
+                                        <!--<Button  Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <TextBlock Text="{Binding Path=ASSIGNMENT_SCORE}" HorizontalAlignment="Center" Foreground="Black" FontWeight="DemiBold" Margin="5 10 0 18"/>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>-->
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_col1}" x:Name="Col3">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Cursor="Hand" HorizontalContentAlignment="Stretch"  Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <TextBlock Cursor="Hand" Text="{Binding Path=LEARNINGSKILL_RESPONSIBILITY_SCORE}" TextAlignment="Center" Foreground="Black" FontWeight="DemiBold"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_col2}" x:Name="Col4" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button  Focusable="False" Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <TextBlock Text="{Binding Path=LEARNINGSKILL_ORGANIZATION_SCORE}" Foreground="Black" FontWeight="DemiBold"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_col3}" x:Name="Col5">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button  Focusable="False" Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <TextBlock Text="{Binding Path=LEARNINGSKILL_INDEPENDENTWORK_SCORE}" Foreground="Black" FontWeight="DemiBold"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_col4}" x:Name="Col6">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button  Focusable="False" Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <TextBlock Text="{Binding Path=LEARNINGSKILL_COLLABORATION_SCORE}" Foreground="Black" FontWeight="DemiBold"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_col5}"  x:Name="Col7">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button  Focusable="False" Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <TextBlock Text="{Binding Path=LEARNINGSKILL_INITIATIVE_SCORE}" Foreground="Black" FontWeight="DemiBold"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_col6}" x:Name="Col8">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button  Focusable="False" Command="{Binding Path=DataContext.cViewStudentScoreSheet,  RelativeSource= {RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <TextBlock Text="{Binding Path=LEARNINGSKILL_SELFREGULATION_SCORE}" Foreground="Black" FontWeight="DemiBold"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,10,0,0" >
+                    <DataGrid Padding="0" CanUserResizeColumns="False" GridLinesVisibility="all" x:Name="Footer" 
+                                        AutoGenerateColumns="False" CanUserAddRows="false" IsReadOnly="True" VerticalGridLinesBrush="Black" 
+                                        CanUserReorderColumns="False" Height="200"
+                                        ItemsSource="{Binding ScoreSheet_footer}" HorizontalScrollBarVisibility="Hidden" >
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                                <Setter Property="Height" Value="30" />
+                                <Setter Property="Background" Value="#80247BC0" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Background" Value="AliceBlue" />
+                                <Setter Property="Foreground" Value="black" />
+                                <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="Height" Value="30" />
+                                <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="415" >
+                                <DataGridTemplateColumn.Header >
+                                    <DockPanel Width="390">
+                                        <TextBlock DockPanel.Dock="Left" Text="Score"/>
+                                        <!--Final Score - most recent - 3-->
+                                        <TextBlock DockPanel.Dock="right" Text=""/>
+                                    </DockPanel>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding col1}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="430">
+                                <DataGridTemplateColumn.Header >
+                                    <Label Content="Total" HorizontalAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold"  Foreground="White"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col2}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Width="58">
+                                <DataGridTemplateColumn.Header >
+                                    <TextBlock Text="E" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col3}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="58" >
+                                <DataGridTemplateColumn.Header >
+                                    <Border >
+                                        <TextBlock Text="E" />
+                                    </Border>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col4}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="58">
+                                <DataGridTemplateColumn.Header >
+                                    <Border >
+                                        <TextBlock Text="E"/>
+                                    </Border>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col5}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="58">
+                                <DataGridTemplateColumn.Header >
+                                    <Border>
+                                        <TextBlock Text="E"/>
+                                    </Border>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col6}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn  Width="58">
+                                <DataGridTemplateColumn.Header >
+                                    <Border>
+                                        <TextBlock Text="E"/>
+                                    </Border>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col7}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="58">
+                                <DataGridTemplateColumn.Header >
+                                    <Border>
+                                        <TextBlock Text="E"/>
+                                    </Border>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding col8}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Details}" />
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <!--</WrapPanel>
+            </Viewbox>-->
+
+    </Grid>
+</Page>

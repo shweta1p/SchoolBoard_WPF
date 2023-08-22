@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Kirin_2.UserControls.UC_TransportAbvr"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kirin_2.UserControls"
+             xmlns:settings="clr-namespace:Kirin_2.Properties"
+             mc:Ignorable="d" 
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="StudentModel"
+             Loaded="StudentView_Loaded"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Height="Auto" Width="Auto"
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <Grid>
+        <Rectangle Fill="{Binding Source={x:Static settings:Settings.Default}, Path=Modal_bg, Mode=TwoWay }" MouseDown="Rectangle_MouseDown"/>
+
+        <Border x:Name="MenuClass" Height="230" BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="LightGray" Background="White" Margin="5" Width="280" MouseLeave="Rectangle_MouseLeave">
+            <Border.RenderTransform>
+                <ScaleTransform x:Name="st" ScaleX="1.0" ScaleY="1.0"></ScaleTransform>
+            </Border.RenderTransform>
+            <DockPanel>
+                <Label DockPanel.Dock="Top" Content="Mode of Transportation" Margin="5" FontWeight="Bold" 
+                       FontSize="20" Width="240" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                <DataGrid SelectionUnit="FullRow" Height="160" Width="250" Visibility="Visible" Margin="10,10,10,10"
+                                                FontSize="14" IsReadOnly="True" Background="Transparent"
+                                                CanUserResizeColumns="True" AutoGenerateColumns="False" x:Name="DGAbvrData"
+                                                Focusable="False" ItemsSource="{Binding ModeList}" HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                                BorderBrush="#4B87B2" BorderThickness="1">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Focusable" Value="False"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="0 10 0 0"/>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="130" Binding="{Binding Path=Transportation, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                            Header="Transportation">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*" Binding="{Binding Path=TransportationAbvr, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True" 
+                                            Header="Abbreviation">
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <!--<DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Binding="{Binding Path=Name, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Focusable" Value="False"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>-->
+                </DataGrid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

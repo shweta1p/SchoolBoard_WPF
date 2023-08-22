@@ -1,0 +1,72 @@
+﻿<Page x:Class="Kirin_2.Pages.Classcalendar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kirin_2.Pages" 
+      xmlns:localBehavior="clr-namespace:Kirin_2.Behaviors" 
+      xmlns:settings="clr-namespace:Kirin_2.Properties"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      xmlns:interactivity="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:skinmanager ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF" 
+      Width="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      skinmanager:SfSkinManager.VisualStyle="MaterialLight"
+      x:Name="CalendarPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Background="#F5F5F5"
+      Title="Classcalendar">
+    <Page.Resources>
+        <Style TargetType="syncfusion:SchedulerHeaderControl">
+            <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }"/>
+            <Setter Property="Foreground" Value="White"/>
+         </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--<Grid.DataContext>
+            <localvm:CalendarViewModel/>
+        </Grid.DataContext>-->
+        <TextBlock Grid.Row="0" FontSize="24" FontWeight="SemiBold" Margin="15 10 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="50"> SCHEDULER</TextBlock>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,4,8,0">
+            <ComboBox x:Name="schedulerViewTypeComboBox" 
+                      SelectedIndex="2" FontSize="16" FontWeight="Bold" Foreground="White"
+                      Width="170" Height="30" Margin="5,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <syncfusion:SfScheduler x:Name="Schedule" Grid.Row="1"
+                                BorderThickness="1" FontSize="16" FontWeight="Bold" Foreground="Black"
+                                BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                AllowViewNavigation="True"
+                                ItemsSource="{Binding Events}"
+                                MinimumDate="{Binding MinDate}"
+                                MaximumDate="{Binding MaxDate}"
+                                DisplayDate="{Binding DisplayDate}"
+                                ViewType="{Binding ElementName=schedulerViewTypeComboBox, Path=SelectedValue, Mode=TwoWay}"
+                                Margin="10" EnableReminder="True">
+            <syncfusion:SfScheduler.MonthViewSettings>
+                <syncfusion:MonthViewSettings AppointmentDisplayMode="Appointment" AppointmentDisplayCount="2"/>
+            </syncfusion:SfScheduler.MonthViewSettings>
+            <syncfusion:SfScheduler.DaysViewSettings>
+                <syncfusion:DaysViewSettings MinimumAppointmentDuration="0:30:0"/>
+            </syncfusion:SfScheduler.DaysViewSettings>
+            <syncfusion:SfScheduler.TimelineViewSettings>
+                <syncfusion:TimelineViewSettings MinimumAppointmentDuration="0:30:0"/>
+            </syncfusion:SfScheduler.TimelineViewSettings>
+            <interactivity:Interaction.Behaviors>
+                <localBehavior:BlackoutDatesBehavior/>
+            </interactivity:Interaction.Behaviors>
+        </syncfusion:SfScheduler>
+       
+    </Grid>
+</Page>

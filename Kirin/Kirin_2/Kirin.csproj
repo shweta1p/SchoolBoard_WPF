@@ -1,0 +1,1966 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{23C6DD09-E0D1-4F74-8CB2-DC62708E505F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Kirin_2</RootNamespace>
+    <AssemblyName>Kirin_2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bold.Licensing, Version=4.1460.81.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bold.Licensing.4.1.81\lib\net46\Bold.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="BoldReports.WPF, Version=4.1460.81.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\BoldReports.WPF.4.1.81\lib\net46\BoldReports.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Geared, Version=1.2.8.2, Culture=neutral, PublicKeyToken=7292f245d14ab8bf, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Geared.1.2.9\lib\net45\LiveCharts.Geared.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.1.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.1\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.1.0.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.1.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Utilities.v4.0">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReachFramework">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ShowMeTheXAML, Version=2.0.0.62, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShowMeTheXAML.2.0.0\lib\net472\ShowMeTheXAML.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Chart.WPF, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Chart.WPF.Classic.19.2.0.44\lib\net46\Syncfusion.Chart.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=20.1460.0.58, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.20.1.0.58\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Data.WPF, Version=20.1460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Data.WPF.20.1.0.52\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Base, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DocIO.Wpf.19.2.0.44\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Gauge.WPF, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Gauge.WPF.19.2.0.44\lib\net46\Syncfusion.Gauge.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.WPF, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Grid.WPF.19.2.0.44\lib\net46\Syncfusion.Grid.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.WPF, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.GridCommon.Wpf.19.2.0.44\lib\net46\Syncfusion.GridCommon.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.2.0.36\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Linq.Base, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Linq.Base.19.2.0.44\lib\net46\Syncfusion.Linq.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.OfficeChart.Base.19.2.0.44\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.1460.0.58, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.Wpf.20.1.0.58\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PdfViewer.WPF, Version=20.1460.0.58, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.PdfViewer.WPF.20.1.0.58\lib\net46\Syncfusion.PdfViewer.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Presentation.Base, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Presentation.Wpf.19.2.0.44\lib\net46\Syncfusion.Presentation.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfBusyIndicator.WPF, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfBusyIndicator.WPF.20.2.0.36\lib\net46\Syncfusion.SfBusyIndicator.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfCellGrid.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfCellGrid.WPF.19.4.0.54\lib\net46\Syncfusion.SfCellGrid.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfChart.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfChart.WPF.19.4.0.54\lib\net46\Syncfusion.SfChart.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDiagram.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfDiagram.WPF.19.4.0.54\lib\net46\Syncfusion.SfDiagram.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDiagramRibbon.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfDiagramRibbon.WPF.19.4.0.54\lib\net46\Syncfusion.SfDiagramRibbon.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfGrid.WPF, Version=20.1460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfGrid.WPF.20.1.0.52\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfGridCommon.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfGridCommon.WPF.19.4.0.54\lib\net46\Syncfusion.SfGridCommon.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfImageEditor.WPF, Version=20.1460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfImageEditor.WPF.20.1.0.52\lib\net46\Syncfusion.SfImageEditor.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.WPF, Version=19.2460.0.62, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfInput.WPF.19.2.0.62\lib\net46\Syncfusion.SfInput.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfMaps.WPF, Version=19.3460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfMaps.WPF.19.3.0.54\lib\net46\Syncfusion.SfMaps.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfRadialMenu.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfRadialMenu.WPF.18.3.0.53\lib\net46\Syncfusion.SfRadialMenu.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfScheduler.WPF, Version=19.2460.0.62, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfScheduler.WPF.19.2.0.62\lib\net46\Syncfusion.SfScheduler.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfShared.WPF.18.3.0.53\lib\net46\Syncfusion.SfShared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSkinManager.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfSkinManager.WPF.19.4.0.54\lib\net46\Syncfusion.SfSkinManager.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSpreadsheet.WPF, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfSpreadsheet.WPF.19.4.0.54\lib\net46\Syncfusion.SfSpreadsheet.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=20.1460.0.58, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.20.1.0.58\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF.Classic, Version=19.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.Classic.19.2.0.44\lib\net46\Syncfusion.Shared.WPF.Classic.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Themes.MaterialLight.WPF, Version=19.2460.0.62, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Themes.MaterialLight.WPF.19.2.0.62\lib\net46\Syncfusion.Themes.MaterialLight.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.WPF, Version=20.1460.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Tools.WPF.20.1.0.52\lib\net46\Syncfusion.Tools.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=19.4460.0.54, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.Wpf.19.4.0.54\lib\net46\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Printing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationClient">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationProvider">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.3.22108.21080, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.4.3.22108.21080\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.3.22108.21080, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Aero.4.3.22108.21080\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.3.22108.21080, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.Metro.4.3.22108.21080\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.3.22108.21080, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.AvalonDock.Themes.VS2010.4.3.22108.21080\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.3.22108.21080, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Toolkit.4.3.22108.21080\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Alerts.xaml.cs">
+      <DependentUpon>Alerts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppView.cs" />
+    <Compile Include="Behaviors\BlackoutDatesBehavior.cs" />
+    <Compile Include="ClassInfo.xaml.cs">
+      <DependentUpon>ClassInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomMsgBox.xaml.cs">
+      <DependentUpon>CustomMsgBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DailyBulletin.xaml.cs">
+      <DependentUpon>DailyBulletin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayNewColumns.xaml.cs">
+      <DependentUpon>DisplayNewColumns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\TreeViewHelper.cs" />
+    <Compile Include="Helpers\Utils.cs" />
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APPROVED_BUDGET.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ASSIGNMENT.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ASSIGNMENT_CATEGORY.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ATTENDANCE_CODES.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CLASS_ATTENDANCE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_DayofWeek.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CLASS_STUDENT.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CLUB.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COUNTRy.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAILYBULLETIN.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DEPARTMENT.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiversityEthenicityData.cs" />
+    <Compile Include="Models\DOMAIN.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EthnicityVSLanguageDS_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FEEDBACK.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAlertType_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAssignmentCategory_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAssignmentDatabyCourseID_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAssignmentforSchedule_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAssignmentList_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAssignmentScoreSheet_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAssignmentsforSearch_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAttendanceCode_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAttendanceReport_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAverageGradesbySubject_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getBirthOriginCountbySubjectID_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBudgetData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBudgetLegendChildData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetBudgetLegendData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetChildNodeDataforMindTree_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetChildNodeofBudgetData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetClassAttendanceData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetClassDataforTeacher_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetClassInfo_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getClassListing_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCourseInstructorData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDailyBulletinDatabyDate_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDailyBulletinData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDistinctCitizenshipCount_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDiversityData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDOBDatabyMonth_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetEarlierNotification_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetEthnicityData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetEthnicityfromDiversity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetEthnicityVsCocurricularBubbleChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetEthnicityVsLanguagesBubbleChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetExtraCoDataforTeacher_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesbyCitizenship_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesbyDiversity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesbyLanguage_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesbySubjectforRadar_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesbySubjectId_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsAttendanceData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsAttendanceHistogramData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsCitizenshipAreaChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsCitizenshipBubbleChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsCitizenshipRadarChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsDiversityAreaChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsDiversityBoxPlotChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsDiversityBubbleChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsDiversityRadarChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetGradesVsLanguagesChartData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetHierarchicalData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getLanguageCountAllStudents_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getLanguageCountofStudentsbySubject_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetLanguagefromEthnicity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetNewNotifications_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetOrganizationalData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetParentBudgetData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetParentID_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetPieTransfferedStudentData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSchoolAlerts_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSchoolDBData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSchoolList_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSchoolNameforUser_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetScoresheetbySubject_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSemesterList_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetShortBudgetData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSportsfromEthnicity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStackedBarAttandanceData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStackedDiversityData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStackedDiversityEthnicityData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStackedEthnicityData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStaffDatabyId_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStaffData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStaffforSearch_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentAlertsData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentAttendancebyCode_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentAttendanceData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentAttendance_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentCitizenshipCountbySubjectID_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentCitizenshipData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentClubData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentComments_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyCitizenship_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyClub_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyDiversity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyEthnicityandDivesity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyEthnicityandLanguage_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyEthnicityandSports_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyEthnicity_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabyLanguage_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatabySports_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDataforMapPoint_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDataforScatterPoint_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDatafromTeacherID_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDateofBirthCountbySubjectID_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDateofBirthData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentDOBdataforLegend_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentEthnicityLegendData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentExtraCo_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentGenderCount_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentGradebySubjectId_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentLanguageDataforHeatmap_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentListbySubjectId_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentListbySubject_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentMapData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentModeofTransportation_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentProfileData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentProfileDetails_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentsbyCourse_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentScatterPlotData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentScoreandAverage_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentScorebyClass_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getStudentScoreSheet_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentsforSearch_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentsList_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentTransfferedCount_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetStudentTransfferedStackBarLegend_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSubjectIdforStudent_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetSubjectList_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTeacherProfileData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTransferredStudentDataforBarGraph_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTransferredStudentDataforStackedBar_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTransferStudentDatabyMonth_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTransferStudentDatabyType_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetTransferType_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUserData_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GRADE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GRADE_MASTER.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOLIDAY_LIST.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IMG_TBL.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IMG_TYPE_CLASSIFICATION.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItemInfo.cs" />
+    <Compile Include="Models\KIRIN.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KIRIN.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KIRIN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KIRIN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KIRIN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KIRIN.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LANGUAGE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LANGUAGE_PRIORITY.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\NOTIFICATION.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NOTIFICATION_TYPE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ROLE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SCHOOL.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SCHOOLBOARD.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SCHOOLBOARD_ADMINS.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SEMESTER.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SerialNumber.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STAFF_DIRECTORY.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STAFF_PHONE_NO.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_ALERTS.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_ALERT_MAPPING.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_AVG_GRADE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_COCURRICULAR.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_COMMENT.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_EXTRA_CO.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_GRADE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_LANGUAGE_MAPPING.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_PHONE_NO.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_SCORE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_SPECIAL_NEEDS.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_SUBJECT_MAPPING.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STUDENT_TRANSFERRED.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SUBJECT.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SUBJECT_TEACHER_MAPPING.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SUBJECT_TYPE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEACHER_DISABILITY.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEACHER_DISCIPLINARY_ACTIONS.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEACHER_EXTRA_CO.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEACHER_LANGUAGE_MAPPING.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEACHING_STATUS.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TRANSFER_TYPE.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StudentView.xaml.cs">
+      <DependentUpon>StudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClassMultiDayAttendance.xaml.cs">
+      <DependentUpon>ClassMultiDayAttendance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Datasandbox_Reference.xaml.cs">
+      <DependentUpon>Datasandbox_Reference.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExcelViewer.xaml.cs">
+      <DependentUpon>ExcelViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExcelPage.xaml.cs">
+      <DependentUpon>ExcelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEditorWindow.xaml.cs">
+      <DependentUpon>ImageEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FeedbackWindow.xaml.cs">
+      <DependentUpon>FeedbackWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FinancialMapSandbox.xaml.cs">
+      <DependentUpon>FinancialMapSandbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MLDashboard.xaml.cs">
+      <DependentUpon>MLDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResourcesSandbox.xaml.cs">
+      <DependentUpon>ResourcesSandbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HierarchicalView.xaml.cs">
+      <DependentUpon>HierarchicalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrganizationChart_ChildView.xaml.cs">
+      <DependentUpon>OrganizationChart_ChildView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrganizationChart.xaml.cs">
+      <DependentUpon>OrganizationChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Assessment1.xaml.cs">
+      <DependentUpon>Assessment1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AssignmentMaker.xaml.cs">
+      <DependentUpon>AssignmentMaker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClassAttendance.xaml.cs">
+      <DependentUpon>ClassAttendance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Classes.xaml.cs">
+      <DependentUpon>Classes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Classroom.xaml.cs">
+      <DependentUpon>Classroom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Mapping1_ChildView.xaml.cs">
+      <DependentUpon>Mapping1_ChildView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MappingSV.xaml.cs">
+      <DependentUpon>MappingSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Mapping1.xaml.cs">
+      <DependentUpon>Mapping1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MLSandbox.xaml.cs">
+      <DependentUpon>MLSandbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Predictiveanalysis.xaml.cs">
+      <DependentUpon>Predictiveanalysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PrintWindow.xaml.cs">
+      <DependentUpon>PrintWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SchoolDB.xaml.cs">
+      <DependentUpon>SchoolDB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AttendancePage.xaml.cs">
+      <DependentUpon>AttendancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Classcalendar.xaml.cs">
+      <DependentUpon>Classcalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Datasandbox.xaml.cs">
+      <DependentUpon>Datasandbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Gradebook.xaml.cs">
+      <DependentUpon>Gradebook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Machinelearning.xaml.cs">
+      <DependentUpon>Machinelearning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Planner.xaml.cs">
+      <DependentUpon>Planner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResourceManagement.xaml.cs">
+      <DependentUpon>ResourceManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DashboardInsights.xaml.cs">
+      <DependentUpon>DashboardInsights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SchoolDB_StudentView.xaml.cs">
+      <DependentUpon>SchoolDB_StudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SchoolDB_SBAdminView.xaml.cs">
+      <DependentUpon>SchoolDB_SBAdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SchoolDB_TeacherView.xaml.cs">
+      <DependentUpon>SchoolDB_TeacherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Alerts.xaml.cs">
+      <DependentUpon>Alerts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AttendanceReport.xaml.cs">
+      <DependentUpon>AttendanceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScoreSheet.xaml.cs">
+      <DependentUpon>ScoreSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScoreSheet_FinalGrades.xaml.cs">
+      <DependentUpon>ScoreSheet_FinalGrades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScoreSheet_StudentView.xaml.cs">
+      <DependentUpon>ScoreSheet_StudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Scoreesheet_Report.xaml.cs">
+      <DependentUpon>Scoreesheet_Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StudentRoster.xaml.cs">
+      <DependentUpon>StudentRoster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TabularFinancialView.xaml.cs">
+      <DependentUpon>TabularFinancialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StaffDirectory.xaml.cs">
+      <DependentUpon>StaffDirectory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TBD.xaml.cs">
+      <DependentUpon>TBD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordChange.xaml.cs">
+      <DependentUpon>PasswordChange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordChange2.xaml.cs">
+      <DependentUpon>PasswordChange2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StaffProfile.xaml.cs">
+      <DependentUpon>StaffProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StudentProfile.xaml.cs">
+      <DependentUpon>StudentProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubjectDetails.xaml.cs">
+      <DependentUpon>SubjectDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="System\Windows\Media\Imaging\Extensions.cs" />
+    <Compile Include="UserControlMenuItem.xaml.cs">
+      <DependentUpon>UserControlMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SingleDayCalender.xaml.cs">
+      <DependentUpon>SingleDayCalender.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SyncFusionCalender.xaml.cs">
+      <DependentUpon>SyncFusionCalender.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PieCustomLegend.xaml.cs">
+      <DependentUpon>PieCustomLegend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_EditDataFilter.xaml.cs">
+      <DependentUpon>UC_EditDataFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_iOSStream.xaml.cs">
+      <DependentUpon>UC_iOSStream.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_AddAlerts.xaml.cs">
+      <DependentUpon>UC_AddAlerts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_DeleteAssignment.xaml.cs">
+      <DependentUpon>UC_DeleteAssignment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_PdfView.xaml.cs">
+      <DependentUpon>UC_PdfView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_FeedbackWindow.xaml.cs">
+      <DependentUpon>UC_FeedbackWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_ImageWindowMessage.xaml.cs">
+      <DependentUpon>UC_ImageWindowMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentScatterPlotLegendView.xaml.cs">
+      <DependentUpon>UC_StudentScatterPlotLegendView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentAssignmentList.xaml.cs">
+      <DependentUpon>UC_StudentAssignmentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_ExcelView.xaml.cs">
+      <DependentUpon>UC_ExcelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentViewforAttendanceCode.xaml.cs">
+      <DependentUpon>UC_StudentViewforAttendanceCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentSubjectList.xaml.cs">
+      <DependentUpon>UC_StudentSubjectList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InsightFeedback.xaml.cs">
+      <DependentUpon>InsightFeedback.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_AccountAccess.xaml.cs">
+      <DependentUpon>UC_AccountAccess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVEthenicityVsLanguage.xaml.cs">
+      <DependentUpon>UC_SVEthenicityVsLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVEthenicityVsSports.xaml.cs">
+      <DependentUpon>UC_SVEthenicityVsSports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_TransportAbvr.xaml.cs">
+      <DependentUpon>UC_TransportAbvr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVMap.xaml.cs">
+      <DependentUpon>UC_SVMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVTransfferedStudentStackbar.xaml.cs">
+      <DependentUpon>UC_SVTransfferedStudentStackbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVClub.xaml.cs">
+      <DependentUpon>UC_SVClub.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVLanguageBar.xaml.cs">
+      <DependentUpon>UC_SVLanguageBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVDiversityPie.xaml.cs">
+      <DependentUpon>UC_SVDiversityPie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVSportsAttendance.xaml.cs">
+      <DependentUpon>UC_SVSportsAttendance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVDiversityBar.xaml.cs">
+      <DependentUpon>UC_SVDiversityBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVSportsBar.xaml.cs">
+      <DependentUpon>UC_SVSportsBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVSportsPie.xaml.cs">
+      <DependentUpon>UC_SVSportsPie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVDOBPie.xaml.cs">
+      <DependentUpon>UC_SVDOBPie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVDOBBar.xaml.cs">
+      <DependentUpon>UC_SVDOBBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVTransferStudentBar.xaml.cs">
+      <DependentUpon>UC_SVTransferStudentBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_SVCitizenshipBar.xaml.cs">
+      <DependentUpon>UC_SVCitizenshipBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentViewforDiversity.xaml.cs">
+      <DependentUpon>UC_StudentViewforDiversity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentViewforCitizenship.xaml.cs">
+      <DependentUpon>UC_StudentViewforCitizenship.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentViewforScatterPoint.xaml.cs">
+      <DependentUpon>UC_StudentViewforScatterPoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentViewforPieChart.xaml.cs">
+      <DependentUpon>UC_StudentViewforPieChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_AddColumn.xaml.cs">
+      <DependentUpon>UC_AddColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PieCustomToolTip.xaml.cs">
+      <DependentUpon>PieCustomToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Row4CustomTooltip.xaml.cs">
+      <DependentUpon>Row4CustomTooltip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_Row1CustomToolTip.xaml.cs">
+      <DependentUpon>UC_Row1CustomToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_CustomToolTip.xaml.cs">
+      <DependentUpon>UC_CustomToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_AddAssignment.xaml.cs">
+      <DependentUpon>UC_AddAssignment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomLegend.xaml.cs">
+      <DependentUpon>CustomLegend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_AttendanceComment.xaml.cs">
+      <DependentUpon>UC_AttendanceComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_ClassSelector.xaml.cs">
+      <DependentUpon>UC_ClassSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_ContextMenu.xaml.cs">
+      <DependentUpon>UC_ContextMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_DemographicTooltip.xaml.cs">
+      <DependentUpon>UC_DemographicTooltip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_LearningSkills.xaml.cs">
+      <DependentUpon>UC_LearningSkills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StaffProfileModal.xaml.cs">
+      <DependentUpon>UC_StaffProfileModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_StudentProfileModal.xaml.cs">
+      <DependentUpon>UC_StudentProfileModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_ViewBulletin.xaml.cs">
+      <DependentUpon>UC_ViewBulletin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AlertsViewModel.cs" />
+    <Compile Include="ViewModel\CalendarViewModel.cs" />
+    <Compile Include="ViewModel\ClassAttendanceViewModel.cs" />
+    <Compile Include="ViewModel\Command\BindingProxy.cs" />
+    <Compile Include="ViewModel\Command\CommandFlow.cs" />
+    <Compile Include="ViewModel\Command\CommandVM.cs" />
+    <Compile Include="ViewModel\Command\Converters.cs" />
+    <Compile Include="ViewModel\MLViewModel.cs" />
+    <Compile Include="ViewModel\DashboardViewModel.cs" />
+    <Compile Include="Models\BudgetData.cs" />
+    <Compile Include="Models\StaffData.cs" />
+    <Compile Include="ViewModel\FinancialViewModel.cs" />
+    <Compile Include="ViewModel\Flowchart.cs" />
+    <Compile Include="ViewModel\FlowChartVM.cs" />
+    <Compile Include="ViewModel\GradeBookViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\MindmapDataItem.cs" />
+    <Compile Include="ViewModel\ChildNodeView.cs" />
+    <Compile Include="ViewModel\OrganizationChildVM.cs" />
+    <Compile Include="ViewModel\HierarchicalVM.cs" />
+    <Compile Include="ViewModel\OrganizationVM.cs" />
+    <Compile Include="ViewModel\PdfViewer.cs" />
+    <Compile Include="ViewModel\PrintPreview.cs" />
+    <Compile Include="ViewModel\SandboxViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\SchoolViewModel.cs" />
+    <Compile Include="ViewModel\StudentViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="ViewModel\SubjectViewModel.cs" />
+    <Page Include="Alerts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\IconDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClassInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomMsgBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailyBulletin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DisplayNewColumns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MaterialDesignResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\StudentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ClassMultiDayAttendance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Datasandbox_Reference.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ExcelViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ExcelPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\FeedbackWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\FinancialMapSandbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MLDashboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResourcesSandbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HierarchicalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrganizationChart_ChildView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrganizationChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Assessment1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AssignmentMaker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ClassAttendance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Classes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Classroom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Mapping1_ChildView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MappingSV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Mapping1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MLSandbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Predictiveanalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PrintWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SchoolDB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AttendancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Classcalendar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Dashboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Datasandbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Gradebook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Machinelearning.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Planner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResourceManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DashboardInsights.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SchoolDB_StudentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SchoolDB_SBAdminView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SchoolDB_TeacherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Alerts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AttendanceReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ScoreSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ScoreSheet_FinalGrades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ScoreSheet_StudentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Scoreesheet_Report.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\StudentRoster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\TabularFinancialView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\StaffDirectory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TBD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PasswordChange.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PasswordChange2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ColorModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StaffProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StudentProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubjectDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SingleDayCalender.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SyncFusionCalender.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PieCustomLegend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_EditDataFilter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_iOSStream.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_AddAlerts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_DeleteAssignment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_PdfView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_FeedbackWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_ImageWindowMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentScatterPlotLegendView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentAssignmentList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_ExcelView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentViewforAttendanceCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentSubjectList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\InsightFeedback.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_AccountAccess.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVEthenicityVsLanguage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVEthenicityVsSports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_TransportAbvr.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVMap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVTransfferedStudentStackbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVClub.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVLanguageBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVDiversityPie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVSportsAttendance.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVDiversityBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVSportsBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVSportsPie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVDOBPie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVDOBBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVTransferStudentBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_SVCitizenshipBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentViewforDiversity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentViewforCitizenship.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentViewforScatterPoint.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentViewforPieChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_AddColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PieCustomToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Row4CustomTooltip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_Row1CustomToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_CustomToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_AddAssignment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CustomLegend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_AttendanceComment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_ClassSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_ContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_DemographicTooltip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_LearningSkills.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StaffProfileModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_StudentProfileModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UC_ViewBulletin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Models\SchoolModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Models\KIRIN.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KIRIN.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\KIRIN.edmx.diagram">
+      <DependentUpon>KIRIN.edmx</DependentUpon>
+    </None>
+    <None Include="Models\SchoolModel.edmx.diagram">
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="Reports\StundentRoster.rdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\closeBtn_default.png" />
+    <Resource Include="Assets\closeBtn_MouseOver.png" />
+    <Resource Include="Assets\img_background.png" />
+    <Resource Include="Assets\img_contact.png" />
+    <Resource Include="Assets\img_home.png" />
+    <Resource Include="Assets\img_map.png" />
+    <Resource Include="Assets\img_message.png" />
+    <Resource Include="Assets\img_setting.png" />
+    <Resource Include="Assets\img_signout.png" />
+    <Resource Include="Assets\tgBtn_default.png" />
+    <Resource Include="Assets\tgBtn_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Austria.png" />
+    <Resource Include="Images\classInfoLogo.jpg" />
+    <Resource Include="Images\favicon.ico" />
+    <Resource Include="Images\India.png" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Release\Images\Australia.png" />
+    <Resource Include="bin\Release\Images\Austria.png" />
+    <Resource Include="bin\Release\Images\Belgium.png" />
+    <Resource Include="bin\Release\Images\Brazil.png" />
+    <Resource Include="bin\Release\Images\Canada.png" />
+    <Resource Include="bin\Release\Images\Chile.png" />
+    <Resource Include="bin\Release\Images\China.png" />
+    <Resource Include="bin\Release\Images\classInfoLogo.jpg" />
+    <Resource Include="bin\Release\Images\Colombia.png" />
+    <Resource Include="bin\Release\Images\Costa Rica.png" />
+    <Resource Include="bin\Release\Images\favicon.ico" />
+    <Resource Include="bin\Release\Images\France.png" />
+    <Resource Include="bin\Release\Images\Germany.png" />
+    <Resource Include="bin\Release\Images\India.png" />
+    <Resource Include="bin\Release\Images\Indonesia.png" />
+    <Resource Include="bin\Release\Images\Ireland.png" />
+    <Resource Include="bin\Release\Images\Italy.png" />
+    <Resource Include="bin\Release\Images\Logo.ico" />
+    <Resource Include="bin\Release\Images\Logo.png" />
+    <Resource Include="bin\Release\Images\Mexico.png" />
+    <Resource Include="bin\Release\Images\Netherlands.png" />
+    <Resource Include="bin\Release\Images\New Zealand.png" />
+    <Resource Include="bin\Release\Images\Nigeria.png" />
+    <Resource Include="bin\Release\Images\Pakistan.png" />
+    <Resource Include="bin\Release\Images\Peru.png" />
+    <Resource Include="bin\Release\Images\Philippines.png" />
+    <Resource Include="bin\Release\Images\Poland.png" />
+    <Resource Include="bin\Release\Images\Russian Federation.png" />
+    <Resource Include="bin\Release\Images\South Korea.png" />
+    <Resource Include="bin\Release\Images\Spain.png" />
+    <Resource Include="bin\Release\Images\Sweden.png" />
+    <Resource Include="bin\Release\Images\transparent.png" />
+    <Resource Include="bin\Release\Images\Turkey.png" />
+    <Resource Include="bin\Release\Images\United Kingdom.png" />
+    <Resource Include="bin\Release\Images\United States.png" />
+    <Resource Include="bin\Debug\Images\Australia.png" />
+    <Resource Include="bin\Debug\Images\Austria.png" />
+    <Resource Include="bin\Debug\Images\Belgium.png" />
+    <Resource Include="bin\Debug\Images\Brazil.png" />
+    <Resource Include="bin\Debug\Images\Canada.png" />
+    <Resource Include="bin\Debug\Images\Chile.png" />
+    <Resource Include="bin\Debug\Images\China.png" />
+    <Resource Include="bin\Debug\Images\classInfoLogo.jpg" />
+    <Resource Include="bin\Debug\Images\Colombia.png" />
+    <Resource Include="bin\Debug\Images\Costa Rica.png" />
+    <Resource Include="bin\Debug\Images\favicon.ico" />
+    <Resource Include="bin\Debug\Images\France.png" />
+    <Resource Include="bin\Debug\Images\Germany.png" />
+    <Resource Include="bin\Debug\Images\India.png" />
+    <Resource Include="bin\Debug\Images\Indonesia.png" />
+    <Resource Include="bin\Debug\Images\Ireland.png" />
+    <Resource Include="bin\Debug\Images\Italy.png" />
+    <Resource Include="bin\Debug\Images\Logo.ico" />
+    <Resource Include="bin\Debug\Images\Logo.png" />
+    <Resource Include="bin\Debug\Images\Mexico.png" />
+    <Resource Include="bin\Debug\Images\Netherlands.png" />
+    <Resource Include="bin\Debug\Images\New Zealand.png" />
+    <Resource Include="bin\Debug\Images\Nigeria.png" />
+    <Resource Include="bin\Debug\Images\Pakistan.png" />
+    <Resource Include="bin\Debug\Images\Peru.png" />
+    <Resource Include="bin\Debug\Images\Philippines.png" />
+    <Resource Include="bin\Debug\Images\Poland.png" />
+    <Resource Include="bin\Debug\Images\Russian Federation.png" />
+    <Resource Include="bin\Debug\Images\South Korea.png" />
+    <Resource Include="bin\Debug\Images\Spain.png" />
+    <Resource Include="bin\Debug\Images\Sweden.png" />
+    <Resource Include="bin\Debug\Images\transparent.png" />
+    <Resource Include="bin\Debug\Images\Turkey.png" />
+    <Resource Include="bin\Debug\Images\United Kingdom.png" />
+    <Resource Include="bin\Debug\Images\United States.png" />
+    <Resource Include="Images\Australia.png" />
+    <Resource Include="Images\Belgium.png" />
+    <Resource Include="Images\Brazil.png" />
+    <Resource Include="Images\Canada.png" />
+    <Resource Include="Images\Chile.png" />
+    <Resource Include="Images\China.png" />
+    <Resource Include="Images\Colombia.png" />
+    <Resource Include="Images\Costa Rica.png" />
+    <Resource Include="Images\France.png" />
+    <Resource Include="Images\Germany.png" />
+    <Resource Include="Images\Indonesia.png" />
+    <Resource Include="Images\Ireland.png" />
+    <Resource Include="Images\Italy.png" />
+    <Resource Include="Images\Mexico.png" />
+    <Resource Include="Images\Netherlands.png" />
+    <Resource Include="Images\New Zealand.png" />
+    <Resource Include="Images\Nigeria.png" />
+    <Resource Include="Images\Pakistan.png" />
+    <Resource Include="Images\Peru.png" />
+    <Resource Include="Images\Philippines.png" />
+    <Resource Include="Images\Poland.png" />
+    <Resource Include="Images\Russian Federation.png" />
+    <Resource Include="Images\South Korea.png" />
+    <Resource Include="Images\Spain.png" />
+    <Resource Include="Images\Sweden.png" />
+    <Resource Include="Images\Turkey.png" />
+    <Resource Include="Images\United Kingdom.png" />
+    <Resource Include="Images\United States.png" />
+    <Resource Include="Images\loading-dots.gif" />
+    <Resource Include="Images\awesome.JPG" />
+    <Resource Include="Images\insight.JPG" />
+    <Resource Include="Images\Info.JPG" />
+    <Resource Include="Images\loading.gif" />
+    <Resource Include="Assets\DashboardScreenshot.PNG" />
+    <Content Include="Pages\World.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Logo.ico" />
+    <Resource Include="Assets\scorecard-icon-0 .jpg" />
+    <Resource Include="Assets\GradeSetup.png" />
+    <Resource Include="Assets\notebook.png" />
+    <Resource Include="Assets\reportcards.png" />
+    <Resource Include="Assets\studentInfo.png" />
+    <Resource Include="Assets\classcontent.jpg" />
+    <Content Include="Microsoft.Xaml.Behaviors.dll" />
+    <Content Include="Microsoft.Xaml.Behaviors.pdb" />
+    <Content Include="Models\KIRIN.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KIRIN.edmx</DependentUpon>
+      <LastGenOutput>KIRIN.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\KIRIN.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KIRIN.edmx</DependentUpon>
+      <LastGenOutput>KIRIN.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SchoolModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+      <LastGenOutput>SchoolModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SchoolModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+      <LastGenOutput>SchoolModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

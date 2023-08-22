@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="Kirin_2.UserControls.UC_EditDataFilter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kirin_2.UserControls"
+             xmlns:settings="clr-namespace:Kirin_2.Properties"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="AccountAccessControl"
+             Loaded="EditDataFilter_Loaded"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Height="Auto" Width="Auto">
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+    <Grid Background="{Binding Source={x:Static settings:Settings.Default}, Path=Modal_bg, Mode=TwoWay }">
+
+        <Border BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                       Height="700" Width="1150" CornerRadius="5" Background="WhiteSmoke" Margin="5" >
+            <DockPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Background="White" VerticalAlignment="Top">
+                        <Button BorderThickness="0" Background="Transparent" Height="60" Focusable="False" Margin="30 0 0 0" Click="Close_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Close" Background="Transparent" Foreground="Gray" Height="30" Width="30" />
+                            </StackPanel>
+                        </Button>
+
+                        <Label Content="Edit data filter" FontSize="22" FontWeight="Medium" VerticalAlignment="Center"></Label>
+                    </StackPanel>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
+                        <StackPanel>
+                            <Border Grid.Row="1" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="100 30" >
+                                <StackPanel Orientation="Vertical" Margin="20 15">
+                                    <Label Content="Choose filter type" FontSize="20" FontWeight="Medium" VerticalAlignment="Center"></Label>
+
+                                    <Border BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="WhiteSmoke" Margin="0 10">
+                                        <StackPanel Orientation="Vertical" Margin="10">
+                                            <Label Content="Internal traffic" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center"></Label>
+                                            <Label Content="Filter event data that you have identified as internal traffic." FontSize="16" FontWeight="Normal" VerticalContentAlignment="Top"></Label>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="2" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="100 0 100 30" >
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Filter details" FontSize="20" FontWeight="Medium" VerticalAlignment="Center" Margin="20 10"></Label>
+                                    <Separator VerticalAlignment="Top" Background="LightGray" />
+
+                                    <Label Content="Data Filter Name" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Margin="20 10 10 0"></Label>
+                                    <TextBox FontSize="16" BorderBrush="LightGray" BorderThickness="1" Margin="20 0 0 10" Width="500" FontWeight="Normal" 
+                                     Text="Internal Traffic" Foreground="Gray" Padding="10" HorizontalAlignment="Left"></TextBox>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Filter opration" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Margin="20 10 0 0"></Label>
+                                        <materialDesign:PackIcon Kind="QuestionMarkCircleOutline" VerticalAlignment="Bottom" Background="Transparent" Foreground="Gray" Height="20" Width="20" Margin="0 0 0 5" />
+                                    </StackPanel>
+                                    <TextBox FontSize="16" BorderBrush="LightGray" BorderThickness="1" Margin="20 0 0 30" Width="500" FontWeight="Normal" 
+                                     Text="Exclude" Foreground="Gray" Padding="10" HorizontalAlignment="Left"></TextBox>
+
+                                    <Separator VerticalAlignment="Top" Background="LightGray" Margin="20 0" />
+
+                                    <Label Content="Filter events with the following parameter value" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center" Margin="20 10 0 0"></Label>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Parameter name" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Margin="20 5 0 0"></Label>
+
+                                        <Label Content="Parameter value" FontSize="16" FontWeight="Medium" VerticalAlignment="Center" Margin="20 5 0 0"></Label>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                                        <TextBlock Text="traffic_type" FontSize="16" FontWeight="Normal" VerticalAlignment="Center" Margin="25 5 0 0"></TextBlock>
+
+                                        <TextBox FontSize="16" BorderBrush="LightGray" BorderThickness="1" Margin="65 10 0 0" Width="300" FontWeight="Normal" 
+                                     Text="internal" Foreground="Gray" Padding="10" HorizontalAlignment="Left"></TextBox>
+                                    </StackPanel>
+
+                                    <Separator VerticalAlignment="Top" Background="LightGray" Margin="20 0" />
+
+                                    <Label Content="Summary" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Center" Margin="20 10 0 0"></Label>
+                                    <TextBlock FontSize="16" FontWeight="Normal" VerticalAlignment="Center" Margin="25 5 0 25">
+                                Exclude events where the value of parameter <Italic>traffic_type</Italic> exactly matches <Italic>internal</Italic>.
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="3" BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="100 0 100 30" >
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Filter state" FontSize="20" FontWeight="Medium" VerticalAlignment="Center" Margin="20 10"></Label>
+
+                                    <Border BorderThickness="1" Panel.ZIndex="-100" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"
+                                                CornerRadius="5" Background="White" Margin="25 0 25 25" >
+                                        <StackPanel Orientation="Vertical">
+                                            <RadioButton Margin="20 5" IsChecked="True" Style="{Binding null}" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                                                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                                                    <Label Content="Testing" FontSize="16" FontWeight="DemiBold" VerticalContentAlignment="Bottom"></Label>
+                                                    <TextBlock Padding="5 0" FontSize="14" FontWeight="Normal" VerticalAlignment="Top">
+                                            This filter will be evaluated and matching data will be identified with the dimension "Test data filter name", which is available in reporting.
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </RadioButton>
+                                            <Separator VerticalAlignment="Top" Background="LightGray" Margin="20 5" />
+
+                                            <RadioButton Margin="20 5">
+                                                <StackPanel Orientation="Vertical">
+                                                    <Label Content="Active" FontSize="16" FontWeight="DemiBold" VerticalContentAlignment="Bottom"></Label>
+                                                    <TextBlock Padding="5 0" FontSize="14" FontWeight="Normal" VerticalAlignment="Top">
+                                            This filter will be evaluated and applied to incoming data. Matching data will be excluded from processing.
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </RadioButton>
+                                            <Separator VerticalAlignment="Top" Background="LightGray" Margin="20 5" />
+
+                                            <RadioButton Margin="20 5 5 10">
+                                                <StackPanel Orientation="Vertical">
+                                                    <Label Content="InActive" FontSize="16" FontWeight="DemiBold" VerticalContentAlignment="Bottom"></Label>
+                                                    <TextBlock Padding="5 0" FontSize="14" FontWeight="Normal" VerticalAlignment="Top">
+                                            This filter will not be evaluated.
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </RadioButton>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

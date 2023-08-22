@@ -1,0 +1,125 @@
+﻿using Kirin_2.ViewModel;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Media;
+
+namespace Kirin_2.Pages
+{
+    /// <summary>
+    /// Interaction logic for Attendance1.xaml
+    /// </summary>
+    public partial class ClassAttendance : Page
+    {
+        public ObservableCollection<StudentDef> classlist;
+        public string ClassID;
+        public ClassAttendance(string classID)
+        {
+            InitializeComponent();
+            ClassAttendanceViewModel classVM = new ClassAttendanceViewModel();
+            DataContext = classVM;
+            ClassID = classID;
+            classVM.getClassList(Int32.Parse(classID));
+
+
+           ClassTitle.Content = "Record Meeting Attendance: " + classVM.getClassName(Int32.Parse(classID));
+        }
+
+        private void SubmitAttendance(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var item = sender as Button;
+
+            
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            if (mw != null)
+            {
+                mw.MainWindowFrame.Content = new ClassMultiDayAttendance(item.Tag.ToString());
+                //mw.MainWindowFrame.Content = new ClassMultiDayAttendance(ClassID);
+            }
+        }
+
+        private void SwitchToMultiDayView(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var item = sender as Button;
+
+
+            MainWindow mw = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            if (mw != null)
+            {
+                mw.MainWindowFrame.Content = new ClassMultiDayAttendance(item.Tag.ToString());
+                //mw.MainWindowFrame.Content = new ClassMultiDayAttendance(ClassID);
+            }
+        }
+
+        public static T FindAncestorOrSelf<T>(DependencyObject obj)
+        where T : DependencyObject
+        {
+            while (obj != null)
+            {
+                T objTest = obj as T;
+
+                if (objTest != null)
+                    return objTest;
+
+                obj = VisualTreeHelper.GetParent(obj);
+            }
+            return null;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListViewItem lvItem = FindAncestorOrSelf<ListViewItem>(sender as ComboBox);
+            ListView listView = ItemsControl.ItemsControlFromItemContainer(lvItem) as ListView;
+            int index = listView.ItemContainerGenerator.IndexFromContainer(lvItem);
+            Console.WriteLine(index.ToString());
+        }
+
+        private void ComboBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ComboBox cmb = sender as ComboBox;
+            cmb.IsDropDownOpen = true;
+        }
+        private void ComboBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            ComboBox cmb = sender as ComboBox;
+            
+            cmb.IsDropDownOpen = false;
+        }
+        public System.ComponentModel.ICollectionView SDCollectionView;
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var Searchbox = sender as TextBox;
+            SDCollectionView = CollectionViewSource.GetDefaultView(AttendanceList.ItemsSource);
+            SDCollectionView.Filter = FilterStaffDirectory;
+            refreshGrid();
+
+
+        }
+
+        public void refreshGrid()
+        {
+            SDCollectionView.Refresh();
+        }
+
+        private bool FilterStaffDirectory(object obj)
+        {
+            if (obj is StudentDef sd)
+            {
+                return sd.STUDENT_FULLNAME.ToUpper().StartsWith(SearchBox.Text.ToUpper());
+
+            }
+            return false;
+        }
+
+
+    }
+    public class StudentAttendanceDay
+    {
+        public int id { get; set; }
+        public string attendance { get; set; }
+        public string comment { get; set; }
+    }
+}

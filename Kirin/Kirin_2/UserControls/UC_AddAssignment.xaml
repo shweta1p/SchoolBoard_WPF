@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="Kirin_2.UserControls.UC_AddAssignment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kirin_2.UserControls"
+             xmlns:settings="clr-namespace:Kirin_2.Properties"
+             mc:Ignorable="d" 
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="AddAssignmentModal"
+             Loaded="AddAssignmentModal_Loaded"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid  ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- the background for the button -->
+                            <Rectangle RadiusX="5" RadiusY="5" Grid.RowSpan="2" Height="20">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#3d78a6" Offset="0"/>
+                                            <GradientStop Color="#3d78a6" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <!-- place for the content inside the button to be displayed -->
+                            <ContentPresenter Grid.RowSpan="2"  
+              x:Name="PrimaryContent"
+              HorizontalAlignment="Center" VerticalAlignment="Center"
+              Margin="{TemplateBinding Padding}"
+              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+              />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Rectangle Fill="{Binding Source={x:Static settings:Settings.Default}, Path=Modal_bg, Mode=TwoWay }"  MouseDown="Rectangle_MouseDown"/>
+
+        <Border Height="500" BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="LightGray" Background="White" Margin="5" Width="600"   >
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Text="Add Assignment" Margin="10" FontWeight="Bold" FontSize="20" ></TextBlock>
+                <Border DockPanel.Dock="Top" BorderThickness="1" Panel.ZIndex="-100" CornerRadius="5,5,5,5" BorderBrush="{Binding Source={x:Static settings:Settings.Default}, Path=Dashboard_Box_Outline, Mode=TwoWay }"  Background="Transparent" Margin="10" >
+                    <Grid Margin="10" x:Name="MainGrid" Height="320">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="121*"/>
+                            <ColumnDefinition Width="277*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition  Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Reporting Term: " Grid.Column="0" Grid.Row="0" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center"  />
+                        <ComboBox Style="{DynamicResource ComboBoxFlatStyle}" Grid.Row="0" Grid.Column="1"
+                                  DisplayMemberPath="SEMESTER" SelectedValuePath="ID" SelectedValue="{Binding ID}" x:Name="cmbSemester"></ComboBox>
+
+                        <TextBlock Text="Name: " Grid.Column="0" Grid.Row="1" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" />
+                        <TextBox Style="{x:Null}" Grid.Row="1" Grid.Column="1" Name="txtname" FontSize="18"></TextBox>
+
+                        <TextBlock Text="Abbreviation: " Grid.Column="0" Grid.Row="2" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" />
+                        <TextBox Style="{x:Null}" Grid.Row="2" Grid.Column="1" Name="txtabvr" FontSize="18"></TextBox>
+
+                        <TextBlock Text="Category: " Grid.Column="0" Grid.Row="3" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{Binding Path=ASSIGNMENT_CATEGORY}" 
+                                              DisplayMemberPath="CATEGORY" SelectedValuePath="ASSIGNMENT_CATEGORY_ID" 
+                                              SelectedValue="{Binding IDASSIGNMENT_CATEGORY_ID}"
+                                              HorizontalContentAlignment="Center"
+                                              Style="{DynamicResource ComboBoxFlatStyle}"
+                                              Grid.Row="3" Grid.Column="1" x:Name="cmbcategory"/>
+                        <!--<TextBox Style="{x:Null}" Grid.Row="3" Grid.Column="1"></TextBox>-->
+
+                        <TextBlock Text="Points Possible: " Grid.Column="0" Grid.Row="4" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" />
+                        <TextBox Style="{x:Null}" Grid.Row="4" Grid.Column="1" Name="txtpoints" FontSize="18"></TextBox>
+
+                        <TextBlock Text="Weight: " Grid.Column="0" Grid.Row="5" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" />
+                        <TextBox Style="{x:Null}" Grid.Row="5" Grid.Column="1" Name="txtweight" FontSize="18"></TextBox>
+
+                        <TextBlock Text="Due Date: " Grid.Column="0" Grid.Row="6" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center" />
+                        <!--<DatePickerTextBox Grid.Row="6" Grid.Column="1" Style="{x:Null}"  ></DatePickerTextBox>-->
+                        <DatePicker FontSize="20" FontWeight="bold"  Grid.Row="6" Grid.Column="1" x:Name="datepicker">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="Text" Value="&lt; Select Date &gt;"/>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+
+                        <TextBlock Text="Score Type: " Grid.Column="0" Grid.Row="7" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center"/>
+                        <!--<ComboBox Style="{DynamicResource ComboBoxFlatStyle}"  Grid.Row="7" Grid.Column="1"></ComboBox>-->
+                        <ComboBox ItemsSource="{Binding Path=SCORETYPE}"  
+                                              HorizontalContentAlignment="Center"
+                                              Style="{DynamicResource ComboBoxFlatStyle}"
+                                              Grid.Row="7" Grid.Column="1" x:Name="cmbscoreType"/>
+                        <TextBlock Text="Is loaded?: " Grid.Column="0" Grid.Row="8" FontSize="18" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="8">
+                            <CheckBox Content="Yes" FontSize="20" FontWeight="DemiBold" Margin="20 0" Name="cbYes"></CheckBox>
+                            <CheckBox Content="No" FontSize="20" FontWeight="DemiBold" Name="cbNo"></CheckBox>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="30"  HorizontalAlignment="Right"  Margin="10 -10 10 0">
+                    <Button Content="Add" Width="70" FontWeight="Bold" FontSize="20" Padding="1" Margin="5 0" Click="Add_Click"></Button>
+                    <Button Content="Cancel" Width="90" FontWeight="Bold" Padding="1" FontSize="20"  Margin="5 0" Click="Cancel_Click"></Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

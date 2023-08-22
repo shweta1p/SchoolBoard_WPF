@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb0855cd94764af9a9f68d0db57a6c2b" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="KIRINModel.APPROVED_BUDGET" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.ASSIGNMENT" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.ASSIGNMENT_CATEGORY" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.ATTENDANCE_CODES" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.CLASS_ATTENDANCE" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="KIRINModel.Class_DayofWeek" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.CLASS_STUDENT" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.CLUB" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.COUNTRy" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.DAILYBULLETIN" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.DEPARTMENT" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.DOMAIN" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.GRADE_MASTER" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.GRADE" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KIRINModel.HOLIDAY_LIST" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KIRINModel.IMG_TBL" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KIRINModel.IMG_TYPE_CLASSIFICATION" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KIRINModel.LANGUAGE_PRIORITY" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KIRINModel.LANGUAGE" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.ROLE" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.SCHOOL" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.SCHOOLBOARD" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="KIRINModel.SCHOOLBOARD_ADMINS" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.SEMESTER" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KIRINModel.SerialNumber" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KIRINModel.STAFF_DIRECTORY" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="KIRINModel.STAFF_PHONE_NO" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_ALERT_MAPPING" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_ALERTS" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_AVG_GRADE" Width="1.5" PointX="10.75" PointY="13.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_COCURRICULAR" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_EXTRA_CO" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_GRADE" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_LANGUAGE_MAPPING" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_PHONE_NO" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_SCORE" Width="1.5" PointX="14.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_SPECIAL_NEEDS" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_TRANSFERRED" Width="1.5" PointX="14.75" PointY="15.75" />
+        <EntityTypeShape EntityType="KIRINModel.SUBJECT_TEACHER_MAPPING" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.SUBJECT_TYPE" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.SUBJECT" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="KIRINModel.TEACHER_DISABILITY" Width="1.5" PointX="16.75" PointY="10.75" />
+        <EntityTypeShape EntityType="KIRINModel.TEACHER_DISCIPLINARY_ACTIONS" Width="1.5" PointX="16.75" PointY="13.75" />
+        <EntityTypeShape EntityType="KIRINModel.TEACHER_EXTRA_CO" Width="1.5" PointX="16.75" PointY="16.75" />
+        <EntityTypeShape EntityType="KIRINModel.TEACHER_LANGUAGE_MAPPING" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIRINModel.TEACHING_STATUS" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="KIRINModel.TRANSFER_TYPE" Width="1.5" PointX="2.75" PointY="18.75" />
+        <EntityTypeShape EntityType="KIRINModel.USER" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIRINModel.NOTIFICATION" Width="1.5" PointX="9.375" PointY="18.75" />
+        <EntityTypeShape EntityType="KIRINModel.NOTIFICATION_TYPE" Width="1.5" PointX="11.375" PointY="18.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_COMMENT" Width="1.5" PointX="13.375" PointY="18.75" />
+        <EntityTypeShape EntityType="KIRINModel.STUDENT_SUBJECT_MAPPING" Width="1.5" PointX="5.375" PointY="19.75" />
+        <EntityTypeShape EntityType="KIRINModel.FEEDBACK" Width="1.5" PointX="19.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

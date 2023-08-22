@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="Kirin_2.UserControls.UC_DeleteAssignment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kirin_2.UserControls"
+             xmlns:settings="clr-namespace:Kirin_2.Properties"
+             mc:Ignorable="d" 
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="DeleteAssignmentModal"
+             Loaded="DeleteAssignmentModal_Loaded"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!--the background for the button-->
+                            <Rectangle RadiusX="5" RadiusY="5" Grid.RowSpan="2" Height="25">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#3d78a6" Offset="0"/>
+                                            <GradientStop Color="#3d78a6" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+
+                            <!--place for the content inside the button to be displayed-->
+                            <ContentPresenter Grid.RowSpan="2"  
+                              x:Name="PrimaryContent"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                              />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Rectangle Fill="{Binding Source={x:Static settings:Settings.Default}, Path=Modal_bg, Mode=TwoWay }" MouseDown="Rectangle_MouseDown"/>
+        <Border Height="450" BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="LightGray" Background="White" Margin="5" Width="600" >
+            <DockPanel>
+                <Label DockPanel.Dock="Top" Content="Delete Assignment" Margin="10" FontWeight="Bold" FontSize="20" ></Label>
+                <DataGrid Grid.Row="0" SelectionUnit="FullRow" Height="300" Width="500" Visibility="Visible" Margin="50,10,10,10"
+                        AlternatingRowBackground="{Binding Source={x:Static settings:Settings.Default}, Path=AlternatingBGColor, Mode=TwoWay }"
+                        FontSize="12" IsReadOnly="False" Background="Transparent"
+                        CanUserResizeColumns="True" AutoGenerateColumns="False" x:Name="DGAssignment"
+                        Focusable="False" ItemsSource="{Binding AssignmentList}" GridLinesVisibility="None"
+                        BorderBrush="LightGray" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="{Binding Source={x:Static settings:Settings.Default}, Path=Datagrid_header, Mode=TwoWay }" />
+                            <Setter Property="Height" Value="30" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="WhiteSmoke" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="10 0" />
+                        </Style>
+                        <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontFamily" Value="Roboto" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Style.Triggers>
+                                <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        <Style TargetType="{x:Type ScrollBar}">
+                            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+                            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            <Setter Property="Width" Value="10"/>
+                            <Setter Property="MinWidth" Value="10"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="30">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="cmbCheck" IsChecked="{Binding Path=IsDeleted, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding Path=ID, Mode=TwoWay}" Visibility="Hidden" IsReadOnly="True">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="110" Header="Abbreviation" Binding="{Binding Path=Abbreviation, Mode=TwoWay}" Visibility="Visible" IsReadOnly="True">
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="1" DockPanel.Dock="Bottom" Orientation="Horizontal" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="-160 -10 10 20">
+                    <Button Content="Delete" Width="70" FontWeight="Bold" FontSize="20" Padding="1" Margin="5" Click="Delete_Click"></Button>
+                    <Button Content="Cancel" Width="90" FontWeight="Bold" Padding="1" FontSize="20"  Margin="5" Click="Cancel_Click"></Button>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

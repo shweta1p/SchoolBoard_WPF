@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "0e79b1e2-3a7c-4c45-8058-9797c7d967f7": {
+      "ProjectGuid": "0e79b1e2-3a7c-4c45-8058-9797c7d967f7",
+      "DisplayName": "GeoCodingAPI",
+      "ColorIndex": 0
+    },
+    "a70e7eb4-88c1-40fe-ab24-f06b73077067": {
+      "ProjectGuid": "a70e7eb4-88c1-40fe-ab24-f06b73077067",
+      "DisplayName": "ConsoleApp1",
+      "ColorIndex": 1
+    },
+    "75ec1061-2a0c-477d-ae21-70b744d67f51": {
+      "ProjectGuid": "75ec1061-2a0c-477d-ae21-70b744d67f51",
+      "DisplayName": "GeoCodingService",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

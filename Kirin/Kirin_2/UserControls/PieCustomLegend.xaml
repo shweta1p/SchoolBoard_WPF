@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Kirin_2.UserControls.PieCustomLegend"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kirin_2.UserControls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Background="Transparent" BorderThickness="2" Padding="20 10" BorderBrush="LightGray"
+             d:DataContext="{d:DesignInstance local:CustomLegend}">
+
+    <ItemsControl ItemsSource="{Binding Series}" Grid.IsSharedSizeScope="True" Height="360" Width="200">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type lvc:SeriesViewModel}">
+                <Grid Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Title"/>
+                    </Grid.ColumnDefinitions>
+                    <Ellipse Height="20" Width="20" HorizontalAlignment="Stretch" Margin="10 0 0 0" VerticalAlignment="Stretch" Stroke="#8BD7FB" >
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding PHOTO}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock Grid.Column="1" Margin="4 0" Text="{Binding Title}" Foreground="Black" VerticalAlignment="Center" />
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

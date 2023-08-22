@@ -1,0 +1,103 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Kirin_2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MainPalette_Blue" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#247BC0</Value>
+    </Setting>
+    <Setting Name="MainPalette_Cyan" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#2BC0E1</Value>
+    </Setting>
+    <Setting Name="MainPalette_Red" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#E63E39</Value>
+    </Setting>
+    <Setting Name="MainPalette_Yellow" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#FAED41</Value>
+    </Setting>
+    <Setting Name="MainPalette_Gray1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">#c7cdd6</Value>
+    </Setting>
+    <Setting Name="MainPalette_White" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WhiteSmoke</Value>
+    </Setting>
+    <Setting Name="color1" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">ControlLight</Value>
+    </Setting>
+    <Setting Name="AlternatingBGColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#26247BC0</Value>
+    </Setting>
+    <Setting Name="Datagrid_header" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#247BC0</Value>
+    </Setting>
+    <Setting Name="Datagrid_selector" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#0D247BC0</Value>
+    </Setting>
+    <Setting Name="Datagrid_selectedRow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#00be00</Value>
+    </Setting>
+    <Setting Name="Combobox_bg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#E62581C6</Value>
+    </Setting>
+    <Setting Name="Border_color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#247BC0</Value>
+    </Setting>
+    <Setting Name="Border_color_inner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#A6247BC0</Value>
+    </Setting>
+    <Setting Name="Modal_bg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#33247BC0</Value>
+    </Setting>
+    <Setting Name="ClassSelector" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#A6FFFFFF</Value>
+    </Setting>
+    <Setting Name="ClassSelectorHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#E62581C6</Value>
+    </Setting>
+    <Setting Name="Datagrid_header_multidayView" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#65a2d2</Value>
+    </Setting>
+    <Setting Name="Subsection_BG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#80FFFFFF</Value>
+    </Setting>
+    <Setting Name="AttendanceCheckered" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#D6E4ED</Value>
+    </Setting>
+    <Setting Name="AttendanceCheckeredWhite" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#92B7CA</Value>
+    </Setting>
+    <Setting Name="BG_staffprofile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#33247BC0</Value>
+    </Setting>
+    <Setting Name="Setting1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-H0S5QUB\MSSQLKIRIN;Initial Catalog=KIRIN;User ID=sa;Password=1234&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOP-H0S5QUB\MSSQLKIRIN;Initial Catalog=KIRIN;User ID=sa;Password=1234</Value>
+    </Setting>
+    <Setting Name="SPanelItemForeground" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#4f95cc</Value>
+    </Setting>
+    <Setting Name="Setting" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-H0S5QUB\MSSQLKIRIN;Initial Catalog=KIRIN;User ID=sa;Password=1234&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOP-H0S5QUB\MSSQLKIRIN;Initial Catalog=KIRIN;User ID=sa;Password=1234</Value>
+    </Setting>
+    <Setting Name="LearningSkill_AlterColor1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#65a2d2</Value>
+    </Setting>
+    <Setting Name="LearningSkill_AlterColor2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#91bddf</Value>
+    </Setting>
+    <Setting Name="Dashboard_Box_Outline" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#D5D8DC</Value>
+    </Setting>
+    <Setting Name="ProgressBar_color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#247BC0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

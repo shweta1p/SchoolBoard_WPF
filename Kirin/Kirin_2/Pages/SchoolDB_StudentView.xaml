@@ -1,0 +1,457 @@
+﻿<Page x:Class="Kirin_2.Pages.SchoolDB_StudentView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:settings="clr-namespace:Kirin_2.Properties" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Kirin_2.Pages"
+      mc:Ignorable="d" 
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      d:DesignHeight="450" d:DesignWidth="1020"
+      Title="SchoolDB_StudentView"
+      Background="White">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="HeaderTemplate_Exp" >
+                <Grid Margin="-5 0 0 0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"  FontSize="16" FontWeight="Bold" Foreground="White" >Exp</Label>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HeaderTemplate_LastWeek">
+                <Grid Height="50" Margin="5 0 0 0 " >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center"  Padding="0,0,0,0" FontSize="16" FontWeight="Bold" Foreground="White" Content="Last Week" />
+                    <Label Grid.Column="0" Grid.Row="1"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">M</Label>
+                    <Label Grid.Column="1" Grid.Row="1"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">T</Label>
+                    <Label Grid.Column="2" Grid.Row="1"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">W</Label>
+                    <Label Grid.Column="3" Grid.Row="1"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">H</Label>
+                    <Label Grid.Column="4" Grid.Row="1"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">F</Label>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HeaderTemplate_ThisWeek">
+                <Grid Height="50"  Margin="5 0 0 0 " Width="{Binding Path=Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center"  Padding="0,0,0,0" FontSize="16" FontWeight="Bold" Foreground="White" Content="This Week" />
+                    <Label Grid.Column="0" Grid.Row="1" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">M</Label>
+                    <Label Grid.Column="1" Grid.Row="1" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">T</Label>
+                    <Label Grid.Column="2" Grid.Row="1" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">W</Label>
+                    <Label Grid.Column="3" Grid.Row="1" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">H</Label>
+                    <Label Grid.Column="4" Grid.Row="1" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White">F</Label>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HeaderTemplate_Absences">
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center"  Padding="0,0,0,0" FontSize="16" FontWeight="Bold" Foreground="White" Content="Absences" />
+                    <Label Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  FontSize="14" FontWeight="Bold" Foreground="White" Content="S2" />
+                    <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="14" FontWeight="Bold" Foreground="White" Content="21-22"  />
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HeaderTemplate_Lates">
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="16" FontWeight="Bold" Foreground="White" Content="Lates" />
+                    <Label Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" FontSize="14" FontWeight="Bold" Foreground="White"  Content="S2" />
+                    <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="14" FontWeight="Bold" Foreground="White"  Content="21-22"  />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Rectangle Width="100" Height="110" VerticalAlignment="Center" Stroke="LightGray">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="{Binding STUDENT_PHOTO}"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel Width="Auto">
+                <Label Content="Student Info" FontSize="24" FontWeight="Bold" Margin="30 0 0 20" ></Label>
+                <StackPanel Orientation="Horizontal" Margin="10 0 0 0" >
+                    <Label Content="Name: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0"/>
+                    <Label Content="{Binding Path=STUDENTPROF.FULLNAME}" FontSize="20" />
+                    <Label Content="Gr: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0" />
+                    <Label Content="9" FontSize="20"/>
+                    <!--<Label Content="Age: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0"/>
+                    <Label Content="14 years and 5 months" FontSize="20" />-->
+                    <Label Content="Birthdate: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0" />
+                    <Label Content="{Binding Path=STUDENTPROF.BIRTHDATE}" FontSize="20" />
+                    <Label Content="Gender: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0" />
+                    <Label Content="{Binding Path=STUDENTPROF.GENDER}" FontSize="20" />
+                    <Label Content="Student Number: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0" />
+                    <Label Content="{Binding Path=STUDENTPROF.STUDENT_ID}" FontSize="20" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10 10 0 0">
+                    <Label Content="School: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0" />
+                    <Label Content="{Binding Path=STUDENTPROF.SCHOOL_NAME}" FontSize="20" />
+                    <Label Content="Learning Choice: " FontWeight="Bold" FontSize="20" Margin="20 0 0 0" />
+                    <Label Content="FT In-Person" FontSize="20" Margin="10 0 0 0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <Border DockPanel.Dock="Top" BorderThickness="1" Grid.Row="1" Grid.Column="0" Panel.ZIndex="-100" CornerRadius="5,5,5,5" 
+                    BorderBrush="LightGray" Background="Transparent" Margin="10 0 15 10" >
+            <DockPanel>
+                <Border DockPanel.Dock="Top" BorderBrush="White" Background="#247BC0" HorizontalAlignment="Stretch" BorderThickness="1" >
+                    <Label HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="White">Attendance By Class</Label>
+                </Border>
+
+                <Grid DockPanel.Dock="Bottom" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="InfoGrid"
+                                  AlternatingRowBackground="{Binding Source={x:Static settings:Settings.Default}, Path=AlternatingBGColor, Mode=TwoWay}"
+                                  AlternationCount="2" CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" 
+                                  SelectionUnit="FullRow" GridLinesVisibility="All" Width="Auto" AutoGenerateColumns="False" ItemsSource="{Binding StudentProfileDetailsList}" >
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="0,0,0,0"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
+
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#247BC0" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Height" Value="80" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+
+                            <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontFamily" Value="Roboto" />
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="Focusable" Value="False"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Focusable" Value="False"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style TargetType="{x:Type ScrollBar}">
+                                <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+                                <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                <Setter Property="Width" Value="10"/>
+                                <Setter Property="MinWidth" Value="10"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                            <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="#7FBFBFBF">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="0.00001*"/>
+                                                </Grid.RowDefinitions>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="Orientation" Value="Horizontal">
+                                        <Setter Property="Width" Value="Auto"/>
+                                        <Setter Property="MinWidth" Value="0"/>
+                                        <Setter Property="Height" Value="10"/>
+                                        <Setter Property="MinHeight" Value="10"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn HeaderTemplate="{StaticResource HeaderTemplate_Exp}" Binding="{Binding Path=EXP}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_LastWeek}" Width="2*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <!--<Rectangle Grid.Column="0" Grid.Row="0"   Stroke="Transparent"  Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckered, Mode=TwoWay }" />
+                                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_M}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                            <Rectangle Grid.Column="1" Grid.Row="0"   Stroke="Transparent"  Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckeredWhite, Mode=TwoWay }" />
+                                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_T}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Rectangle Grid.Column="2" Grid.Row="0"   Stroke="Transparent"  Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckered, Mode=TwoWay }" />
+                                            <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_W}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Rectangle Grid.Column="3" Grid.Row="0"   Stroke="Transparent"  Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckeredWhite, Mode=TwoWay }" />
+                                            <Label Grid.Column="3" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_H}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Rectangle Grid.Column="4" Grid.Row="0"   Stroke="Transparent"  Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckered, Mode=TwoWay }" />
+                                            <Label Grid.Column="4" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_F}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>-->
+
+                                            <Rectangle Height="50" Grid.Column="0" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="1" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="2" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="3" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="4" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+
+                                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_M}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_T}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_W}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Label Grid.Column="3" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_H}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Label Grid.Column="4" Grid.Row="0" Content="{Binding Path=LastWeekAttendance_F}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_ThisWeek}" Width="2*" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <!--<Rectangle Grid.Column="0" Grid.Row="0"   Stroke="Transparent"  Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckeredWhite, Mode=TwoWay }"  />
+                                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_M}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                            <Rectangle Grid.Column="1" Grid.Row="0"   Stroke="Transparent"   Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckered, Mode=TwoWay }" />
+                                                <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_T}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Rectangle Grid.Column="2" Grid.Row="0"   Stroke="Transparent"   Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckeredWhite, Mode=TwoWay }"  />
+                                            <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_W}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Rectangle Grid.Column="3" Grid.Row="0"   Stroke="Transparent"   Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckered, Mode=TwoWay }" />
+                                                <Label Grid.Column="3" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_H}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Rectangle Grid.Column="4" Grid.Row="0"   Stroke="Transparent"   Fill="{Binding Source={x:Static settings:Settings.Default}, Path=AttendanceCheckeredWhite, Mode=TwoWay }"  />
+                                            <Label Grid.Column="4" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_F}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>-->
+
+                                            <Rectangle Height="50" Grid.Column="0" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="1" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="2" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="3" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="4" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+
+                                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_M}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_T}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Label Grid.Column="2" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_W}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Label Grid.Column="3" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_H}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                            <Label Grid.Column="4" Grid.Row="0" Content="{Binding Path=ThisWeekAttendance_F}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn  Width="3*" >
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="Course" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Path=Course}" FontSize="16" 
+                                                        FontWeight="Bold" TextTrimming="CharacterEllipsis" Margin="5 0" HorizontalAlignment="Left" />
+                                                <Label Grid.Column="0" Grid.Row="1" Content="{Binding Path=Name}" FontSize="16" HorizontalAlignment="Left" Foreground="#247BC0"></Label>
+                                                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Path=Room}" FontSize="16" HorizontalAlignment="Left"></Label>
+                                            </Grid>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Width="Auto" Binding="{Binding Path=S1}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="S1" FontSize="16" FontWeight="Bold"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Path=S2}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.Header>
+                                    <TextBlock  Text="S2" FontSize="16" FontWeight="Bold"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Path=Y1}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Y1" FontSize="16" FontWeight="Bold"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_Absences}" Width="125">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Rectangle Height="50" Grid.Column="0" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="1" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+
+                                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=Absences}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=Absences}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                          </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <!--<DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Absences}" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>-->
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn HeaderTemplate="{StaticResource HeaderTemplate_Lates}" Width="125">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Rectangle Height="50" Grid.Column="0" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+                                            <Rectangle Height="50" Grid.Column="1" Grid.Row="0" Fill="Transparent" Stroke="LightGray" />
+
+                                            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Path=Lates}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+                                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=Lates}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                                <!--<DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Lates}" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>-->
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,2260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KIRINModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KIRINEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="getStudentScoreSheet" ReturnType="Collection(KIRINModel1.getStudentScoreSheet_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+      <Parameter Name="SemesterID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EthnicityVSLanguageDS" ReturnType="Collection(KIRINModel1.EthnicityVSLanguageDS_Result)" />
+    <FunctionImport Name="getLanguageCountAllStudents" ReturnType="Collection(KIRINModel1.getLanguageCountAllStudents_Result)" />
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(String)">
+      <Parameter Name="sString" Mode="In" Type="String" />
+      <Parameter Name="cDelimiter" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ImportImage">
+      <Parameter Name="PicName" Mode="In" Type="String" />
+      <Parameter Name="ImageFolderPath" Mode="In" Type="String" />
+      <Parameter Name="Filename" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSchoolDBData" ReturnType="Collection(KIRINModel1.GetSchoolDBData_Result)">
+      <Parameter Name="Role" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStaffData" ReturnType="Collection(KIRINModel1.GetStaffData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Role" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentProfileData" ReturnType="Collection(KIRINModel1.GetStudentProfileData_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetStaffDatabyId" ReturnType="Collection(KIRINModel1.GetStaffDatabyId_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Role" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTeacherProfileData" ReturnType="Collection(KIRINModel1.GetTeacherProfileData_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetAssignmentList" ReturnType="Collection(KIRINModel1.GetAssignmentList_Result)">
+      <Parameter Name="SUBJECT_ID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SemesterID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSchoolList" ReturnType="Collection(KIRINModel1.GetSchoolList_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSemesterList" ReturnType="Collection(KIRINModel1.GetSemesterList_Result)" />
+    <FunctionImport Name="GetStudentListbySubject" ReturnType="Collection(KIRINModel1.GetStudentListbySubject_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSubjectList" ReturnType="Collection(KIRINModel1.GetSubjectList_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SemesterID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetBudgetData" ReturnType="Collection(KIRINModel1.GetBudgetData_Result)" />
+    <FunctionImport Name="getClassListing" ReturnType="Collection(KIRINModel1.getClassListing_Result)">
+      <Parameter Name="schoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetShortBudgetData" ReturnType="Collection(KIRINModel1.GetShortBudgetData_Result)">
+      <Parameter Name="YEAR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getBirthOriginCountbySubjectID" ReturnType="Collection(KIRINModel1.getBirthOriginCountbySubjectID_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getLanguageCountofStudentsbySubject" ReturnType="Collection(KIRINModel1.getLanguageCountofStudentsbySubject_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetChildNodeofBudgetData" ReturnType="Collection(KIRINModel1.GetChildNodeofBudgetData_Result)">
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+      <Parameter Name="YEAR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetChildNodeDataforMindTree" ReturnType="Collection(KIRINModel1.GetChildNodeDataforMindTree_Result)">
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDailyBulletinData" ReturnType="Collection(KIRINModel1.GetDailyBulletinData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetDailyBulletinDatabyDate" ReturnType="Collection(KIRINModel1.GetDailyBulletinDatabyDate_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="Int32" />
+      <Parameter Name="SelectedDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentListbySubjectId" ReturnType="Collection(KIRINModel1.GetStudentListbySubjectId_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesbySubjectId" ReturnType="Collection(KIRINModel1.GetStudentGradebySubjectId_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="ToggleType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetOrganizationalData" ReturnType="Collection(KIRINModel1.GetOrganizationalData_Result)" />
+    <FunctionImport Name="GetStudentDatafromTeacherID" ReturnType="Collection(KIRINModel1.GetStudentDatafromTeacherID_Result)">
+      <Parameter Name="ParentID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetHierarchicalData" ReturnType="Collection(KIRINModel1.GetHierarchicalData_Result)" />
+    <FunctionImport Name="GetSubjectIdforStudent" ReturnType="Collection(KIRINModel1.GetSubjectIdforStudent_Result)">
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStackedBarAttandanceData" ReturnType="Collection(KIRINModel1.GetStackedBarAttandanceData_Result)">
+      <Parameter Name="FromDate" Mode="In" Type="String" />
+      <Parameter Name="ToDate" Mode="In" Type="String" />
+      <Parameter Name="SubjectId" Mode="In" Type="Int32" />
+      <Parameter Name="SchoolId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentCitizenshipCountbySubjectID" ReturnType="Collection(KIRINModel1.GetStudentCitizenshipCountbySubjectID_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDateofBirthCountbySubjectID" ReturnType="Collection(KIRINModel1.GetStudentDateofBirthCountbySubjectID_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentScatterPlotData" ReturnType="Collection(KIRINModel1.GetStudentScatterPlotData_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDiversityData" ReturnType="Collection(KIRINModel1.GetDiversityData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStackedDiversityEthnicityData">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentExtraCo" ReturnType="Collection(KIRINModel1.GetStudentExtraCo_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentTransfferedCount" ReturnType="Collection(KIRINModel1.GetStudentTransfferedCount_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransferredStudentDataforBarGraph" ReturnType="Collection(KIRINModel1.GetTransferredStudentDataforBarGraph_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentClubData" ReturnType="Collection(KIRINModel1.GetStudentClubData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentLanguageDataforHeatmap" ReturnType="Collection(KIRINModel1.GetStudentLanguageDataforHeatmap_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDateofBirthData" ReturnType="Collection(KIRINModel1.GetStudentDateofBirthData_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserData" ReturnType="Collection(KIRINModel1.GetUserData_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSchoolNameforUser" ReturnType="Collection(KIRINModel1.GetSchoolNameforUser_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetClassDataforTeacher" ReturnType="Collection(KIRINModel1.GetClassDataforTeacher_Result)">
+      <Parameter Name="TeacherId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetExtraCoDataforTeacher" ReturnType="Collection(KIRINModel1.GetExtraCoDataforTeacher_Result)">
+      <Parameter Name="TeacherId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetPieTransfferedStudentData" ReturnType="Collection(KIRINModel1.GetPieTransfferedStudentData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="LabelPoint" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDataforScatterPoint" ReturnType="Collection(KIRINModel1.GetStudentDataforScatterPoint_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="FName" Mode="In" Type="String" />
+      <Parameter Name="LName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyCitizenship" ReturnType="Collection(KIRINModel1.GetStudentDatabyCitizenship_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Citizenship" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAttendanceCode" ReturnType="Collection(KIRINModel1.GetAttendanceCode_Result)" />
+    <FunctionImport Name="GetStudentAttendance" ReturnType="Collection(KIRINModel1.GetStudentAttendance_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="FName" Mode="In" Type="String" />
+      <Parameter Name="LName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentAttendancebyCode" ReturnType="Collection(KIRINModel1.GetStudentAttendancebyCode_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="Int32" />
+      <Parameter Name="SchoolId" Mode="In" Type="Int32" />
+      <Parameter Name="Date" Mode="In" Type="String" />
+      <Parameter Name="AttendanceCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentCitizenshipData" ReturnType="Collection(KIRINModel1.GetStudentCitizenshipData_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAssignmentCategory" ReturnType="Collection(KIRINModel1.GetAssignmentCategory_Result)" />
+    <FunctionImport Name="AddAssignment">
+      <Parameter Name="REPORTING_TERM" Mode="In" Type="String" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="ABRV" Mode="In" Type="String" />
+      <Parameter Name="CATEGORY" Mode="In" Type="String" />
+      <Parameter Name="POINTS_POSSIBLE" Mode="In" Type="String" />
+      <Parameter Name="WEIGHT" Mode="In" Type="String" />
+      <Parameter Name="DATE_DUE" Mode="In" Type="String" />
+      <Parameter Name="SUBJECT_ID" Mode="In" Type="String" />
+      <Parameter Name="SCORE_TYPE" Mode="In" Type="String" />
+      <Parameter Name="ISLOADED" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyEthnicity" ReturnType="Collection(KIRINModel1.GetStudentDatabyEthnicity_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Ethnicity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAlertType" ReturnType="Collection(KIRINModel1.GetAlertType_Result)" />
+    <FunctionImport Name="SaveStudentAlerts">
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="AlertId" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetClassAttendanceData" ReturnType="Collection(KIRINModel1.GetClassAttendanceData_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="AddComments">
+      <Parameter Name="ClassAttendaceId" Mode="In" Type="String" />
+      <Parameter Name="Comment" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransferStudentDatabyMonth" ReturnType="Collection(KIRINModel1.GetTransferStudentDatabyMonth_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Month" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDOBDatabyMonth" ReturnType="Collection(KIRINModel1.GetDOBDatabyMonth_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Month" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabySports" ReturnType="Collection(KIRINModel1.GetStudentDatabySports_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Sport" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentAttendanceData" ReturnType="Collection(KIRINModel1.GetStudentAttendanceData_Result)">
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyClub" ReturnType="Collection(KIRINModel1.GetStudentDatabyClub_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Club" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyDiversity" ReturnType="Collection(KIRINModel1.GetStudentDatabyDiversity_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Diversity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyLanguage" ReturnType="Collection(KIRINModel1.GetStudentDatabyLanguage_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Language" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentEthnicityLegendData" ReturnType="Collection(KIRINModel1.GetStudentEthnicityLegendData_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEthnicityData" ReturnType="Collection(KIRINModel1.GetEthnicityData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransferredStudentDataforStackedBar" ReturnType="Collection(KIRINModel1.GetTransferredStudentDataforStackedBar_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransferType" ReturnType="Collection(KIRINModel1.GetTransferType_Result)" />
+    <FunctionImport Name="GetStudentDOBdataforLegend" ReturnType="Collection(KIRINModel1.GetStudentDOBdataforLegend_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetTransferStudentDatabyType" ReturnType="Collection(KIRINModel1.GetTransferStudentDatabyType_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="TransferType" Mode="In" Type="String" />
+      <Parameter Name="Month" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDistinctCitizenshipCount" ReturnType="Collection(KIRINModel1.GetDistinctCitizenshipCount_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEthnicityfromDiversity" ReturnType="Collection(KIRINModel1.GetEthnicityfromDiversity_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Diversity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetMultiClassAttendanceData">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetStackedDiversityData" ReturnType="Collection(KIRINModel1.GetStackedDiversityData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentGenderCount" ReturnType="Collection(KIRINModel1.GetStudentGenderCount_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentTransfferedStackBarLegend" ReturnType="Collection(KIRINModel1.GetStudentTransfferedStackBarLegend_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentMapData" ReturnType="Collection(KIRINModel1.GetStudentMapData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDataforMapPoint" ReturnType="Collection(KIRINModel1.GetStudentDataforMapPoint_Result)">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentModeofTransportation" ReturnType="Collection(KIRINModel1.GetStudentModeofTransportation_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentsList" ReturnType="Collection(KIRINModel1.GetStudentsList_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentScoreandAverage" ReturnType="Collection(KIRINModel1.GetStudentScoreandAverage_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentScorebyClass" ReturnType="Collection(KIRINModel1.GetStudentScorebyClass_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyEthnicityandDivesity" ReturnType="Collection(KIRINModel1.GetStudentDatabyEthnicityandDivesity_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Ethnicity" Mode="In" Type="String" />
+      <Parameter Name="Diversity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAverageGradesbySubject" ReturnType="Collection(KIRINModel1.GetAverageGradesbySubject_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetClassInfo" ReturnType="Collection(KIRINModel1.GetClassInfo_Result)">
+      <Parameter Name="CourseCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesbySubjectforRadar" ReturnType="Collection(KIRINModel1.GetGradesbySubjectforRadar_Result)">
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsDiversityBubbleChartData" ReturnType="Collection(KIRINModel1.GetGradesVsDiversityBubbleChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="APPROVED_BUDGET" EntityType="KIRINModel1.APPROVED_BUDGET" />
+    <EntitySet Name="ASSIGNMENTs" EntityType="KIRINModel1.ASSIGNMENT" />
+    <EntitySet Name="ASSIGNMENT_CATEGORY" EntityType="KIRINModel1.ASSIGNMENT_CATEGORY" />
+    <EntitySet Name="ATTENDANCE_CODES" EntityType="KIRINModel1.ATTENDANCE_CODES" />
+    <EntitySet Name="CLASS_ATTENDANCE" EntityType="KIRINModel1.CLASS_ATTENDANCE" />
+    <EntitySet Name="Class_DayofWeek" EntityType="KIRINModel1.Class_DayofWeek" />
+    <EntitySet Name="CLASS_STUDENT" EntityType="KIRINModel1.CLASS_STUDENT" />
+    <EntitySet Name="CLUBS" EntityType="KIRINModel1.CLUB" />
+    <EntitySet Name="COUNTRIES" EntityType="KIRINModel1.COUNTRy" />
+    <EntitySet Name="DAILYBULLETINs" EntityType="KIRINModel1.DAILYBULLETIN" />
+    <EntitySet Name="DEPARTMENTS" EntityType="KIRINModel1.DEPARTMENT" />
+    <EntitySet Name="DOMAINs" EntityType="KIRINModel1.DOMAIN" />
+    <EntitySet Name="GRADE_MASTER" EntityType="KIRINModel1.GRADE_MASTER" />
+    <EntitySet Name="GRADES" EntityType="KIRINModel1.GRADE" />
+    <EntitySet Name="HOLIDAY_LIST" EntityType="KIRINModel1.HOLIDAY_LIST" />
+    <EntitySet Name="IMG_TBL" EntityType="KIRINModel1.IMG_TBL" />
+    <EntitySet Name="IMG_TYPE_CLASSIFICATION" EntityType="KIRINModel1.IMG_TYPE_CLASSIFICATION" />
+    <EntitySet Name="LANGUAGE_PRIORITY" EntityType="KIRINModel1.LANGUAGE_PRIORITY" />
+    <EntitySet Name="LANGUAGES" EntityType="KIRINModel1.LANGUAGE" />
+    <EntitySet Name="ROLEs" EntityType="KIRINModel1.ROLE" />
+    <EntitySet Name="SCHOOLs" EntityType="KIRINModel1.SCHOOL" />
+    <EntitySet Name="SCHOOLBOARDs" EntityType="KIRINModel1.SCHOOLBOARD" />
+    <EntitySet Name="SCHOOLBOARD_ADMINS" EntityType="KIRINModel1.SCHOOLBOARD_ADMINS" />
+    <EntitySet Name="SEMESTERs" EntityType="KIRINModel1.SEMESTER" />
+    <EntitySet Name="STAFF_DIRECTORY" EntityType="KIRINModel1.STAFF_DIRECTORY" />
+    <EntitySet Name="STAFF_PHONE_NO" EntityType="KIRINModel1.STAFF_PHONE_NO" />
+    <EntitySet Name="STUDENTs" EntityType="KIRINModel1.STUDENT" />
+    <EntitySet Name="STUDENT_ALERT_MAPPING" EntityType="KIRINModel1.STUDENT_ALERT_MAPPING" />
+    <EntitySet Name="STUDENT_ALERTS" EntityType="KIRINModel1.STUDENT_ALERTS" />
+    <EntitySet Name="STUDENT_AVG_GRADE" EntityType="KIRINModel1.STUDENT_AVG_GRADE" />
+    <EntitySet Name="STUDENT_COCURRICULAR" EntityType="KIRINModel1.STUDENT_COCURRICULAR" />
+    <EntitySet Name="STUDENT_EXTRA_CO" EntityType="KIRINModel1.STUDENT_EXTRA_CO" />
+    <EntitySet Name="STUDENT_GRADE" EntityType="KIRINModel1.STUDENT_GRADE" />
+    <EntitySet Name="STUDENT_LANGUAGE_MAPPING" EntityType="KIRINModel1.STUDENT_LANGUAGE_MAPPING" />
+    <EntitySet Name="STUDENT_PHONE_NO" EntityType="KIRINModel1.STUDENT_PHONE_NO" />
+    <EntitySet Name="STUDENT_SCORE" EntityType="KIRINModel1.STUDENT_SCORE" />
+    <EntitySet Name="STUDENT_SPECIAL_NEEDS" EntityType="KIRINModel1.STUDENT_SPECIAL_NEEDS" />
+    <EntitySet Name="STUDENT_TRANSFERRED" EntityType="KIRINModel1.STUDENT_TRANSFERRED" />
+    <EntitySet Name="SUBJECT_TEACHER_MAPPING" EntityType="KIRINModel1.SUBJECT_TEACHER_MAPPING" />
+    <EntitySet Name="SUBJECT_TYPE" EntityType="KIRINModel1.SUBJECT_TYPE" />
+    <EntitySet Name="SUBJECTS" EntityType="KIRINModel1.SUBJECT" />
+    <EntitySet Name="TEACHER_DISABILITY" EntityType="KIRINModel1.TEACHER_DISABILITY" />
+    <EntitySet Name="TEACHER_DISCIPLINARY_ACTIONS" EntityType="KIRINModel1.TEACHER_DISCIPLINARY_ACTIONS" />
+    <EntitySet Name="TEACHER_EXTRA_CO" EntityType="KIRINModel1.TEACHER_EXTRA_CO" />
+    <EntitySet Name="TEACHER_LANGUAGE_MAPPING" EntityType="KIRINModel1.TEACHER_LANGUAGE_MAPPING" />
+    <EntitySet Name="TEACHING_STATUS" EntityType="KIRINModel1.TEACHING_STATUS" />
+    <EntitySet Name="TRANSFER_TYPE" EntityType="KIRINModel1.TRANSFER_TYPE" />
+    <EntitySet Name="USERs" EntityType="KIRINModel1.USER" />
+    <FunctionImport Name="GetGradesVsDiversityBoxPlotChartData" ReturnType="Collection(KIRINModel1.GetGradesVsDiversityBoxPlotChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsDiversityAreaChartData" ReturnType="Collection(KIRINModel1.GetGradesVsDiversityAreaChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsDiversityRadarChartData" ReturnType="Collection(KIRINModel1.GetGradesVsDiversityRadarChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsCitizenshipAreaChartData" ReturnType="Collection(KIRINModel1.GetGradesVsCitizenshipAreaChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsCitizenshipBubbleChartData" ReturnType="Collection(KIRINModel1.GetGradesVsCitizenshipBubbleChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsCitizenshipRadarChartData" ReturnType="Collection(KIRINModel1.GetGradesVsCitizenshipRadarChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsLanguagesChartData" ReturnType="Collection(KIRINModel1.GetGradesVsLanguagesChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsAttendanceData" ReturnType="Collection(KIRINModel1.GetGradesVsAttendanceData_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesVsAttendanceHistogramData" ReturnType="Collection(KIRINModel1.GetGradesVsAttendanceHistogramData_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEthnicityVsCocurricularBubbleChartData" ReturnType="Collection(KIRINModel1.GetEthnicityVsCocurricularBubbleChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStackedEthnicityVsSportsData">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetEthnicityVsLanguagesBubbleChartData" ReturnType="Collection(KIRINModel1.GetEthnicityVsLanguagesBubbleChartData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStackedEthnicityVsLanguagesData">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentAlertsData" ReturnType="Collection(KIRINModel1.GetStudentAlertsData_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSportsfromEthnicity" ReturnType="Collection(KIRINModel1.GetSportsfromEthnicity_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Ethnicity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStackedEthnicityData" ReturnType="Collection(KIRINModel1.GetStackedEthnicityData_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetLanguagefromEthnicity" ReturnType="Collection(KIRINModel1.GetLanguagefromEthnicity_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Ethnicity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyEthnicityandLanguage" ReturnType="Collection(KIRINModel1.GetStudentDatabyEthnicityandLanguage_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Ethnicity" Mode="In" Type="String" />
+      <Parameter Name="Language" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentDatabyEthnicityandSports" ReturnType="Collection(KIRINModel1.GetStudentDatabyEthnicityandSports_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="Ethnicity" Mode="In" Type="String" />
+      <Parameter Name="ExtraCo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetFinancialYearforBudget" ReturnType="Collection(String)" />
+    <FunctionImport Name="GetBudgetLegendData" ReturnType="Collection(KIRINModel1.GetBudgetLegendData_Result)">
+      <Parameter Name="YEAR" Mode="In" Type="String" />
+      <Parameter Name="ParentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetBudgetLegendChildData" ReturnType="Collection(KIRINModel1.GetBudgetLegendChildData_Result)">
+      <Parameter Name="ParentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentProfileDetails" ReturnType="Collection(KIRINModel1.GetStudentProfileDetails_Result)">
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetParentBudgetData" ReturnType="Collection(KIRINModel1.GetParentBudgetData_Result)">
+      <Parameter Name="YEAR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetParentID" ReturnType="Collection(KIRINModel1.GetParentID_Result)">
+      <Parameter Name="ParentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAssignmentDatabyCourseID" ReturnType="Collection(KIRINModel1.GetAssignmentDatabyCourseID_Result)">
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="CourseId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetCourseInstructorData" ReturnType="Collection(KIRINModel1.GetCourseInstructorData_Result)">
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesbyCitizenship" ReturnType="Collection(KIRINModel1.GetGradesbyCitizenship_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Citizenship" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesbyDiversity" ReturnType="Collection(KIRINModel1.GetGradesbyDiversity_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="Diversity" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetGradesbyLanguage" ReturnType="Collection(KIRINModel1.GetGradesbyLanguage_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="LanguageID" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="NOTIFICATIONS" EntityType="KIRINModel1.NOTIFICATION" />
+    <FunctionImport Name="GetAssignmentScoreSheet" ReturnType="Collection(KIRINModel1.GetAssignmentScoreSheet_Result)">
+      <Parameter Name="AssignmentID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAttendanceReport" ReturnType="Collection(KIRINModel1.GetAttendanceReport_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetDateRange" ReturnType="Collection(String)">
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetDateRangeforAttendance" ReturnType="Collection(String)">
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetEarlierNotification" ReturnType="Collection(KIRINModel1.GetEarlierNotification_Result)">
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetNewNotifications" ReturnType="Collection(KIRINModel1.GetNewNotifications_Result)">
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetScoresheetbySubject" ReturnType="Collection(KIRINModel1.GetScoresheetbySubject_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentsbyCourse" ReturnType="Collection(KIRINModel1.GetStudentsbyCourse_Result)">
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSchoolAlerts" ReturnType="Collection(KIRINModel1.GetSchoolAlerts_Result)">
+      <Parameter Name="SchoolId" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="NOTIFICATION_TYPE" EntityType="KIRINModel1.NOTIFICATION_TYPE" />
+    <EntitySet Name="STUDENT_COMMENT" EntityType="KIRINModel1.STUDENT_COMMENT" />
+    <EntitySet Name="STUDENT_SUBJECT_MAPPING" EntityType="KIRINModel1.STUDENT_SUBJECT_MAPPING" />
+    <FunctionImport Name="GetStudentComments" ReturnType="Collection(KIRINModel1.GetStudentComments_Result)">
+      <Parameter Name="StudentId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddStudentComments">
+      <Parameter Name="StudentID" Mode="In" Type="String" />
+      <Parameter Name="Comment" Mode="In" Type="String" />
+      <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="FEEDBACKs" EntityType="KIRINModel1.FEEDBACK" />
+    <FunctionImport Name="SaveFeedback">
+      <Parameter Name="Feedback" Mode="In" Type="String" />
+      <Parameter Name="Image" Mode="In" Type="Binary" />
+      <Parameter Name="User" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStudentsforSearch" ReturnType="Collection(KIRINModel1.GetStudentsforSearch_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+      <Parameter Name="SubjectID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAssignmentsforSearch" ReturnType="Collection(KIRINModel1.GetAssignmentsforSearch_Result)" />
+    <FunctionImport Name="GetStaffforSearch" ReturnType="Collection(KIRINModel1.GetStaffforSearch_Result)">
+      <Parameter Name="SchoolID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetAssignmentforSchedule" ReturnType="Collection(KIRINModel1.GetAssignmentforSchedule_Result)">
+      <Parameter Name="SubjectId" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="getStudentScoreSheet_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CATEGORY" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="SCORE_ON_TYPE_OF_EXAM" Nullable="false" />
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="SUBJECT_ID" Nullable="true" />
+    <Property Type="Binary" Name="IMG" Nullable="false" />
+    <Property Type="String" Name="FULLNAME" Nullable="true" MaxLength="102" />
+    <Property Type="Int32" Name="Absent" Nullable="false" />
+    <Property Type="Int32" Name="Late" Nullable="false" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="EthnicityVSLanguageDS_Result">
+    <Property Type="String" Name="LANGUAGES" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ETHNICITY_DIVERSITY" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="LanguageCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getLanguageCountAllStudents_Result">
+    <Property Type="Int32" Name="LanguageCount" Nullable="true" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetSchoolDBData_Result">
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ROOM_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ROLE" Nullable="false" MaxLength="7" />
+    <Property Type="String" Name="RELATIONSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PRIMARY_CONTACT" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="SchoolID" Nullable="true" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="mRole" Nullable="false" MaxLength="7" />
+  </ComplexType>
+  <ComplexType Name="GetStaffData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ROOM_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ROLE" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="String" Name="EMPLOYEE_ID" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetStudentProfileData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ORIGIN_OF_BIRTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GENDER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HOMEROOM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="255" />
+    <Property Type="Binary" Name="IMG" Nullable="true" />
+    <Property Type="String" Name="STUDENT_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LEARNING_TYPE" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="EXTRA_CO" Nullable="true" />
+    <Property Type="String" Name="HEALTH_ALERT" Nullable="true" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetStaffDatabyId_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="ROOM_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ROLE" Nullable="false" MaxLength="7" />
+    <Property Type="String" Name="IMAGE_PATH" Nullable="false" MaxLength="500" />
+    <Property Type="Binary" Name="IMG" Nullable="false" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EMPLOYEE_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="JURISDICTION" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="BIRTHDATE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SUPERVISOR" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="STATUS" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="GetTeacherProfileData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="BIRTH_ORIGIN" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ETHNICITY_DIVERSITY" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="YEARS_OF_EXPERIENCE" Nullable="true" />
+    <Property Type="Int32" Name="SCORE_HAPPINESS" Nullable="true" />
+    <Property Type="Double" Name="SALARY" Nullable="true" />
+    <Property Type="String" Name="SPECIAL_NEEDS_TEACHER" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="TEACHER_QUALIFICATION" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="String" Name="DISABILITY" Nullable="true" />
+    <Property Type="String" Name="EXTRA_CO" Nullable="true" />
+    <Property Type="String" Name="DISCIPLINARY_ACTIONS" Nullable="true" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="true" />
+    <Property Type="String" Name="TEACHING_STATUS" Nullable="true" />
+    <Property Type="String" Name="IMAGE_PATH" Nullable="true" MaxLength="500" />
+    <Property Type="Binary" Name="IMG" Nullable="true" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GENDER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LANGUAGES" Nullable="true" />
+    <Property Type="String" Name="HOMEROOM" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="EMPLOYEE_ID" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetAssignmentList_Result">
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REPORTING_TERM" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ABRV" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ASSIGNMENT_CATEGORY_ID" Nullable="true" />
+    <Property Type="String" Name="CATEGORY" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="false" />
+    <Property Type="Double" Name="WEIGHT" Nullable="false" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="false" />
+    <Property Type="Int32" Name="SUBJECT_ID" Nullable="false" />
+    <Property Type="String" Name="SCORE_TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ISLOADED" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetSchoolList_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="SCHOOLBOARD_ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetSemesterList_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="SEMESTER" Nullable="false" MaxLength="72" />
+  </ComplexType>
+  <ComplexType Name="GetStudentListbySubject_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GENDER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HOMEROOM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="STUDENT_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ORIGIN_OF_BIRTH" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="sumAbsent" Nullable="false" />
+    <Property Type="Int32" Name="sumLate" Nullable="false" />
+    <Property Type="Double" Name="Grade" Nullable="true" />
+    <Property Type="String" Name="EXTRA_CO" Nullable="true" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" />
+    <Property Type="Binary" Name="IMG" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetSubjectList_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="Int32" Name="SEMESTER_ID" Nullable="false" />
+    <Property Type="Int32" Name="TEACHER_ID" Nullable="false" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetBudgetData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="Int32" Name="PARENTID" Nullable="true" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getClassListing_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="SEMESTER_ID" Nullable="true" />
+    <Property Type="Int32" Name="TEACHER_ID" Nullable="true" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="false" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetShortBudgetData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="Int32" Name="PARENTID" Nullable="true" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+    <Property Type="String" Name="YEAR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="getBirthOriginCountbySubjectID_Result">
+    <Property Type="Int32" Name="BirthCount" Nullable="true" />
+    <Property Type="String" Name="ORIGIN_OF_BIRTH" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="TotalStudent" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getLanguageCountofStudentsbySubject_Result">
+    <Property Type="Int32" Name="LanguageCount" Nullable="true" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetChildNodeofBudgetData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="String" Name="PARENTID" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+    <Property Type="String" Name="YEAR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetChildNodeDataforMindTree_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="String" Name="PARENTID" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDailyBulletinData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="SCHOOLID" Nullable="true" />
+    <Property Type="String" Name="MESSAGE" Nullable="true" />
+    <Property Type="DateTime" Name="UPLOADED_DATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="SCHOOLBOARD_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDailyBulletinDatabyDate_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="SCHOOLID" Nullable="true" />
+    <Property Type="String" Name="MESSAGE" Nullable="true" />
+    <Property Type="DateTime" Name="UPLOADED_DATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="SCHOOLBOARD_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentGradebySubjectId_Result">
+    <Property Type="Int32" Name="STUDENT_SCORE_ID" Nullable="false" />
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="Assignment" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="true" />
+    <Property Type="String" Name="POINTS" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Average" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="PointSum" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Percentage" Nullable="false" Precision="38" Scale="16" />
+    <Property Type="String" Name="LabelDate" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="ClassAvg" Nullable="false" MaxLength="1" />
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Decimal" Name="AssignPercentage" Nullable="false" Precision="1" Scale="1" />
+    <Property Type="Decimal" Name="Variation" Nullable="false" Precision="1" Scale="1" />
+    <Property Type="String" Name="Day" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="AssignmentDate" Nullable="true" MaxLength="6" />
+  </ComplexType>
+  <ComplexType Name="GetStudentListbySubjectId_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetOrganizationalData_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RoleID" Nullable="true" />
+    <Property Type="Int32" Name="Level" Nullable="false" />
+    <Property Type="String" Name="ReportingPerson" Nullable="true" MaxLength="511" />
+    <Property Type="String" Name="Designation" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="RatingColor" Nullable="true" MaxLength="7" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="true" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ADDRESS" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="HomeRoom" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Int64" Name="parentId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatafromTeacherID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="RoleID" Nullable="true" />
+    <Property Type="Int32" Name="Level" Nullable="false" />
+    <Property Type="String" Name="ReportingPerson" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="Designation" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="RatingColor" Nullable="true" MaxLength="7" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="false" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="String" Name="HomeRoom" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetHierarchicalData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Designation" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LEVEL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ReportingPerson" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="RatingColor" Nullable="true" MaxLength="7" />
+  </ComplexType>
+  <ComplexType Name="GetSubjectIdforStudent_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="Int32" Name="SEMESTER_ID" Nullable="true" />
+    <Property Type="Int32" Name="TEACHER_ID" Nullable="true" />
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="String" Name="LabelDate" Nullable="true" MaxLength="6" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStackedBarAttandanceData_Result">
+    <Property Type="String" Name="DATE" Nullable="true" MaxLength="9" />
+    <Property Type="String" Name="AU" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BC" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BD" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DC" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LI" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LU" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AI" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="P" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="OriginalDate" Nullable="true" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+    <Property Type="String" Name="Day" Nullable="true" MaxLength="2" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentCitizenshipCountbySubjectID_Result">
+    <Property Type="Int32" Name="CitizenshipCount" Nullable="true" />
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Binary" Name="Image" Nullable="true" />
+    <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="MaxCount" Nullable="true" />
+    <Property Type="Double" Name="Opecity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDateofBirthCountbySubjectID_Result">
+    <Property Type="Int32" Name="BirthCount" Nullable="true" />
+    <Property Type="Int32" Name="BirthMonth" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="GetStudentScatterPlotData_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="true" />
+    <Property Type="String" Name="Attendance" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Class" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="GetDiversityData_Result">
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="DiversityCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentExtraCo_Result">
+    <Property Type="String" Name="EXTRA_CO" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="ExtraCoCount" Nullable="true" />
+    <Property Type="String" Name="ABBREVIATION" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStudentTransfferedCount_Result">
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="String" Name="Label" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Color" Nullable="false" MaxLength="14" />
+  </ComplexType>
+  <ComplexType Name="GetTransferredStudentDataforBarGraph_Result">
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="GetStudentClubData_Result">
+    <Property Type="Int32" Name="StdCount" Nullable="true" />
+    <Property Type="String" Name="ClubName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetStudentLanguageDataforHeatmap_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="52" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="LangID" Nullable="true" />
+    <Property Type="String" Name="Weight" Nullable="false" MaxLength="2" />
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Int64" Name="SNo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDateofBirthData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="Int32" Name="BirthMonth" Nullable="true" />
+    <Property Type="Int32" Name="BirthDay" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+    <Property Type="Int32" Name="LastDay" Nullable="true" />
+    <Property Type="Int32" Name="DayofWeek" Nullable="true" />
+    <Property Type="Int32" Name="IsHoliday" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetUserData_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="201" />
+    <Property Type="Int32" Name="ROLEID" Nullable="true" />
+    <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SubjectId" Nullable="true" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetSchoolNameforUser_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="201" />
+    <Property Type="Int32" Name="ROLEID" Nullable="true" />
+    <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SCHOOL_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PHONE_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SchoolId" Nullable="true" />
+    <Property Type="Int32" Name="TeacherID" Nullable="false" />
+    <Property Type="String" Name="Semester" Nullable="true" MaxLength="102" />
+    <Property Type="Int32" Name="SemesterId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetClassDataforTeacher_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="201" />
+    <Property Type="Int32" Name="ROLEID" Nullable="true" />
+    <Property Type="Int32" Name="TeacherID" Nullable="false" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="Int32" Name="SubjectID" Nullable="true" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetExtraCoDataforTeacher_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="201" />
+    <Property Type="Int32" Name="ROLEID" Nullable="true" />
+    <Property Type="Int32" Name="TeacherID" Nullable="false" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="String" Name="EXTRA_CO" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ExtraCoId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetPieTransfferedStudentData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDataforScatterPoint_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="Assignment" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="true" />
+    <Property Type="String" Name="POINTS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="Percentage" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyCitizenship_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetStudentAttendance_Result">
+    <Property Type="String" Name="DATE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="CODE" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetStudentAttendancebyCode_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="CODE" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DATE" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetStudentCitizenshipData_Result">
+    <Property Type="Int32" Name="SNo" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="Image1" Nullable="true" />
+    <Property Type="String" Name="Column2" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="Image2" Nullable="true" />
+    <Property Type="String" Name="Count1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Count2" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetAttendanceCode_Result">
+    <Property Type="String" Name="CODE" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="WEIGHT" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetAssignmentCategory_Result">
+    <Property Type="Int32" Name="ASSIGNMENT_CATEGORY_ID" Nullable="false" />
+    <Property Type="String" Name="CATEGORY" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyEthnicity_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetAlertType_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="STUDENT_ALERT_TYPE" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetClassAttendanceData_Result">
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="Int32" Name="SubjectId" Nullable="true" />
+    <Property Type="Int32" Name="AttendanceCodeId" Nullable="true" />
+    <Property Type="String" Name="CODE" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="HEALTH_ALERT" Nullable="false" />
+    <Property Type="String" Name="OTHER_ALERT" Nullable="false" />
+    <Property Type="String" Name="SHSM_ALERT" Nullable="false" />
+    <Property Type="String" Name="PLUS18_ALERT" Nullable="false" />
+    <Property Type="Int32" Name="ClassAttendanceId" Nullable="true" />
+    <Property Type="String" Name="COMMENT" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SECRETARY_COMMENT" Nullable="true" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetTransferStudentDatabyMonth_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="GetDOBDatabyMonth_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+    <Property Type="Int32" Name="BirthMonth" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabySports_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="EXTRA_CO" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetStudentAttendanceData_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="DateTime" Name="DATE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CODE" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyClub_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="Int32" Name="CLUB_ID" Nullable="true" />
+    <Property Type="String" Name="Club" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyDiversity_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyLanguage_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStudentEthnicityLegendData_Result">
+    <Property Type="Int32" Name="SNo" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Color1" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Column2" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Color2" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetEthnicityData_Result">
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="EthnicityCount" Nullable="true" />
+    <Property Type="Binary" Name="Image" Nullable="true" />
+    <Property Type="Int32" Name="MaxCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetTransferredStudentDataforStackedBar_Result">
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+    <Property Type="String" Name="Behavioral" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Classroom" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Course" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="School" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetTransferType_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="TRANSFER_TYPE" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDOBdataforLegend_Result">
+    <Property Type="Int32" Name="SNo" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Count1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Column2" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Count2" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetTransferStudentDatabyType_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="TRANSFER_TYPE" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="String" Name="TRANSFERRED_DATE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetDistinctCitizenshipCount_Result">
+    <Property Type="Int32" Name="CitizenshipCount" Nullable="true" />
+    <Property Type="Int32" Name="MaxCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetEthnicityfromDiversity_Result">
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="EthnicityCount" Nullable="true" />
+    <Property Type="String" Name="Color" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetStackedDiversityData_Result">
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="dCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentGenderCount_Result">
+    <Property Type="String" Name="GENDER" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="GenderCount" Nullable="true" />
+    <Property Type="Decimal" Name="CountInPercentage" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Color" Nullable="true" MaxLength="7" />
+    <Property Type="Int32" Name="TotalCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentTransfferedStackBarLegend_Result">
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="String" Name="Label" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Color" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetStudentMapData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="String" Name="LATITUDE" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="LONGITUDE" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Distance" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="IMG" Nullable="true" />
+    <Property Type="String" Name="Transportation" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TransportationAbvr" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDataforMapPoint_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="true" />
+    <Property Type="String" Name="LATITUDE" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="LONGITUDE" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="HouseholdIncome" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ParentCount" Nullable="true" />
+    <Property Type="Int32" Name="SiblingCount" Nullable="true" />
+    <Property Type="DateTime" Name="BIRTHDATE" Nullable="true" />
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Transportation" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TransportationAbvr" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Parantal_Involvement" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Distance" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStudentModeofTransportation_Result">
+    <Property Type="String" Name="Transportation" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="TransportationAbvr" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetStudentsList_Result">
+    <Property Type="Int32" Name="SNo" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="ID1" Nullable="true" />
+    <Property Type="String" Name="Column2" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="ID2" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentScoreandAverage_Result">
+    <Property Type="Double" Name="POINTS" Nullable="true" />
+    <Property Type="Double" Name="POINTS_POSSIBLE" Nullable="true" />
+    <Property Type="Int32" Name="Percentage" Nullable="true" />
+    <Property Type="String" Name="Type" Nullable="false" MaxLength="7" />
+  </ComplexType>
+  <ComplexType Name="GetGradesbySubjectId_Result">
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Int32" Name="STUDENT_SCORE_ID" Nullable="false" />
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="Assignment" Nullable="false" MaxLength="1" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="true" />
+    <Property Type="String" Name="POINTS" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Average" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PointSum" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Percentage" Nullable="false" Precision="38" Scale="16" />
+    <Property Type="String" Name="LabelDate" Nullable="true" MaxLength="9" />
+    <Property Type="Int32" Name="ClassAvg" Nullable="false" />
+    <Property Type="Int32" Name="AssignPercentage" Nullable="false" />
+    <Property Type="Int32" Name="Variation" Nullable="false" />
+    <Property Type="String" Name="Day" Nullable="true" MaxLength="2" />
+  </ComplexType>
+  <ComplexType Name="GetStudentScorebyClass_Result">
+    <Property Type="Int32" Name="SUBJECT_ID" Nullable="true" />
+    <Property Type="String" Name="STUDENT_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="IMG" Nullable="true" />
+    <Property Type="String" Name="AverageScore" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="StudentId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyEthnicityandDivesity_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetAverageGradesbySubject_Result">
+    <Property Type="Int32" Name="STUDENT_SCORE_ID" Nullable="false" />
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="Assignment" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="Month" Nullable="true" />
+    <Property Type="String" Name="MonthName" Nullable="true" MaxLength="3" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="true" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="true" />
+    <Property Type="Int32" Name="POINTS" Nullable="true" />
+    <Property Type="Int32" Name="SUBJECT_ID" Nullable="true" />
+    <Property Type="String" Name="Day" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="LabelDate" Nullable="true" MaxLength="6" />
+    <Property Type="Decimal" Name="Average" Nullable="true" Precision="19" Scale="1" />
+    <Property Type="Decimal" Name="PointSum" Nullable="true" Precision="19" Scale="1" />
+    <Property Type="Decimal" Name="Percentage" Nullable="false" Precision="16" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="GetClassInfo_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="SUBJECT_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="GRADE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CREDIT" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SCHOOL_ID" Nullable="false" />
+    <Property Type="Int32" Name="DEPARTMENTID" Nullable="true" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="DEPARTMENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SUBJECT" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetGradesbySubjectforRadar_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="SUBJECT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="AverageScore" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsDiversityBubbleChartData_Result">
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="APPROVED_BUDGET">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BUDGET_LABEL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="BUDGET" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WIDTH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HEIGHT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COLOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ISHEADER" Type="Boolean" />
+    <Property Name="PARENTID" Type="Int32" />
+    <Property Name="LEVEL_NUMBER" Type="Int32" />
+    <Property Name="YEAR" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ASSIGNMENT">
+    <Key>
+      <PropertyRef Name="ASSIGNMENT_ID" />
+    </Key>
+    <Property Name="ASSIGNMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UNIQUE_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="REPORTING_TERM" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ABRV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="POINTS_POSSIBLE" Type="Int32" Nullable="false" />
+    <Property Name="WEIGHT" Type="Double" Nullable="false" />
+    <Property Name="DATE_DUE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SUBJECT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCORE_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ISLOADED" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ASSIGNMENT_CATEGORY">
+    <Key>
+      <PropertyRef Name="ASSIGNMENT_CATEGORY_ID" />
+    </Key>
+    <Property Name="ASSIGNMENT_CATEGORY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATEGORY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ATTENDANCE_CODES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WEIGHT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COLOR" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="COLOR2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CLASS_ATTENDANCE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="Int32" Nullable="false" />
+    <Property Name="COMMENT" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ATTENDANCE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SECRETARY_COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Class_DayofWeek">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DayOfWeekID" Type="Int32" Nullable="false" />
+    <Property Name="ClassID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLASS_STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SUBJECT_ID" Type="Int32" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLUB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="COLOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="COUNTRy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Color" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DAILYBULLETIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SCHOOLID" Type="Int32" />
+    <Property Name="MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UPLOADED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DEPARTMENT1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DOMAIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="MD5" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GRADE_MASTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Letter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Points" Type="Double" />
+    <Property Name="Percent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GRADE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GRADE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SUBJECT_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HOLIDAY_LIST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <Property Name="HOLIDAY" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="IMG_TBL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IMAGE_PATH" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IMG" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REFRENCE_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLASSFICATION_TYPE" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="IMG_TYPE_CLASSIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CLASSIFICATION_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LANGUAGE_PRIORITY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRIORITY" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ORDER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COLOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LANGUAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LANGUAGE1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LEVEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SCHOOL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SCHOOL_NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SCHOOLBOARD_ID" Type="Int32" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DISTRICT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SCHOOL_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LATITUDE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LONGITUDE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SCHOOL_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SCHOOLBOARD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SCHOOLBOARD_ID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JURISDICTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SCHOOLBOARD_ADMINS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ROLEID" Type="Int32" />
+    <Property Name="SCOOLBOARD_ID" Type="Int32" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SEMESTER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SEMESTER1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ABBREVIATION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="YEAR" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="QUARTER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="QUARTERHALF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STARTDATE" Type="DateTime" Precision="0" />
+    <Property Name="ENDDATE" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="STAFF_DIRECTORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BIRTHDATE" Type="DateTime" Precision="0" />
+    <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="BIRTH_ORIGIN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CITIZENSHIP" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ETHNICITY_DIVERSITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="YEARS_OF_EXPERIENCE" Type="Int32" />
+    <Property Name="SCORE_HAPPINESS" Type="Int32" />
+    <Property Name="SALARY" Type="Double" />
+    <Property Name="SPECIAL_NEEDS_TEACHER" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="TEACHER_QUALIFICATION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EMPLOYEE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ROLEID" Type="Int32" />
+    <Property Name="ROOM_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DEPARTMENTID" Type="Int32" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="SUPERVISOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STAFF_PHONE_NO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STAFF_ID" Type="Int32" />
+    <Property Name="PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BIRTHDATE" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="DIVERSITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ORIGIN_OF_BIRTH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CITIZENSHIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ETHNICITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HOMEROOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="STUDENT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="LATITUDE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LONGITUDE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="ParentCount" Type="Int32" />
+    <Property Name="IsTransferred" Type="Boolean" />
+    <Property Name="SiblingCount" Type="Int32" />
+    <Property Name="HouseholdIncome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transportation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TransportationAbvr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Parantal_Involvement" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Distance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Distance1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_ALERT_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="ALERT_ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ALERT" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="STUDENT_ALERTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ALERT_TYPE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_AVG_GRADE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENTID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SUBJECTID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GRADE12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_COCURRICULAR">
+    <Key>
+      <PropertyRef Name="STUDENTS_COCURRICULAR_ID" />
+    </Key>
+    <Property Name="STUDENTS_COCURRICULAR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLUB_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="STUDENT_EXTRA_CO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="EXTRA_CO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CLUB_ID" Type="Int32" />
+    <Property Name="ABBREVIATION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_GRADE">
+    <Key>
+      <PropertyRef Name="STUDENT_GRADE_ID" />
+    </Key>
+    <Property Name="STUDENT_GRADE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SEMESTER_ID" Type="Int32" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="GRADE" Type="Double" Nullable="false" />
+    <Property Name="TRANSFER_STATUS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="STUDENT_LANGUAGE_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="LANGUAGE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRIORITY" Type="Int32" />
+    <Property Name="ISHOUSEHOLD_LANGUAGE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="STUDENT_PHONE_NO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="PRIMARY_CONTACT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE_NUMBER" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RELATION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PRIMARY_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_SCORE">
+    <Key>
+      <PropertyRef Name="STUDENT_SCORE_ID" />
+    </Key>
+    <Property Name="STUDENT_SCORE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCORE_ON_TYPE_OF_EXAM" Type="Double" Nullable="false" />
+    <Property Name="ENGAGEMENT_SCORE" Type="Double" Nullable="false" />
+    <Property Name="ASSIGNMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="POINTS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_SPECIAL_NEEDS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPECIAL_NEEDS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="STUDENT_TRANSFERRED">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="Int32" />
+    <Property Name="TRANSFER_TYPE" Type="Int32" />
+    <Property Name="TRANSFERRED_FROM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TRANSFERRED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SUBJECT_TEACHER_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SUBJECT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SEMESTER_ID" Type="Int32" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SUBJECT_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SUBJECT" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SUBJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SUBJECT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COURSE_NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="COURSE_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CREDIT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SCHOOL_ID" Type="Int32" Nullable="false" />
+    <Property Name="DEPARTMENTID" Type="Int32" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TEACHER_DISABILITY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEACHER_ID" Type="Int32" Nullable="false" />
+    <Property Name="DISABILITY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TEACHER_DISCIPLINARY_ACTIONS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEACHER_ID" Type="Int32" Nullable="false" />
+    <Property Name="DISCIPLINARY_ACTIONS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TEACHER_EXTRA_CO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEACHER_ID" Type="Int32" Nullable="false" />
+    <Property Name="EXTRA_CO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TEACHER_LANGUAGE_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEACHER_ID" Type="Int32" Nullable="false" />
+    <Property Name="LANGUAGE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TEACHING_STATUS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEACHER_ID" Type="Int32" Nullable="false" />
+    <Property Name="TEACHING_STATUS1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TRANSFER_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TRANSFER_TYPE1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="COLOR" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="ROLEID" Type="Int32" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="LASTNAME" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="GetGradesVsDiversityBoxPlotChartData_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Score" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsDiversityAreaChartData_Result">
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsDiversityRadarChartData_Result">
+    <Property Type="String" Name="DIVERSITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsCitizenshipAreaChartData_Result">
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="Binary" Name="Image" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsCitizenshipBubbleChartData_Result">
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="Binary" Name="Image" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsCitizenshipRadarChartData_Result">
+    <Property Type="String" Name="CITIZENSHIP" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="Binary" Name="Image" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsLanguagesChartData_Result">
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsAttendanceData_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="true" />
+    <Property Type="String" Name="Attendance" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetGradesVsAttendanceHistogramData_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="true" />
+    <Property Type="String" Name="Attendance" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetEthnicityVsCocurricularBubbleChartData_Result">
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EXTRA_CO" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="Int32" Name="ExtraCoID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetEthnicityVsLanguagesBubbleChartData_Result">
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="StudentCount" Nullable="true" />
+    <Property Type="Int32" Name="langID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetStudentAlertsData_Result">
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="HEALTH_ALERT" Nullable="false" />
+    <Property Type="String" Name="OTHER_ALERT" Nullable="false" />
+    <Property Type="String" Name="GUARDIAN_ALERT" Nullable="false" />
+    <Property Type="String" Name="SPECIAL_ALERT" Nullable="false" />
+    <Property Type="String" Name="OVER18_ALERT" Nullable="false" />
+    <Property Type="String" Name="MENTAL_ALERT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetSportsfromEthnicity_Result">
+    <Property Type="String" Name="EXTRA_CO" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="SportsCount" Nullable="true" />
+    <Property Type="String" Name="Color" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetStackedEthnicityData_Result">
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="eCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetLanguagefromEthnicity_Result">
+    <Property Type="String" Name="LANGUAGE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="LangCount" Nullable="true" />
+    <Property Type="String" Name="Color" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyEthnicityandLanguage_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetStudentDatabyEthnicityandSports_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="ETHNICITY" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetBudgetLegendData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="Int32" Name="PARENTID" Nullable="true" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+    <Property Type="String" Name="YEAR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetBudgetLegendChildData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="Int32" Name="PARENTID" Nullable="true" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+    <Property Type="String" Name="YEAR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetStudentProfileDetails_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="EMPLOYEE_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="202" />
+    <Property Type="String" Name="ROOM_NUMBER" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="REPORTING_TERM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="CourseID" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="STUDENT_ID" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="C2022_04_25" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_04_26" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_04_27" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_04_28" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_04_29" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_05_02" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_05_03" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_05_04" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_05_05" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="C2022_05_06" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetParentBudgetData_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="Int32" Name="PARENTID" Nullable="true" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+    <Property Type="String" Name="YEAR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetParentID_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="BUDGET_LABEL" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="BUDGET" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="ISHEADER" Nullable="true" />
+    <Property Type="Int32" Name="PARENTID" Nullable="true" />
+    <Property Type="Int32" Name="LEVEL_NUMBER" Nullable="true" />
+    <Property Type="String" Name="YEAR" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="GetAssignmentDatabyCourseID_Result">
+    <Property Type="Int64" Name="RNo" Nullable="true" />
+    <Property Type="Int32" Name="STUDENT_SCORE_ID" Nullable="false" />
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="Assignment" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="true" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="true" />
+    <Property Type="String" Name="POINTS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AssignmentDate" Nullable="true" MaxLength="6" />
+    <Property Type="Decimal" Name="Percentage" Nullable="false" Precision="16" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="GetCourseInstructorData_Result">
+    <Property Type="Int32" Name="TEACHER_ID" Nullable="true" />
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="202" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="CourseID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetGradesbyCitizenship_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="102" />
+    <Property Type="String" Name="Score" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="GetGradesbyDiversity_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="102" />
+    <Property Type="String" Name="Score" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <ComplexType Name="GetGradesbyLanguage_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="true" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="102" />
+    <Property Type="String" Name="Score" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+  <EntityType Name="NOTIFICATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SCHOOLID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ICON" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="USERID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NOTIFICATION_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STUDENT" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CLASS" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DOCUMENT" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATEDBY" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="STUDENTID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="GetAssignmentScoreSheet_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="STUDENT_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AssignmentTitle" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="true" />
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="103" />
+  </ComplexType>
+  <ComplexType Name="GetAttendanceReport_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="STUDENT_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TeacherName" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="date" Nullable="true" MaxLength="101" />
+  </ComplexType>
+  <ComplexType Name="GetEarlierNotification_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="UpdatedDate" Nullable="true" MaxLength="4000" />
+    <Property Type="Binary" Name="ICON" Nullable="true" />
+    <Property Type="String" Name="NOTIFICATION_TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TEMPLATE" Nullable="true" />
+    <Property Type="String" Name="STUDENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CLASS" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="UPDATEDBY" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="DOCUMENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="MESSAGE" Nullable="true" />
+    <Property Type="String" Name="PAGE_LINK" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="UPDATED_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetNewNotifications_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="UpdatedDate" Nullable="true" MaxLength="4000" />
+    <Property Type="Binary" Name="ICON" Nullable="true" />
+    <Property Type="String" Name="NOTIFICATION_TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TEMPLATE" Nullable="true" />
+    <Property Type="String" Name="STUDENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CLASS" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="UPDATEDBY" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="DOCUMENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="MESSAGE" Nullable="true" />
+    <Property Type="String" Name="PAGE_LINK" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="UPDATED_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="GetScoresheetbySubject_Result">
+    <Property Type="Int32" Name="STUDENT_ID" Nullable="false" />
+    <Property Type="String" Name="Semester" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="102" />
+    <Property Type="String" Name="Grade" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="GetStudentsbyCourse_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="StdName" Nullable="false" MaxLength="102" />
+    <Property Type="String" Name="STUDENT_ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="COURSE_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="COURSE_CODE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetSchoolAlerts_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NOTIFICATION_TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TEMPLATE" Nullable="true" />
+    <Property Type="String" Name="MESSAGE" Nullable="true" />
+    <Property Type="String" Name="UpdatedDate" Nullable="true" MaxLength="4000" />
+    <Property Type="Binary" Name="ICON" Nullable="true" />
+    <Property Type="String" Name="STUDENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="CLASS" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="UPDATEDBY" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="DOCUMENT" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="PAGE_LINK" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="UPDATED_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="NOTIFICATION_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TEMPLATE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PAGE_LINK" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="STUDENT_COMMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENTID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATEDBY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="STUDENT_SUBJECT_MAPPING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STUDENT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SUBJECT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetStudentComments_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="STUDENTID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UpdatedComment" Nullable="true" />
+    <Property Type="String" Name="UPDATEDBY" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="FEEDBACK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Feedback1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Screenshot" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="User" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetStudentsforSearch_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Reference" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="GetAssignmentsforSearch_Result">
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="String" Name="REPORTING_TERM" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ABRV" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ASSIGNMENT_CATEGORY_ID" Nullable="true" />
+    <Property Type="String" Name="CATEGORY" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="POINTS_POSSIBLE" Nullable="false" />
+    <Property Type="Double" Name="WEIGHT" Nullable="false" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="false" />
+    <Property Type="Int32" Name="SUBJECT_ID" Nullable="false" />
+    <Property Type="String" Name="SCORE_TYPE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="ISLOADED" Nullable="false" />
+    <Property Type="String" Name="Reference" Nullable="false" MaxLength="14" />
+  </ComplexType>
+  <ComplexType Name="GetStaffforSearch_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Reference" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ROLE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetAssignmentforSchedule_Result">
+    <Property Type="Int32" Name="ASSIGNMENT_ID" Nullable="false" />
+    <Property Type="DateTime" Name="DATE_DUE" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UNIQUE_ID" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ABRV" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>
